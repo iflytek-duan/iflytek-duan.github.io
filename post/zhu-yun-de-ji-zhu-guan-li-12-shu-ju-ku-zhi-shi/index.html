@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>【朱赟的技术管理】12-数据库知识 | iflytek-duan的Blog</title>
 <meta name="description" content="You cannot improve your past, but you can improve your future. Once time is wasted, life is wasted." />
-<link rel="shortcut icon" href="https://iflytek-duan.github.io//favicon.ico?v=1573726140360">
+<link rel="shortcut icon" href="https://iflytek-duan.github.io//favicon.ico?v=1574048734646">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://iflytek-duan.github.io//styles/main.css">
@@ -20,7 +20,7 @@
       <div class="main-content">
         <div class="site-header">
   <a href="https://iflytek-duan.github.io/">
-  <img class="avatar" src="https://iflytek-duan.github.io//images/avatar.png?v=1573726140360" alt="">
+  <img class="avatar" src="https://iflytek-duan.github.io//images/avatar.png?v=1574048734646" alt="">
   </a>
   <h1 class="site-title">
     iflytek-duan的Blog
@@ -80,7 +80,7 @@
                 2019-11-14
               </span>
               <span>
-                8 min read
+                9 min read
               </span>
               
                 <a href="https://iflytek-duan.github.io//tag/9raW-gICI" class="post-tag">
@@ -175,6 +175,14 @@
 <p><em><strong>过过度使用事务支持往往会让逻辑变得不必要的复杂。</strong></em></p>
 </li>
 </ul>
+<hr>
+<h2 id="3-数据库锁">3. 数据库锁</h2>
+<p>数据库会出现Race Condition，我们常常把Race Condition叫做竞争条件，是指多个进程或者线程并发访问和操作同一数据，且执行结果与访问发生的特定顺序有关的现象。</p>
+<p>如何解决竞争条件（Race Condtion）呢？常见的方法是使用各种锁机制来确保行为的可预测性和正确性。根据实际情况的不同，加锁的方式会不一样。</p>
+<p>常见的有乐观锁（Optimistic Locking）和悲观锁（Pessimistic Locking）。总的来说，前者在对性能要求比较高的系统里比较常见。在实际应用中，很多系统会自己实现锁定（Locking）机制。</p>
+<hr>
+<h2 id="4-缓存和主从机制">4. 缓存和主从机制</h2>
+<p>为了提高性能，我们会为数据库增加缓存（Cache）和主从（Master-Slave）等机制，这时候会引起数据的不一致性。常见的情况是，如果系统默认实在从（Slave）节点读取数据，那么一些刚刚更新到主节（Master）的数据在读的时候就有可能读不到。这个情况在使用一些数据关联（Association）的时候更容易读不到。Rails的Active Record数据关联（Association），就容易出现这一类问题。</p>
 
               </div>
               <div class="toc-container">
@@ -191,6 +199,8 @@
 <ul>
 <li><a href="#1-%E7%B4%A2%E5%BC%95">1. 索引</a></li>
 <li><a href="#2-%E4%BA%8B%E5%8A%A1%E6%94%AF%E6%8C%81">2. 事务支持</a></li>
+<li><a href="#3-%E6%95%B0%E6%8D%AE%E5%BA%93%E9%94%81">3. 数据库锁</a></li>
+<li><a href="#4-%E7%BC%93%E5%AD%98%E5%92%8C%E4%B8%BB%E4%BB%8E%E6%9C%BA%E5%88%B6">4. 缓存和主从机制</a></li>
 </ul>
 </li>
 </ul>
