@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://iflytek-duan.github.io/</id>
     <title>iflytek-duan的Blog</title>
-    <updated>2019-11-19T03:09:59.511Z</updated>
+    <updated>2019-11-20T01:56:44.063Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://iflytek-duan.github.io/"/>
     <link rel="self" href="https://iflytek-duan.github.io//atom.xml"/>
@@ -10,6 +10,15 @@
     <logo>https://iflytek-duan.github.io//images/avatar.png</logo>
     <icon>https://iflytek-duan.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, iflytek-duan的Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[【朱赟的技术管理】17-管理者不用亲力亲为：关键是什么？]]></title>
+        <id>https://iflytek-duan.github.io//post/zhu-yun-de-ji-zhu-guan-li-17-guan-li-zhe-bu-yong-qin-li-qin-wei-guan-jian-shi-shi-me</id>
+        <link href="https://iflytek-duan.github.io//post/zhu-yun-de-ji-zhu-guan-li-17-guan-li-zhe-bu-yong-qin-li-qin-wei-guan-jian-shi-shi-me">
+        </link>
+        <updated>2019-11-20T01:55:32.000Z</updated>
+        <content type="html"><![CDATA[<p>去</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[【朱赟的技术管理】16-技术人如何建立个人影响力]]></title>
         <id>https://iflytek-duan.github.io//post/zhu-yun-de-ji-zhu-guan-li-16-ji-zhu-ren-ru-he-jian-li-ge-ren-ying-xiang-li</id>
