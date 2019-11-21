@@ -1,107 +1,111 @@
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" >
+
 <title>【朱赟的技术管理】17-管理者不用亲力亲为：关键是什么？ | iflytek-duan的Blog</title>
-<meta name="description" content="You cannot improve your past, but you can improve your future. Once time is wasted, life is wasted." />
-<link rel="shortcut icon" href="https://iflytek-duan.github.io//favicon.ico?v=1574307313910">
+<meta name="description" content="You cannot improve your past, but you can improve your future. Once time is wasted, life is wasted.">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://iflytek-duan.github.io//favicon.ico?v=1574307354289">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://iflytek-duan.github.io//styles/main.css">
 
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
 
 
   </head>
   <body>
-    <div class="main">
-      <div class="main-content">
-        <div class="site-header">
-  <a href="https://iflytek-duan.github.io/">
-  <img class="avatar" src="https://iflytek-duan.github.io//images/avatar.png?v=1574307313910" alt="">
-  </a>
-  <h1 class="site-title">
-    iflytek-duan的Blog
-  </h1>
-  <p class="site-description">
-    You cannot improve your past, but you can improve your future. Once time is wasted, life is wasted.
-  </p>
-  <div class="menu-container">
-    
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://iflytek-duan.github.io/">
+        <img src="https://iflytek-duan.github.io//images/avatar.png?v=1574307354289" class="site-logo">
+        <h1 class="site-title">iflytek-duan的Blog</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
       
-        <a href="https://iflytek-duan.github.io/" class="menu">
-          首页
-        </a>
+        
+          <a href="https://iflytek-duan.github.io/" class="site-nav">
+            首页
+          </a>
+        
       
-    
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
       
-        <a href="/archives" class="menu">
-          归档
-        </a>
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
       
-    
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
       
-        <a href="/tags" class="menu">
-          标签
-        </a>
-      
-    
-      
-        <a href="/post/about" class="menu">
-          关于
-        </a>
-      
-    
+    </div>
   </div>
-  <div class="social-container">
-    
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
       
-    
+        
       
-    
+        
       
-    
+        
       
-    
+        
       
-    
+        
+      
+    </div>
+    <div class="site-description">
+      You cannot improve your past, but you can improve your future. Once time is wasted, life is wasted.
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://iflytek-duan.github.io//atom.xml" target="_blank">RSS</a>
+    </div>
   </div>
 </div>
 
-        <div class="post-detail">
-          <article class="post">
-            <h2 class="post-title">
-              【朱赟的技术管理】17-管理者不用亲力亲为：关键是什么？
-            </h2>
-            <div class="post-info">
-              <span>
-                2019-11-20
-              </span>
-              <span>
-                3 min read
-              </span>
-              
-                <a href="https://iflytek-duan.github.io//tag/bLB_9Gt76" class="post-tag">
-                  # 管理
-                </a>
-              
-                <a href="https://iflytek-duan.github.io//tag/9raW-gICI" class="post-tag">
-                  # 学习笔记
-                </a>
-              
-                <a href="https://iflytek-duan.github.io//tag/myRGoPdmt1" class="post-tag">
-                  # 朱赟
-                </a>
-              
-            </div>
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">【朱赟的技术管理】17-管理者不用亲力亲为：关键是什么？</h2>
+            <div class="post-date">2019-11-20</div>
             
-              <img class="post-feature-image" src="https://iflytek-duan.github.io//post-images/zhu-yun-de-ji-zhu-guan-li-17-guan-li-zhe-bu-yong-qin-li-qin-wei-guan-jian-shi-shi-me.jpg" alt="">
+              <div class="feature-container" style="background-image: url('https://iflytek-duan.github.io//post-images/zhu-yun-de-ji-zhu-guan-li-17-guan-li-zhe-bu-yong-qin-li-qin-wei-guan-jian-shi-shi-me.jpg')">
+              </div>
             
-            <div class="post-content-wrapper">
-              <div class="post-content">
-                <h1 id="前言">前言</h1>
+            <div class="post-content">
+              <h1 id="前言">前言</h1>
 <blockquote>
 <p>大部分被提拔为技术领导的工程师都有一定的领导力，最重要的是，他们都具备出色的业务能力；这些技术能力强悍的工程师在刚刚走上管理岗位时，往往喜欢亲力亲为，他们对别人干活并不是很放心，恨不得自己把所有的重要工作都给做了。然而这样只会让自己变得越来越累，工作越来越吃力，作为一个技术管理者，应该适度授权给别人，在过程中学会掌握任务分配技巧，只有这样，才能快速胜任管理岗位，带领团队越做越好。</p>
 </blockquote>
@@ -128,111 +132,91 @@
 </ul>
 <p>事情无论是自己做还是交给别人做，让事情更快更好的完成永远是第一位的。很多优秀的工程师最初都是独行侠，他们单枪匹马完成了很多丰功伟绩，也更习惯自己独立的去完成工作，但一旦他们发现团队协作可以获取更大的成就时，就会从亲力亲为转变为授权模式，帮助别人成功，团队才会获得更大的成功。</p>
 
-              </div>
-              <div class="toc-container">
-                <ul class="markdownIt-TOC">
-<li><a href="#%E5%89%8D%E8%A8%80">前言</a></li>
-<li><a href="#%E4%BD%9C%E4%B8%BA%E4%B8%80%E4%B8%AA%E6%8A%80%E6%9C%AF%E7%AE%A1%E7%90%86%E8%80%85%E5%9C%A8%E6%8E%88%E6%9D%83%E5%92%8C%E4%BB%BB%E5%8A%A1%E5%88%86%E9%85%8D%E6%97%B6%E6%88%91%E4%BB%AC%E5%BA%94%E8%AF%A5%E6%B3%A8%E6%84%8F%E5%93%AA%E4%BA%9B%E6%96%B9%E9%9D%A2">作为一个技术管理者，在授权和任务分配时我们应该注意哪些方面？</a>
-<ul>
-<li><a href="#1%E6%98%8E%E7%A1%AE%E4%BB%BB%E5%8A%A1%E7%9B%AE%E6%A0%87">1.明确任务目标</a></li>
-<li><a href="#2%E4%B8%A5%E8%B0%A8%E7%9A%84%E8%AE%A1%E5%88%92%E5%88%B6%E5%AE%9A">2.严谨的计划制定</a></li>
-<li><a href="#3%E9%80%82%E6%97%B6%E7%BB%99%E5%87%BA%E5%8F%8D%E9%A6%88">3.适时给出反馈</a></li>
-</ul>
-</li>
-<li><a href="#%E7%AE%A1%E7%90%86%E8%80%85%E4%B8%8D%E7%94%A8%E4%BA%B2%E5%8A%9B%E4%BA%B2%E4%B8%BA%E7%9A%84%E5%85%B3%E9%94%AE%E6%98%AF%E4%BB%80%E4%B9%88">管理者不用亲力亲为的关键是什么？</a></li>
-</ul>
-
-              </div>
             </div>
-          </article>
-        </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://iflytek-duan.github.io//tag/bLB_9Gt76" class="tag">
+                    管理
+                  </a>
+                
+                  <a href="https://iflytek-duan.github.io//tag/9raW-gICI" class="tag">
+                    学习笔记
+                  </a>
+                
+                  <a href="https://iflytek-duan.github.io//tag/myRGoPdmt1" class="tag">
+                    朱赟
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://iflytek-duan.github.io//post/zhu-yun-de-ji-zhu-guan-li-16-ji-zhu-ren-ru-he-jian-li-ge-ren-ying-xiang-li">
+                  <h3 class="post-title">
+                    【朱赟的技术管理】16-技术人如何建立个人影响力
+                  </h3>
+                </a>
+              </div>
+            
 
-        
-          <div class="next-post">
-            <div class="next">下一篇</div>
-            <a href="https://iflytek-duan.github.io//post/zhu-yun-de-ji-zhu-guan-li-16-ji-zhu-ren-ru-he-jian-li-ge-ren-ying-xiang-li">
-              <h3 class="post-title">
-                【朱赟的技术管理】16-技术人如何建立个人影响力
-              </h3>
-            </a>
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
           </div>
-        
 
-        
-          
-            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-
-<div id="gitalk-container"></div>
-
-<script>
-
-  var gitalk = new Gitalk({
-    clientID: 'cae2b8f6a4ade000f9d7',
-    clientSecret: '2d3862d6cd21351bfb3e50fd5a51880756c4b684',
-    repo: 'iflytek-duan.github.io',
-    owner: 'iflytek-duan',
-    admin: ['iflytek-duan'],
-    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
-    distractionFreeMode: false  // Facebook-like distraction free mode
-  })
-
-  gitalk.render('gitalk-container')
-
-</script>
-
-          
-
-          
-        
-
-        <div class="site-footer">
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
-  <a class="rss" href="https://iflytek-duan.github.io//atom.xml" target="_blank">RSS</a>
-</div>
-
-<script>
-  hljs.initHighlightingOnLoad()
-
-  let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
-
-  // This should probably be throttled.
-  // Especially because it triggers during smooth scrolling.
-  // https://lodash.com/docs/4.17.10#throttle
-  // You could do like...
-  // window.addEventListener("scroll", () => {
-  //    _.throttle(doThatStuff, 100);
-  // });
-  // Only not doing it here to keep this Pen dependency-free.
-
-  window.addEventListener("scroll", event => {
-    let fromTop = window.scrollY;
-
-    mainNavLinks.forEach((link, index) => {
-      let section = document.getElementById(decodeURI(link.hash).substring(1));
-      let nextSection = null
-      if (mainNavLinks[index + 1]) {
-        nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
-      }
-      if (section.offsetTop <= fromTop) {
-        if (nextSection) {
-          if (nextSection.offsetTop > fromTop) {
-            link.classList.add("current");
-          } else {
-            link.classList.remove("current");    
-          }
-        } else {
-          link.classList.add("current");
-        }
-      } else {
-        link.classList.remove("current");
-      }
-    });
-  });
-
-</script>
-
+        </div>
       </div>
     </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: 'cae2b8f6a4ade000f9d7',
+        clientSecret: '2d3862d6cd21351bfb3e50fd5a51880756c4b684',
+        repo: 'iflytek-duan.github.io',
+        owner: 'iflytek-duan',
+        admin: ['iflytek-duan'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
   </body>
 </html>
