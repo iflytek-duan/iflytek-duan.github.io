@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://iflytek-duan.github.io/</id>
     <title>紫豪的Blog</title>
-    <updated>2019-11-27T09:41:53.883Z</updated>
+    <updated>2019-12-02T02:44:10.909Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://iflytek-duan.github.io/"/>
     <link rel="self" href="https://iflytek-duan.github.io//atom.xml"/>
@@ -10,6 +10,37 @@
     <logo>https://iflytek-duan.github.io//images/avatar.png</logo>
     <icon>https://iflytek-duan.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, 紫豪的Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[【朱赟的技术管理】24-编程语言漫谈]]></title>
+        <id>https://iflytek-duan.github.io//post/zhu-yun-de-ji-zhu-guan-li-24-bian-cheng-yu-yan-man-tan</id>
+        <link href="https://iflytek-duan.github.io//post/zhu-yun-de-ji-zhu-guan-li-24-bian-cheng-yu-yan-man-tan">
+        </link>
+        <updated>2019-12-02T02:23:59.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="1初学者不要纠结先学哪种语言">1.初学者不要纠结“先学哪种语言”</h2>
+<p>初学者在先学哪种语言上花费时间纠结很不值得，还不如随便挑选一个语言，跳进去游几圈试试。对于工程师来说，学会第一种编程语言只是万里长征的第一步，只要你还在这个领域，就不可能只学习一种语言，只会一种语言的工程师根本不能称之为工程师。</p>
+<hr>
+<h2 id="2只有先掌握好一种语言才能快速学好其它语言">2.只有先掌握好一种语言，才能快速学好其它语言</h2>
+<p>如果你不能用一种编程语言的基本特性写好代码，那换成另外一种语言也无济于事，你会写出同样差的代码。比如，你的Java很糟糕，那么换成Go、Ruby，你的代码也会同样糟糕、甚至更差。</p>
+<hr>
+<h2 id="3脚本语言也可以作为入门语言">3.脚本语言也可以作为入门语言</h2>
+<p>很多人觉得不要用脚本语言入门，我觉得不一定，尤其是现在就着人工智能的浪潮搞机器学习的人，用Python入门就挺好。另外，脚本语言在面试中占优势。平时找工作Ruby、Python、C++和Java熟练度差不多，但面试中使用Ruby或者Python答题，写代码的时间估计是两者的一半。</p>
+<hr>
+<h2 id="4不要有明确的前后端分隔">4.不要有明确的前后端分隔</h2>
+<p>后端工程师要熟练掌握一门前端语言，前端工程师也要熟练掌握一门后端语言。倒不是为了提倡全栈或多能力储备，而是两者的编程思维模式很不一样。知己知彼，在架构设计和解决具体问题时，才会更精确的判断。</p>
+<p>另外，现在大前端的概念也比较流行，也就是大前端工程师能同时掌握Web编程语言、iOS和Android编程语言，原生技术（iOS和Android）和Web的配合越来越紧密。</p>
+<hr>
+<h2 id="5sql是一门非常重要并且应该熟练掌握的语言虽然它不能被称为编程语言">5.SQL是一门非常重要并且应该熟练掌握的语言（虽然它不能被称为编程语言）</h2>
+<p>如果你平时的编程工作中涉及到业务功能，而不是纯粹的技术架构，一定会使用到数据库。SQL就是数据的语言，通过它，你可以和数据建立连接和沟通。</p>
+<p>如果你数据访问模式写的很差，轻则代码性能一塌糊涂，重则引发Bug，而涉及数据的问题，Bug等级都比较高，后果可能很严重。</p>
+<hr>
+<h2 id="6工程师要具备搭建测试框架的能力">6.工程师要具备搭建测试框架的能力</h2>
+<p>无论什么语言，工程师都应该能够基于这种语言搭建测试框架，写好测试代码和写业务代码一样重要，甚至更重要。工作后你会发现，可能有时候我们只花五分钟写了一个程序，而为其写一个能差不多覆盖所有功能路径的测试用例集却花了一个小时。</p>
+<hr>
+<h2 id="7在任何时候都要用并发的-分布式的思维去看待你的程序">7.在任何时候都要用并发的、分布式的思维去看待你的程序</h2>
+<p>因为竞争条件或者并发中的不确定因素（比如调用顺序）导致的Bug，仅仅理解语言的基本特性，根本不能解释。</p>
+<p>每种语言都有自己的并发编程模式（比如Go的Goroutine，Java的ForkJoinPool，Swift的Swift Grand Central Dispatch等）。学习每一种语言，都应该深入了解它的并发模型，在这个多核的时代，不懂并发的程序员不可能是个好工程师。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[【朱赟的技术管理】23-如何处理工作中的人际关系？]]></title>
         <id>https://iflytek-duan.github.io//post/zhu-yun-de-ji-zhu-guan-li-23-ru-he-chu-li-gong-zuo-zhong-de-ren-ji-guan-xi</id>
