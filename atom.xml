@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://iflytek-duan.github.io/</id>
     <title>紫豪的Blog</title>
-    <updated>2019-12-02T02:44:10.909Z</updated>
+    <updated>2019-12-02T09:11:48.995Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://iflytek-duan.github.io/"/>
     <link rel="self" href="https://iflytek-duan.github.io//atom.xml"/>
@@ -10,6 +10,51 @@
     <logo>https://iflytek-duan.github.io//images/avatar.png</logo>
     <icon>https://iflytek-duan.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, 紫豪的Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[【朱赟的技术管理】25-兼容并包的领导方式]]></title>
+        <id>https://iflytek-duan.github.io//post/zhu-yun-de-ji-zhu-guan-li-25-jian-rong-bing-bao-de-ling-dao-fang-shi</id>
+        <link href="https://iflytek-duan.github.io//post/zhu-yun-de-ji-zhu-guan-li-25-jian-rong-bing-bao-de-ling-dao-fang-shi">
+        </link>
+        <updated>2019-12-02T08:27:13.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="前言">前言</h1>
+<blockquote>
+<p>你可能听说，很多硅谷公司都有个不成文的规定，叫做“多样化（Diversity）”，这是什么意思呢？<br>
+简单来说，就是要求公司在招聘人才的时候，尽可能保持员工组成的多样化。</p>
+</blockquote>
+<hr>
+<h1 id="一-为什么要保持员工组成的多样化">一、为什么要保持员工组成的多样化？</h1>
+<p>第一个原因是，互联网时代的市场组成是多样化的。很多欧美产品在中国市场的销售额是公司营收的主要组成部分，国内很多产品也都开始具备国际化意识，逐步介入欧美中东等地区的市场。</p>
+<p>并且，硅谷地区的人口结构和美国整体是不同的，多次殖民和移民的历史，让硅谷的人口本身就呈现多样化，也因此硅谷公司的国际化视角从创建之初就有了。</p>
+<p>在思维方式上，我们希望在构建产品的时候就开始兼顾市场的多样化，比如考虑设计、本地化、语言、使用习惯等等，而多样化的员工可以更好地帮助实现产品多样化的功能特性。</p>
+<p>第二个原因是，产品的用户也是多种多样的。每个客户会希望产品具有个性化特性，也就是有“这个特性感觉上是为我做的，更适合我使用”的需求。因此，要保持产品的竞争力，就需要了解更多客户的不同需求。</p>
+<p>产品或者平台怎样才能让每个用户都能体验到想要的个性化呢？这就要求设计者必须意识到用户的多样化和需求的差异化，也就从根本上要求了组成设计者的员工是多样化的。</p>
+<hr>
+<h1 id="二-如何才能保持员工的多样化">二、如何才能保持员工的多样化？</h1>
+<p>首先，多样化可以体现在国际、性别和人种这种外部区别上，比如：白种人、黄种人、黑人都要保持一定的比例；性别上也要求保持平衡，也就是比较健康的男女员工数量。还有一些公司会要求有一定比例的同性恋、不同类型的宗教徒等等。</p>
+<p>其次，员工的多样化也可以体现在团队内部的差异上，互联网时代需要多种多样的人才，人才库的组成也应是多元化的。一个团队里，需要具备开创性思维、敢打敢拼的人，也需要一些能够深思熟虑，以及能够把事情落地和执行的人。</p>
+<p>最后，员工的多样化也体现在团队的创新思维上。一个公司，如果有一个Idea，一个产品，那么这个公司早晚会被时代的大潮抛弃。比尔·盖茨曾经说过：“组织要么创新，要么死亡”，就是这个道理。</p>
+<p>因此，团队内部需要有创新者，或者是“异见人士”的存在，他们的思路和见解并不是总和产品的主要设计者保持一致；这种情况下，团队很难“想到一块去”，也就保持了团队创新的活力。</p>
+<p>有一些不同的声音，对于“哪些重要，哪些该做”有些不同的看法，哪怕这些方法在初期会被认为风险太高、太离谱，但在某种程度上，它们会让团队的活力更持久。</p>
+<hr>
+<h1 id="三-领导需要具备兼容并包的思维">三、领导需要具备兼容并包的思维</h1>
+<p><strong>多样化的员工组成保证了多样化的企业文化，所以在很多时候，这也要求领导者要具备兼容并包的思维。</strong></p>
+<p>“包容性领导的六个特征”（The six signature traits of inclusive leadership）一文中提出了一种新的领导方式，文中认为领导者应该具备以下六种计能或特征：</p>
+<ol>
+<li>坚定的承诺<br>
+领导者需要从内心深处认为多样化和融合是一个正确的人生观和价值观。保持开放接纳的心态，平等对待每一种人和文化，对企业有益。</li>
+<li>谦卑的勇气<br>
+领导者不要有盲目的自我优越感，而应该客观的看待自己的优点和缺点。对待他人都要保持一种谦虚的态度，无论他们是何种教育背景、人种、性别。</li>
+<li>正确的认知<br>
+领导者需要知道自己和企业有盲点、有偏见，知道问题出在哪，知道解决问题的方向。</li>
+<li>开放的心态<br>
+领导者需要真诚地渴望了解不同人的看法，可以接受别人的一些价值观，并且知道所有的事务都有一定程度的不确定性。</li>
+<li>高情商<br>
+领导者能够和不同职位不同职业背景的人愉快合作和交流。哪怕不是百分之百的认可，也可以很专业地处理。</li>
+<li>合作的意愿<br>
+给每个人施展的机会和空间，提供公平和安全感，哪怕这意味着额外的代价和麻烦。</li>
+</ol>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[【朱赟的技术管理】24-编程语言漫谈]]></title>
         <id>https://iflytek-duan.github.io//post/zhu-yun-de-ji-zhu-guan-li-24-bian-cheng-yu-yan-man-tan</id>
@@ -518,38 +563,6 @@
 <hr>
 <h2 id="4-缓存和主从机制">4. 缓存和主从机制</h2>
 <p>为了提高性能，我们会为数据库增加缓存（Cache）和主从（Master-Slave）等机制，这时候会引起数据的不一致性。常见的情况是，如果系统默认实在从（Slave）节点读取数据，那么一些刚刚更新到主节（Master）的数据在读的时候就有可能读不到。这个情况在使用一些数据关联（Association）的时候更容易读不到。Rails的Active Record数据关联（Association），就容易出现这一类问题。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Hello Gridea]]></title>
-        <id>https://iflytek-duan.github.io//post/hello-gridea</id>
-        <link href="https://iflytek-duan.github.io//post/hello-gridea">
-        </link>
-        <updated>2018-12-11T16:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
-✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
-✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
-<!-- more -->
-<p><a href="https://github.com/getgridea/gridea">Github</a><br>
-<a href="https://gridea.dev/">Gridea 主页</a><br>
-<a href="http://fehey.com/">示例网站</a></p>
-<h2 id="特性">特性👇</h2>
-<p>📝  你可以使用最酷的 <strong>Markdown</strong> 语法，进行快速创作</p>
-<p>🌉  你可以给文章配上精美的封面图和在文章任意位置插入图片</p>
-<p>🏷️  你可以对文章进行标签分组</p>
-<p>📋  你可以自定义菜单，甚至可以创建外部链接菜单</p>
-<p>💻  你可以在 <strong>Windows</strong>，<strong>MacOS</strong> 或 <strong>Linux</strong> 设备上使用此客户端</p>
-<p>🌎  你可以使用 <strong>𝖦𝗂𝗍𝗁𝗎𝖻 𝖯𝖺𝗀𝖾𝗌</strong> 或 <strong>Coding Pages</strong> 向世界展示，未来将支持更多平台</p>
-<p>💬  你可以进行简单的配置，接入 <a href="https://github.com/gitalk/gitalk">Gitalk</a> 或 <a href="https://github.com/SukkaW/DisqusJS">DisqusJS</a> 评论系统</p>
-<p>🇬🇧  你可以使用<strong>中文简体</strong>或<strong>英语</strong></p>
-<p>🌁  你可以任意使用应用内默认主题或任意第三方主题，强大的主题自定义能力</p>
-<p>🖥  你可以自定义源文件夹，利用 OneDrive、百度网盘、iCloud、Dropbox 等进行多设备同步</p>
-<p>🌱 当然 <strong>Gridea</strong> 还很年轻，有很多不足，但请相信，它会不停向前 🏃</p>
-<p>未来，它一定会成为你离不开的伙伴</p>
-<p>尽情发挥你的才华吧！</p>
-<p>😘 Enjoy~</p>
 ]]></content>
     </entry>
 </feed>
