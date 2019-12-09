@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>【朱赟的技术管理】29-硅谷互联网公司的开发流程 | 紫豪的Blog</title>
+<meta name="description" content="You cannot improve your past, but you can improve your future. Once time is wasted, life is wasted.">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://iflytek-duan.github.io//favicon.ico?v=1575863163645">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://iflytek-duan.github.io//styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://iflytek-duan.github.io/">
+        <img src="https://iflytek-duan.github.io//images/avatar.png?v=1575863163645" class="site-logo">
+        <h1 class="site-title">紫豪的Blog</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="https://iflytek-duan.github.io/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      You cannot improve your past, but you can improve your future. Once time is wasted, life is wasted.
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://iflytek-duan.github.io//atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">【朱赟的技术管理】29-硅谷互联网公司的开发流程</h2>
+            <div class="post-date">2019-12-09</div>
+            
+              <div class="feature-container" style="background-image: url('https://iflytek-duan.github.io//post-images/zhu-yun-de-ji-zhu-guan-li-29-huo-gu-hu-lian-wang-gong-si-de-kai-fa-liu-cheng.jpg')">
+              </div>
+            
+            <div class="post-content">
+              <h1 id="前言硅谷互联网公司的开发流程">前言：硅谷互联网公司的开发流程</h1>
+<p>总的来说，硅谷互联网公司的开发流程包括以下几个阶段：</p>
+<ol>
+<li>OKR的设立；</li>
+<li>主项目及其子项目的确立；</li>
+<li>每个子项目的生命周期；</li>
+<li>主项目的生命周期；</li>
+<li>收尾、维护、复盘。</li>
+</ol>
+<hr>
+<h1 id="第一点okr的设立">第一点，OKR的设立</h1>
+<p>所有项目的起始，都应从Roadmap做起。硅谷公司的OKR（Objectives and Key Results）一般都是自顶而下的。也就是说，先有整个公司的OKR，然后有每个部门的OKR，继而是大组的OKR，再到小组的OKR，确保整个公司有一致的目标。在这个过程里面，技术驱动反映在哪些方面呢：</p>
+<p>首先，确定Roadmap的过程中，我们会采用调查（Survey）模式，确保工程师的声音可以准确地触达管理层。比如:工程师们觉得基础架构比较薄弱，公司就会加大这一块的支持力度。如果大家觉得开发环境很低效，就会把这个因素也放到OKR考虑。硅谷的公司一般会分为产品组和系统架构组。总的来说，系统架构组的OKR里，工程师的声音会很大。</p>
+<p>其次，项目怎么做，怎么规划，一般是由工程师来决定的。OKR只确立目标，是不是要构建新的服务，是不是要沿用现有架构，如何进行技术选型等，这些不是OKR的组成部分。</p>
+<p>最后，估算OKR里的工期目标的时候，我们会去除一些用来做技术创新和支持的时间，比如编程马拉松，开源支持等事务。谷歌的员工会给自己预留20%的自由项目时间，这些都是时间缓冲区。</p>
+<blockquote>
+<p>OKR是企业进行目标管理的一个简单有效的系统，能够将目标管理自上而下的贯穿到基层。</p>
+</blockquote>
+<hr>
+<h1 id="第二点主项目及其子项目的确立">第二点，主项目及其子项目的确立</h1>
+<p>一旦确立了OKR，下一步就是确立主项目和子项目了。主项目是主要的技术或商业产品，一般由产品经理、技术经理和一些技术骨干经过产品需求和技术讨论后，确定要做什么（Scope），不做什么（Non Scope）和大的里程碑（Miliestone）。</p>
+<p>一旦主项目确定了，就需要安排不同的人做不同的模块，也就是子项目。一般团队协作有两种模式：一种是每个人负责一个子项目，从始至终；另一种是大家先一起完成基本架构，然后逐个需求、逐个模块推进，最终一起完成整个项目。</p>
+<p>下面，我来谈谈两种协作模式在实践中的优缺点对比：<br>
+<strong>第一种方法：每个人完成一个子项目</strong></p>
+<ul>
+<li>优点<br>
+责任清晰，每个人都知道自己的职责，工程师也有更多的拥有感，他们可以独立负责产品的设计、实现、测试和维护，工作贯穿整个项目流程。</li>
+<li>缺点<br>
+如果负责某个子项目的工程师设计或者实现能力不足，由于比较独立，这个子项目很容易成为路障或者瓶颈，工程师之间也缺乏相互学习的机会。<br>
+另外，因为是按人并行推进项目，需要根据每个人设置里程碑，管理的时候，技术管理者需要常常跟进每个人的进度，管理代价更高。代码审核也往往是几个有限的人参与。</li>
+</ul>
+<p><strong>第二种方法：所有人一起逐次完成每个模块或需求</strong></p>
+<ul>
+<li>优点<br>
+工程师之间合作最大化，可以彼此协调、彼此学习、在对方有事的时候相互补位。项目管理有明确统一的里程碑，每个工程师都有机会接触更多的工作，每个人的代码可以有更多的人参与审核。</li>
+<li>缺点<br>
+每个工程师的责任划分并不是那么明显，很容易出现能者多劳、勤者多劳的现象。一些新人总是做一些执行或打杂的事，得不到锻炼。</li>
+</ul>
+<p>这两种模式对比来看，它们各有利弊。现实中可以根据情况组合使用。比如，两到三人合作负责一个模块，也可以在每人一个模块的基础上，将小模块合并成大模块。然后每个大模块都有技术负责人（Tech Lead），对一些能力不足的工程师给予指导和支持等等。</p>
+<hr>
+<h1 id="第三点每个子项目的生命周期">第三点，每个子项目的生命周期</h1>
+<p>子项目一旦确认，它的生命周期就会融入到工程师的日常工作中，内容如下：</p>
+<ol>
+<li>
+<p>开发初期的设计文档<br>
+一般可以使用共享的谷歌文档（Google Docs），Quip等（国内一般用腾讯文档、石墨文档多一些）。不同的人可以编辑或评论、阅读。一般设计文档会先由组内工程师和产品经理审核，然后到大组评审（包括Legal，Compliance，Fiance等）。</p>
+<p>如果涉及到公司的整体架构，还需要发给全公司审核。参与审核的人员是所有工程师。很多人会有选择的参与一些设计的审核，通常技术骨干会预留时间审核所有的技术设计文档。设计文档不仅包括怎么实现，还有选型理由、考虑的因素、支持和不支持的属性、时间线等等。</p>
+</li>
+<li>
+<p>设计测试实验，这是可选的，如果针对某个产品需求我们想知道用户的反馈，就需要数据工程师参与设计实验，也就是A/B测试。实验中的数据埋点也会在下一步实现中完成。</p>
+</li>
+<li>
+<p>一旦设计文档锁定，就可以开始实现了。不论是单人负责还是多人合作，实现都是按照多次代码提交（Pull Requests）来迭代的。每次代码提交都要写清楚代码改动的摘要和测试。并通知不同的工程师审核。</p>
+</li>
+<li>
+<p>所有的实现都要加入监控、日志、预警代码。</p>
+</li>
+<li>
+<p>所有的实现都隐藏在一个开关后。当代码就位后，就开始灰度发布。通常是先发布给几个开发人员测试，然后到项目组，然后到其它员工（Google称之为Dog Food，因为他们可以大量使用自己的产品），然后按照百分比推给用户。</p>
+</li>
+<li>
+<p>对一些需要重构的关键产品链路，有时候也会使用双重写（Dual Write），就是新特性和就特性都写入数据库，并通过不同的方式比较两个实现的结果。只有验证结果一致时，才会将交易（Traffic）从旧实现切换到新实现。</p>
+</li>
+<li>
+<p>最后是一些扫尾工作，包括移除用来做A/B测试和灰度发布的代码开关等，有时候还会有一些次要需求的实现。</p>
+</li>
+</ol>
+<hr>
+<h1 id="第四点主项目的生命周期">第四点，主项目的生命周期</h1>
+<p>主项目的生命周期根据子项目的实现方式会有所不同，但有些特点是共有的。</p>
+<ol>
+<li>项目开始都有一个整体的设计文档，界定子项目的范围和相关性、时间线等等。</li>
+<li>在所有子项目进行的过程中，有时候会发现一些共同需要的架构或服务，可以单独提取成公共服务或库，比如一个调度服务，或者一个幂等实现等等。</li>
+<li>给相关人员做进度报告，包括主项目的里程碑。</li>
+<li>由于子项目完成时间可能不一样，需要进行人员的重新配置。</li>
+<li>在开发过程中不断更新文档。</li>
+<li>因为不确定的需求变动，会取消或者生成新的子项目。</li>
+<li>有时候，也会因为公司的方向变化或战略调整，对主项目做比较大的变更，同时对应调整相关的子项目。</li>
+<li>在项目开始和结束的时候，需要做好对外的交流和沟通。一来确保自己的项目改动不会影响倒期他的项目，二来让将会依赖这个项目的产品组了解相关信息，确定计划。</li>
+</ol>
+<hr>
+<h1 id="第五点收尾-维护-复盘">第五点，收尾、维护、复盘</h1>
+<p>整个项目结束后，一般都会做一些代码清理和文档的更新和整理，有时候还需要写新的用户手册或Wiki等。一些基本的错误和异常处理要写到运维手册（Oncall Playbook）里，便于以后运维的人知道怎么处理一些已知的问题。</p>
+<p>每个项目结束后都会进行复盘，总结整个项目的教训和经验。有时候还需要在组内做些演讲，让更多的人了解这个项目。</p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://iflytek-duan.github.io//tag/G39dHKlfB" class="tag">
+                    团队合作
+                  </a>
+                
+                  <a href="https://iflytek-duan.github.io//tag/9raW-gICI" class="tag">
+                    学习笔记
+                  </a>
+                
+                  <a href="https://iflytek-duan.github.io//tag/myRGoPdmt1" class="tag">
+                    朱赟
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://iflytek-duan.github.io//post/zhu-yun-de-ji-zhu-guan-li-28-ru-he-ji-fa-tuan-dui-ren-yuan-de-ze-ren-xin">
+                  <h3 class="post-title">
+                    【朱赟的技术管理】28-如何激发团队人员的责任心
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: 'cae2b8f6a4ade000f9d7',
+        clientSecret: '2d3862d6cd21351bfb3e50fd5a51880756c4b684',
+        repo: 'iflytek-duan.github.io',
+        owner: 'iflytek-duan',
+        admin: ['iflytek-duan'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>
