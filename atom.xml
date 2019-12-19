@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://iflytek-duan.github.io/</id>
     <title>紫豪的Blog</title>
-    <updated>2019-12-09T03:46:07.896Z</updated>
+    <updated>2019-12-19T12:25:08.032Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://iflytek-duan.github.io/"/>
     <link rel="self" href="https://iflytek-duan.github.io//atom.xml"/>
@@ -10,6 +10,418 @@
     <logo>https://iflytek-duan.github.io//images/avatar.png</logo>
     <icon>https://iflytek-duan.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, 紫豪的Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[【JJQ】Android命名规范]]></title>
+        <id>https://iflytek-duan.github.io//post/jjq-android-ming-ming-gui-fan</id>
+        <link href="https://iflytek-duan.github.io//post/jjq-android-ming-ming-gui-fan">
+        </link>
+        <updated>2019-12-19T08:11:44.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="前言">前言</h1>
+<p><strong>统一、规范的命名有助于提升项目协作效率，也让代码的可读性、可维护性变得更加友好。</strong><br>
+这里根据<a href="http://www.360sdn.com/2013/android_0517/144.html?ckvcbc=yz6j13"><strong>Google Android编程规范</strong></a>来对公司客户端研发输出一份相对全面、清晰的Android代码命名规范，如有异议，欢迎批评指正。</p>
+<hr>
+<h1 id="各对象暂定的命名规范">各对象暂定的命名规范</h1>
+<ul>
+<li>
+<p>项目名称(Project name)</p>
+<ul>
+<li>命名规则：<code>大驼峰式</code>命名，单词间连续无间隔；</li>
+<li>示例：如新建一个名为BaiYaoWanJia的项目。</li>
+</ul>
+</li>
+<li>
+<p>模块命名(Module-Library name)</p>
+<ul>
+<li>命名规则：Library name采用<code>大驼峰式</code>命名，单词间连续无间隔，Module name会自动生成，不需修改；</li>
+<li>示例：<img src="https://iflytek-duan.github.io//post-images/1576744158007.png" alt="Module.png"></li>
+</ul>
+</li>
+<li>
+<p>包</p>
+<ul>
+<li>命名规则：小写、单词间连续无间隔，3级包名一般为<code>applicationId</code>或Module的根目录，4级包名对应不同的细分模块。</li>
+<li>示例：
+<ul>
+<li>3级包名<code>applicationId</code>：一般为com.公司名.项目名，如com.dohenes.bywanjia 或 com.公司名.Module name，如com.dohenes.shop；</li>
+<li>4级包名：com.公司名.项目名/Module name.xxx，具体可参考下图<img src="https://iflytek-duan.github.io//post-images/1576744848085.png" alt="4级包名示例1.png"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>类</p>
+<ul>
+<li>命名规则：<code>大驼峰式</code>命名，可使用单词或者单词简写，在具体命名类时，会根据该类的类型不同而附加额外的命名规则；</li>
+<li>示例：</li>
+</ul>
+<table>
+      <tr>
+          <th>类目</th>
+          <th>类型</th>
+          <th>命名规则描述</th>
+          <th>命名示例</th>
+      </tr>
+      <tr>
+          <th>普通java类</th>
+          <th>java类</th>
+          <th>大驼峰式命名法</th>
+          <th>GetTime</th>
+      </tr>
+      <tr>
+          <th rowspan="15">Android相关</th>
+          <th>基类</th>
+          <th>Base + 类别 / 功能</th>
+          <th>BaseActivity / BaseFragment / BaseAdapter</th>
+      </tr>
+      <tr>
+          <th>Activity</th>
+          <th>模块名 + Activity</th>
+          <th>LoginActivity</th>
+      </tr>
+      <tr>
+          <th>Fragment</th>
+          <th>模块名 + Fragment</th>
+          <th>LoginFragment</th>
+      </tr>
+      <tr>
+          <th>BroadcastReceiver</th>
+          <th>功能名 + Receiver</th>
+          <th>BootBroadcastReceiver</th>
+      </tr>
+      <tr>
+          <th>Service</th>
+          <th>模块名 / 功能名 + Service</th>
+          <th>LoginService / BLEService</th>
+      </tr>
+      <tr>
+          <th>自定义对话框Dialog</th>
+          <th>功能名 + Dialog</th>
+          <th>TipsDialog</th>
+      </tr>
+      <tr>
+          <th>自定义View</th>
+          <th>Custom + 功能名 + 组件名称(继承的组件名)</th>
+          <th>CustomToast / CustomLayout</th>
+      </tr>
+      <tr>
+          <th>自定义Widget</th>
+          <th>功能名 + Widget</th>
+          <th>LoginWidget</th>
+      </tr>  
+      <tr>
+          <th>数据适配器类</th>
+          <th>功能名 + Adapter</th>
+          <th>WeatherAdapter</th>
+      </tr>  
+      <tr>
+          <th>工具类</th>
+          <th>功能名 + Util/Manager</th>
+          <th>StringUtil / DatabaseManager</th>
+      </tr>  
+      <tr>
+          <th>帮助类</th>
+          <th>功能名 + Helper</th>
+          <th>DBHelper</th>
+      </tr>  
+      <tr>
+          <th>解析类</th>
+          <th>功能名 + Parse</th>
+          <th>GsonParse</th>
+      </tr>   
+      <tr>
+          <th>异常类</th>
+          <th>以Exception结尾</th>
+          <th>LoginException</th>
+      </tr>   
+      <tr>
+          <th>接口</th>
+          <th>多以able或ible结尾，也可在类名前加I标明</th>
+          <th>Runnable / Accessible / ILogin</th>
+      </tr>   
+      <tr>
+          <th>回调</th>
+          <th>功能名 + Callback</th>
+          <th>LoginCallback</th>
+      </tr>   
+   </table>
+</li>
+<li>
+<p>变量</p>
+<ul>
+<li>命名规则：小驼峰式命名，在具体命名变量时，会根据该变量的类型不同而附加额外的命名规则；</li>
+<li>示例：</li>
+</ul>
+<table>
+      <tr>
+          <th>类型</th>
+          <th>命名规则描述</th>
+          <th>命名示例</th>
+      </tr>
+      <tr>
+          <th>变量</th>
+          <th>m + 单词名</th>
+          <th>private int mCount</th>
+      </tr>
+      <tr>
+          <th>静态变量</th>
+          <th>前缀添加s</th>
+          <th>private static int sCount</th>
+      </tr>
+      <tr>
+          <th>临时变量(代码块内的)</th>
+          <th>小驼峰式命名</th>
+          <th>int count</th>
+      </tr>
+      <tr>
+          <th>常量</th>
+          <th>CONSTANT_作用名</th>
+          <th>CONSTANT_KEY_NAME</th>
+      </tr>
+      <tr>
+          <th>Android UI控件</th>
+          <th>m + 控件缩写 + 功能描述</th>
+          <th>mTvTitle / mBtnLogin</th>
+      </tr>
+  </table>
+</li>
+<li>
+<p>方法</p>
+<ul>
+<li>命名规则：小驼峰式命名,在具体命名方法名时，会根据该方法名的作用不同而附加额外的命名规则；</li>
+<li>示例：</li>
+</ul>
+<table>
+      <tr>
+          <th>功能</th>
+          <th>命名规则描述</th>
+          <th>命名示例</th>
+      </tr>
+      <tr>
+          <th>初始化</th>
+          <th>init + 单词</th>
+          <th>初始化布局：initView()</th>
+      </tr>
+      <tr>
+          <th>判断 / 校验，返回至为boolean</th>
+          <th>is + 单词 / check + 单词</th>
+          <th>可见性：isVisible() / checkKey()</th>
+      </tr>
+      <tr>
+          <th>显示/弹出提示框</th>
+          <th>show + 单词</th>
+          <th>显示提示信息：showTips()</th>
+      </tr>
+      <tr>
+          <th>重置数据</th>
+          <th>reset + 单词</th>
+          <th>重置用户数据：resetUserData()</th>
+      </tr>
+      <tr>
+          <th>保存数据</th>
+          <th>save + 单词</th>
+          <th>保存用户名：saveUserName()</th>
+      </tr>
+      <tr>
+          <th>获取数据</th>
+          <th>get + 单词</th>
+          <th>获取用户名：getUserName()</th>
+      </tr>
+      <tr>
+          <th>清除数据</th>
+          <th>clear + 单词</th>
+          <th>清除用户名:clearUserName()</th>
+      </tr>
+      <tr>
+          <th>移除数据</th>
+          <th>remove + 单词</th>
+          <th>移除用户数据:removeUserData()</th>
+      </tr>
+      <tr>
+          <th>绘制相关</th>
+          <th>draw + 单词</th>
+          <th>绘制线条:drawLine()</th>
+      </tr>
+  </table>
+</li>
+<li>
+<p>参数</p>
+<ul>
+<li>命名规则：<code>小驼峰式</code>命名；</li>
+<li>示例：如userName,phoneNumber等。</li>
+</ul>
+</li>
+<li>
+<p>资源</p>
+<ul>
+<li>布局资源(布局文件单词都要小写，中间用下划线<code>_</code>隔开)</li>
+</ul>
+  <table>
+      <tr>
+          <th>类型</th>
+          <th>命名规则描述</th>
+          <th>命名示例</th>
+      </tr>
+      <tr>
+          <th>activity布局</th>
+          <th>activity_单词</th>
+          <th>activity_main</th>
+      </tr>
+      <tr>
+          <th>fragment布局</th>
+          <th>fragment_单词</th>
+          <th>fragment_main</th>
+      </tr>
+      <tr>
+          <th>dialog布局</th>
+          <th>dialog_单词</th>
+          <th>dialog_tips</th>
+      </tr>
+      <tr>
+          <th>popupwindow布局</th>
+          <th>pw_单词</th>
+          <th>pw_net_error</th>
+      </tr>
+      <tr>
+          <th>列表子项布局</th>
+          <th>item_单词</th>
+          <th>item_message</th>
+      </tr>
+  </table>
+<ul>
+<li>控件ID</li>
+</ul>
+  <table>
+      <tr>
+          <th>类型</th>
+          <th>命名规则描述</th>
+          <th>命名示例</th>
+      </tr>
+      <tr>
+          <th>TextView</th>
+          <th rowspan="11">模块名_控件缩写_功能单词名</th>
+          <th>login_tv_title</th>
+      </tr>
+      <tr>
+          <th>EditTextView</th>
+          <th>login_et_userName</th>
+      </tr>
+      <tr>
+          <th>ImageView</th>
+          <th>login_iv_userHead</th>
+      </tr>
+      <tr>
+          <th>Button</th>
+          <th>login_btn</th>
+      </tr>
+      <tr>
+          <th>CheckBox</th>
+          <th>login_cb_status</th>
+      </tr>
+      <tr>
+          <th>RadioButton</th>
+          <th>login_rb_gender</th>
+      </tr>
+      <tr>
+          <th>ListView</th>
+          <th>main_lv_message</th>
+      </tr>
+      <tr>
+          <th>GridView</th>
+          <th>main_gv_cards</th>
+      </tr>
+      <tr>
+          <th>LinearLayout</th>
+          <th>login_lt_header</th>
+      </tr>
+      <tr>
+          <th>RelativeLayout</th>
+          <th>login_rl_header</th>
+      </tr>
+      <tr>
+          <th>FragmentLayout / TableLayout / ConstraintLayout</th>
+          <th>简写对应 fl / tl / cl</th>
+      </tr>
+  </table>
+<ul>
+<li>图片资源</li>
+</ul>
+  <table>
+      <tr>
+          <th>类目</th>
+          <th>类型</th>
+          <th>命名规则描述</th>
+          <th>命名示例</th>
+      </tr>
+      <tr>
+          <th rowspan = "10">Drawable / mipmap资源</th>
+          <th>普通图标</th>
+          <th>ic_具体模块_功能</th>
+          <th>R.drawable.ic_user_login / R.drawable.ic_launcher</th>
+      </tr>
+      <tr>
+          <th>样式选择器(selector)</th>
+          <th>selector_具体模块_适用范围</th>
+          <th>R.drawable.selector_login_btn</th>
+      </tr>
+      <tr>
+          <th>样式形状(shape)</th>
+          <th>shape_具体模块_适用范围</th>
+          <th>R.drawable.shape_login_btn</th>
+      </tr>
+  </table>
+<ul>
+<li>动画资源</li>
+</ul>
+  <table>
+      <tr>
+          <th>类型</th>
+          <th>命名规则描述</th>
+          <th>命名示例</th>
+      </tr>
+      <tr>
+          <th>补间动画</th>
+          <th>动画类型_方向</th>
+          <th>淡入：fade_int；淡出：fade_out</th>
+      </tr>
+      <tr>
+          <th>其余动画</th>
+          <th>模块名_动画名</th>
+          <th>login_jump</th>
+      </tr>
+  </table>
+<ul>
+<li>Values资源</li>
+</ul>
+  <table>
+      <tr>
+          <th>类型</th>
+          <th>命名规则描述</th>
+          <th>命名示例</th>
+      </tr>
+      <tr>
+          <th>color</th>
+          <th>模块名_color</th>
+          <th>login_color</th>
+      </tr>
+      <tr>
+          <th>style</th>
+          <th>模块名_style</th>
+          <th>login_style</th>
+      </tr>
+      <tr>
+          <th>theme</th>
+          <th>模块名_theme</th>
+          <th>login_theme</th>
+      </tr>
+      <tr>
+          <th>string</th>
+          <th>模块名_作用名</th>
+          <th>user_name</th>
+      </tr>
+  </table></li>
+</ul>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[【朱赟的技术管理】29-硅谷互联网公司的开发流程]]></title>
         <id>https://iflytek-duan.github.io//post/zhu-yun-de-ji-zhu-guan-li-29-huo-gu-hu-lian-wang-gong-si-de-kai-fa-liu-cheng</id>
@@ -469,40 +881,6 @@
 <hr>
 <h1 id="总结">总结</h1>
 <p>其实说了那么多，总结起来就是：管理者首先要对大的项目进行细分重组，“打包装箱”之后再分配下去；其次，在工期估算方面，管理者要和任务负责人达成一致，并且要注意到，工程师们在进行时间估算的时候都比较乐观，最好为项目预留缓冲的时间；最后，要为项目设置大大小小的里程碑，并实时跟进，一旦项目出现问题，就要启动B计划。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[【朱赟的技术管理】17-管理者不用亲力亲为：关键是什么？]]></title>
-        <id>https://iflytek-duan.github.io//post/zhu-yun-de-ji-zhu-guan-li-17-guan-li-zhe-bu-yong-qin-li-qin-wei-guan-jian-shi-shi-me</id>
-        <link href="https://iflytek-duan.github.io//post/zhu-yun-de-ji-zhu-guan-li-17-guan-li-zhe-bu-yong-qin-li-qin-wei-guan-jian-shi-shi-me">
-        </link>
-        <updated>2019-11-20T01:55:32.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="前言">前言</h1>
-<blockquote>
-<p>大部分被提拔为技术领导的工程师都有一定的领导力，最重要的是，他们都具备出色的业务能力；这些技术能力强悍的工程师在刚刚走上管理岗位时，往往喜欢亲力亲为，他们对别人干活并不是很放心，恨不得自己把所有的重要工作都给做了。然而这样只会让自己变得越来越累，工作越来越吃力，作为一个技术管理者，应该适度授权给别人，在过程中学会掌握任务分配技巧，只有这样，才能快速胜任管理岗位，带领团队越做越好。</p>
-</blockquote>
-<hr>
-<h1 id="作为一个技术管理者在授权和任务分配时我们应该注意哪些方面">作为一个技术管理者，在授权和任务分配时我们应该注意哪些方面？</h1>
-<h2 id="1明确任务目标">1.明确任务目标</h2>
-<pre><code>要让接受任务的人明确目标，知道最终要达成什么样的预期效果。
-</code></pre>
-<p>比如：在什么时间内完成什么样的任务，你对这个任务成功的定义是什么，如果有取舍的话，哪些最重要，哪些是次要的，哪些是可以妥协的。如果这些标准没有说清楚，很可能会出现认知的偏差，比如对方觉得做的很好，但是你认为有些很重要的东西并没有照顾到。</p>
-<h2 id="2严谨的计划制定">2.严谨的计划制定</h2>
-<pre><code>制定一个计划，并保持跟进。
-</code></pre>
-<p>跟进不是指导，不是让自己频繁的去介入别人的工作任务，告诉对方下面该做什么了；而是需要你在对方在某个环节出现问题得时候，能够提供帮助。这种帮助可能是解决方案，也可能是技术方向。当对方在下一步该怎么做没有头绪的时候，你可以与其讨论，给出建议或者线索，确保没有大的阻碍阻止他取得关键性的进展。</p>
-<h2 id="3适时给出反馈">3.适时给出反馈</h2>
-<pre><code>在任务执行过程中，要适时地给出反馈，尤其是正面的反馈。
-</code></pre>
-<p>当对方做的很好的时候，你要及时的给予肯定。对方处于平台期没有突破的时候，只要他还在努力，就应当给予适当的鼓励。反馈要尽可能的客观，不要在小细节上有太多的意见。如果在方向或者优先级上偏离了你的预期，要及时交流纠正，了解对方的想法，找到问题的原因，让项目走上正轨。</p>
-<hr>
-<h1 id="管理者不用亲力亲为的关键是什么">管理者不用亲力亲为的关键是什么？</h1>
-<p>关键就在于要<strong>学会授权和任务分配</strong>。在这个过程中，我们要注意以下两点：</p>
-<ul>
-<li>要有效地把任务分配出去；</li>
-<li>要保证被分配出去的任务能够圆满完成。</li>
-</ul>
-<p>事情无论是自己做还是交给别人做，让事情更快更好的完成永远是第一位的。很多优秀的工程师最初都是独行侠，他们单枪匹马完成了很多丰功伟绩，也更习惯自己独立的去完成工作，但一旦他们发现团队协作可以获取更大的成就时，就会从亲力亲为转变为授权模式，帮助别人成功，团队才会获得更大的成功。</p>
 ]]></content>
     </entry>
 </feed>
