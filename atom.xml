@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://iflytek-duan.github.io/</id>
     <title>紫豪的Blog</title>
-    <updated>2019-12-20T01:57:32.537Z</updated>
+    <updated>2019-12-20T02:35:10.377Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://iflytek-duan.github.io/"/>
     <link rel="self" href="https://iflytek-duan.github.io//atom.xml"/>
@@ -11,7 +11,7 @@
     <icon>https://iflytek-duan.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, 紫豪的Blog</rights>
     <entry>
-        <title type="html"><![CDATA[【JJQ】Android命名规范]]></title>
+        <title type="html"><![CDATA[【JJQ】Android开发规范（注释、命名、打包）]]></title>
         <id>https://iflytek-duan.github.io//post/jjq-android-ming-ming-gui-fan</id>
         <link href="https://iflytek-duan.github.io//post/jjq-android-ming-ming-gui-fan">
         </link>
@@ -423,10 +423,11 @@
       </tr>
   </table>
 <hr>
-<h1 id="关于app打包命名">关于App打包命名</h1>
-<p><a href="https://www.jianshu.com/p/d7dc4624a122">【Android】apk打包命名规则交流篇</a></p>
 </li>
 </ul>
+<h1 id="关于app打包命名">关于App打包命名</h1>
+<p>release版本在项目混淆、加固(目前采用360加固)的基础上，按照以下规范命名，其它情况不考虑：<br>
+<a href="https://www.jianshu.com/p/d7dc4624a122">【Android】apk打包命名规则交流篇</a></p>
 ]]></content>
     </entry>
     <entry>
