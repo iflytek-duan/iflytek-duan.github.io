@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://iflytek-duan.github.io/</id>
     <title>紫豪的Blog</title>
-    <updated>2019-12-20T02:41:46.263Z</updated>
+    <updated>2019-12-21T08:15:10.690Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://iflytek-duan.github.io/"/>
     <link rel="self" href="https://iflytek-duan.github.io//atom.xml"/>
@@ -10,6 +10,403 @@
     <logo>https://iflytek-duan.github.io//images/avatar.png</logo>
     <icon>https://iflytek-duan.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, 紫豪的Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[【Android】多状态布局管理器]]></title>
+        <id>https://iflytek-duan.github.io//post/android-duo-zhuang-tai-bu-ju-guan-li-qi</id>
+        <link href="https://iflytek-duan.github.io//post/android-duo-zhuang-tai-bu-ju-guan-li-qi">
+        </link>
+        <updated>2019-12-21T03:31:46.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="适用范围">适用范围</h1>
+<p>主要适用于Acitivty/Fragment需要根据不同的状态来展示对应的状态页面。</p>
+<hr>
+<h1 id="设计思路">设计思路</h1>
+<ul>
+<li>设计一个布局管理器，用于管理各个状态的布局显示/隐藏</li>
+<li>在布局管理器的根layout文件中，通过ViewStubCompat导入对应状态的layout</li>
+<li>通过getViewGroup方法获取对应调用该管理类调用者的根Layout——即数据正常展示的UI</li>
+<li>根据State进行对应的Page显示/隐藏</li>
+</ul>
+<hr>
+<h1 id="实现后的statusviewcontrollerjava类">实现后的StatusViewController.java类</h1>
+<pre><code class="language-java">package com.dohenes.common.view;
+
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.text.TextUtils;
+import android.util.AttributeSet;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.ViewStubCompat;
+
+import com.dohenes.common.R;
+
+/**
+ * ClassName StatusViewController
+ * Describe TODO&lt;状态试图控制器&gt;
+ * Author jgduan
+ * Date 2019/12/16 11:09
+ * Version v1.0
+ */
+public abstract class StatusViewController extends LinearLayout {
+    private static final String TAG = StatusViewController.class.getSimpleName();
+
+    /**
+     * 状态枚举类，对应不同的状态
+     * Empty对应空数据内容提示
+     * Load对应加载中内容提示
+     * Error对应发生异常提示
+     * NoNetwork对应无网络提示
+     * Success对应的是调用者自身的初始布局页面
+     */
+    public enum State {
+        Empty, Load, Error, NoNetwork, Success
+    }
+
+    private View mEmptyView;// 空数据提示View
+    private View mErrorView;// 异常提示View
+    private View mLoadingView;// 加载中View
+    private View mNoNetworkView;// 无网络提示View
+    private ViewGroup mSuccessView;// 这个实际上是对标调用StatusViewController的Activity/Fragment根View
+    private View mTitle;// Activity设置的Title
+
+    public StatusViewController(@NonNull Context context) {
+        super(context);
+        init(context);
+    }
+
+    public StatusViewController(@NonNull Context context, @Nullable AttributeSet attrs) {
+        super(context, attrs);
+        init(context);
+    }
+
+    /**
+     * 一些初始化的操作
+     *
+     * @param context context
+     */
+    private void init(@NonNull Context context) {
+        setOrientation(VERTICAL);
+        inflate(context, R.layout.status_view, this);// 引入多状态布局layout
+        mSuccessView = getViewGroup();// 获取调用者自身的初始View
+        mTitle = mSuccessView.findViewWithTag(&quot;title&quot;);
+        this.addView(mSuccessView, ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT);// 添加默认的初始View进来
+    }
+
+    /**
+     * 开始载入数据
+     */
+    private void loadData() {
+        showPageWithState(State.Load);
+        onLoadData();// 通知调用的Activity这里触发了载入数据操作，需要它配合做出处理
+    }
+
+    /**
+     * 自定义的点击事件，只针对重新加载按钮
+     */
+    private OnClickListener mRetryClickListener = new OnClickListener() {
+
+        @Override
+        public void onClick(View v) {
+            loadData();
+        }
+    };
+
+    /**
+     * 获取调用该控制器Activity/Fragment的根ViewGroup
+     *
+     * @return ViewGroup
+     */
+    public abstract ViewGroup getViewGroup();
+
+    /**
+     * 载入数据回调
+     */
+    public abstract void onLoadData();
+
+    /**
+     * 根据状态类型展示对应的页面
+     *
+     * @param status State
+     */
+    @SuppressLint(&quot;RestrictedApi&quot;)
+    public void showPageWithState(State status) {
+        if (mTitle != null) {
+            String tag = (String) getChildAt(0).getTag();
+            if (!TextUtils.equals(tag, &quot;title&quot;)) {// 没有标题栏
+                mSuccessView.removeView(mTitle);
+                addView(mTitle, 0);
+            }
+        }
+        switch (status) {
+            case Success:
+                if (mLoadingView != null) {
+                    mLoadingView.setVisibility(View.GONE);
+                }
+                if (mErrorView != null) {
+                    mErrorView.setVisibility(View.GONE);
+                }
+                if (mNoNetworkView != null) {
+                    mNoNetworkView.setVisibility(View.GONE);
+                }
+                if (mEmptyView != null) {
+                    mEmptyView.setVisibility(View.GONE);
+                }
+                mSuccessView.setVisibility(View.VISIBLE);
+                break;
+            case Empty:
+                mSuccessView.setVisibility(View.GONE);
+                if (mLoadingView != null) {
+                    mLoadingView.setVisibility(View.GONE);
+                }
+                if (mErrorView != null) {
+                    mErrorView.setVisibility(View.GONE);
+                }
+                if (mNoNetworkView != null) {
+                    mNoNetworkView.setVisibility(View.GONE);
+                }
+                if (mEmptyView == null) {
+                    ViewStubCompat viewStub = findViewById(R.id.svc_stub_empty);
+                    mEmptyView = viewStub.inflate();
+                } else {
+                    mEmptyView.setVisibility(View.VISIBLE);
+                }
+                mEmptyView.findViewById(R.id.vcs_btn_empty)
+                        .setOnClickListener(mRetryClickListener);
+                break;
+            case Load:
+                mSuccessView.setVisibility(View.GONE);
+                if (mEmptyView != null) {
+                    mEmptyView.setVisibility(View.GONE);
+                }
+                if (mErrorView != null) {
+                    mErrorView.setVisibility(View.GONE);
+                }
+                if (mNoNetworkView != null) {
+                    mNoNetworkView.setVisibility(View.GONE);
+                }
+                if (mLoadingView == null) {
+                    ViewStubCompat viewStub = findViewById(R.id.svc_stub_loading);
+                    mLoadingView = viewStub.inflate();
+                } else {
+                    mLoadingView.setVisibility(View.VISIBLE);
+                }
+                break;
+            case Error:
+                mSuccessView.setVisibility(View.GONE);
+                if (mEmptyView != null) {
+                    mEmptyView.setVisibility(View.GONE);
+                }
+                if (mLoadingView != null) {
+                    mLoadingView.setVisibility(View.GONE);
+                }
+                if (mNoNetworkView != null) {
+                    mNoNetworkView.setVisibility(View.GONE);
+                }
+                if (mErrorView == null) {
+                    ViewStubCompat viewStub = findViewById(R.id.svc_stub_error);
+                    mErrorView = viewStub.inflate();
+                } else {
+                    mErrorView.setVisibility(View.VISIBLE);
+                }
+                mErrorView.findViewById(R.id.vcs_btn_error)
+                        .setOnClickListener(mRetryClickListener);
+                break;
+            case NoNetwork:
+                mSuccessView.setVisibility(View.GONE);
+                if (mEmptyView != null) {
+                    mEmptyView.setVisibility(View.GONE);
+                }
+                if (mErrorView != null) {
+                    mErrorView.setVisibility(View.GONE);
+                }
+                if (mLoadingView != null) {
+                    mLoadingView.setVisibility(View.GONE);
+                }
+                if (mNoNetworkView == null) {
+                    ViewStubCompat viewStub = findViewById(R.id.svc_stub_no_network);
+                    mNoNetworkView = viewStub.inflate();
+                } else {
+                    mNoNetworkView.setVisibility(View.VISIBLE);
+                }
+                mNoNetworkView.findViewById(R.id.vcs_btn_no_net)
+                        .setOnClickListener(mRetryClickListener);
+                break;
+            default:
+                break;
+        }
+    }
+
+}
+
+// 用法示例：修改baseActivity中的setContentView(getView());
+//    private StatusViewController statusViewController;
+//
+//    private View getView() {
+//        statusViewController = new StatusViewController(this) {
+//            @Override
+//            public ViewGroup getViewGroup() {
+//                return getLayoutInflaterViewGroup();
+//            }
+//
+//            @Override
+//            public void onLoadData() {
+//                // 这里需要在开始载入数据，暂时写个延迟模拟操作成功的效果
+//                Observable.timer(3, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
+//                        .subscribe(new Observer&lt;Long&gt;() {
+//                            @Override
+//                            public void onCompleted() {
+//                                statusViewController.showPageWithState(State.Success);
+//                            }
+//
+//                            @Override
+//                            public void onError(Throwable e) {
+//
+//                            }
+//
+//                            @Override
+//                            public void onNext(Long aLong) {
+//
+//                            }
+//                        });
+//            }
+//        };
+//        // 默认应该是Load状态，示例放上Empty状态，便于更直观的体验流程
+//        statusViewController.showPageWithState(StatusViewController.State.Empty);
+//        return statusViewController;
+//    }
+//
+//    private ViewGroup getLayoutInflaterViewGroup() {
+//        return (ViewGroup) View.inflate(this, getContentViewID(), null);
+//    }
+</code></pre>
+<hr>
+<h1 id="对应的布局代码">对应的布局代码</h1>
+<ul>
+<li>StatusViewController对应的根布局<code>status_view.mxl</code></li>
+</ul>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;merge xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&gt;
+
+    &lt;androidx.appcompat.widget.ViewStubCompat
+        android:id=&quot;@+id/svc_stub_loading&quot;
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;0dp&quot;
+        android:layout_weight=&quot;1&quot;
+        android:layout=&quot;@layout/status_loading&quot; /&gt;
+
+    &lt;androidx.appcompat.widget.ViewStubCompat
+        android:id=&quot;@+id/svc_stub_empty&quot;
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;0dp&quot;
+        android:layout_weight=&quot;1&quot;
+        android:layout=&quot;@layout/status_empty&quot; /&gt;
+
+    &lt;androidx.appcompat.widget.ViewStubCompat
+        android:id=&quot;@+id/svc_stub_error&quot;
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;0dp&quot;
+        android:layout_weight=&quot;1&quot;
+        android:layout=&quot;@layout/status_error&quot; /&gt;
+
+    &lt;androidx.appcompat.widget.ViewStubCompat
+        android:id=&quot;@+id/svc_stub_no_network&quot;
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;0dp&quot;
+        android:layout_weight=&quot;1&quot;
+        android:layout=&quot;@layout/status_no_network&quot; /&gt;
+&lt;/merge&gt;
+</code></pre>
+<ul>
+<li><code>status_empty.xml</code></li>
+</ul>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
+    android:gravity=&quot;center&quot;
+    android:orientation=&quot;vertical&quot;&gt;
+
+    &lt;Button
+        android:id=&quot;@+id/vcs_btn_empty&quot;
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:text=&quot;@string/vsc_empty_tips&quot; /&gt;
+
+&lt;/LinearLayout&gt;
+</code></pre>
+<ul>
+<li><code>status_error.xml</code></li>
+</ul>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
+    android:gravity=&quot;center&quot;
+    android:orientation=&quot;vertical&quot;&gt;
+
+    &lt;Button
+        android:id=&quot;@+id/vcs_btn_error&quot;
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:text=&quot;@string/vcs_error_tips&quot; /&gt;
+
+&lt;/LinearLayout&gt;
+</code></pre>
+<ul>
+<li><code>status_loading.xml</code></li>
+</ul>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
+    android:background=&quot;@android:color/white&quot;
+    android:gravity=&quot;center&quot;
+    android:orientation=&quot;vertical&quot;&gt;
+
+    &lt;ProgressBar
+        android:id=&quot;@+id/vcs_pb_loading&quot;
+        style=&quot;?android:attr/progressBarStyle&quot;
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot; /&gt;
+&lt;/LinearLayout&gt;
+</code></pre>
+<ul>
+<li><code>status_no_network.xml</code></li>
+</ul>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
+    android:background=&quot;@android:color/white&quot;
+    android:gravity=&quot;center&quot;
+    android:orientation=&quot;vertical&quot;&gt;
+
+    &lt;Button
+        android:id=&quot;@+id/vcs_btn_no_net&quot;
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:text=&quot;@string/vcs_no_net_tips&quot; /&gt;
+
+&lt;/LinearLayout&gt;
+</code></pre>
+<ul>
+<li>对应的values值</li>
+</ul>
+<pre><code>    &lt;string name=&quot;vsc_empty_tips&quot;&gt;没有加载到数据，重新加载&lt;/string&gt;
+    &lt;string name=&quot;vcs_error_tips&quot;&gt;发生错误，点击重新加载&lt;/string&gt;
+    &lt;string name=&quot;vcs_no_net_tips&quot;&gt;没有网络，点击重试&lt;/string&gt;
+</code></pre>
+<hr>
+<h1 id="三方库推荐">三方库推荐</h1>
+<p><a href="https://github.com/hongyangAndroid/LoadingAndRetryManager"><strong>张鸿洋_LoadingAndRetryManager</strong></a><br>
+<a href="https://github.com/long216/MultiPageControl"><strong>MultiPageControl</strong></a></p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[【JJQ】Android开发规范（注释、命名、打包）]]></title>
         <id>https://iflytek-duan.github.io//post/jjq-android-ming-ming-gui-fan</id>
@@ -842,53 +1239,6 @@
 <blockquote>
 <p>线上支付系统是一门巨大的生意，支付领域的战争正在全球如火如荼地展开，这个领域内的方面绝不是一篇文章能够写完的。</p>
 </blockquote>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[【朱赟的技术管理】20-项目管理中的三个技巧]]></title>
-        <id>https://iflytek-duan.github.io//post/zhu-yun-de-ji-zhu-guan-li-20-xiang-mu-guan-li-zhong-de-san-ge-ji-qiao</id>
-        <link href="https://iflytek-duan.github.io//post/zhu-yun-de-ji-zhu-guan-li-20-xiang-mu-guan-li-zhong-de-san-ge-ji-qiao">
-        </link>
-        <updated>2019-11-21T02:21:43.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="前言">前言</h1>
-<blockquote>
-<p>作为管理者，我们平时在项目管理的过程中，更侧重的是要保证团队成员能够按照你的期望值去完成任务。今天的这篇文章里，主要会进一步展开讲一些项目管理的技巧。</p>
-</blockquote>
-<hr>
-<h1 id="一-我们在做项目计划的时候要对多个项目进行细分重组">一、我们在做项目计划的时候，要对多个项目进行细分重组</h1>
-<h2 id="需要考虑的因素">需要考虑的因素</h2>
-<p>怎么理解呢？我们从做这件事的目的说起。在给组里多个人分配任务的时候，我们往往需要考虑的因素包含以下的内容：</p>
-<ul>
-<li>先评估能力，再分配任务，每个人的能力要和任务的难度匹配；</li>
-<li>每个人任务完成所需时间要尽量相等，也就是要达到一种负载平衡；</li>
-<li>每个人得到的任务里，挑战有意思的工作和脏活累活的比例大致相等；</li>
-<li>每个人任务里有足够的挑战，能够帮助其成长，又不至于太难而让其望而生畏并产生挫败感；</li>
-<li>不同人的任务之间如果有依赖性，在分配任务的时候要安排合理的顺序，确保不会有人被别的人或事阻塞（Block）；</li>
-<li>每个人的任务里都应该有一个主题，就好像故事有一条主线。这样，成员会觉得自己参与了一个比较完整的任务，进而产生成就感，而不是做了一堆杂活。</li>
-</ul>
-<p><strong>达到这个目的的手段，我们就姑且称之为“细分重组”。这个过程又包含了以下两个阶段:</strong><br>
-<em><strong>第一个阶段：</strong></em><br>
-你需要把所有要做的事情，细分成一个个的小任务，每个任务的大小、完成所需要的时间都大致差不多。如果有比较大的任务块，就尽可能地切分成几个小块。这需要管理者对项目本身的重点和任务细节有很好的把握。</p>
-<p><em><strong>第二个阶段：</strong></em><br>
-把这些大小均匀的任务块，按照上面提到的因素，分装到几个虚构的“箱子”里，然后分配给团队成员。这个就像打包装箱的过程，尤其需要注意的是，每个箱子一定都有一个主题，也就是说，如果你想给这个箱子起个名字，你一定能找到那个名字，并很好的概括其中的内容。最后，保证每个箱子在内容、重量等各方面都比较均衡。</p>
-<p>完成了这个工作之后，后续项目的每一步，作为管理者的你都能心中有数。同时还能避免在后期执行过程中一些可能的弊端，例如，有的人工作繁重疲惫不堪，有的人则早早完成了自己的任务，缺乏挑战。这种任务划分的方式会让每个人更有成就感和责任感，因为他们完成的是一整个故事。</p>
-<hr>
-<h1 id="二-工期预算">二、工期预算</h1>
-<p>一般情况下，项目管理者都会对每个任务的完成时间有自己的判断，但最终还要和接受任务的员工沟通清楚，并尊重对方的意见，确保双方能就任务完成时间达成一致。有了承诺，工作的目标性也会更强一些，毕竟，截止日期才是最好的效率工具。</p>
-<p>这一点非常重要。如果不是双方达成一致的协议，或者不是双方都认可的合理的时间估算，一旦后期出现不能按期完成任务的时刻，就很容易出现一些令人不愉快的交流。</p>
-<p>同时需要注意的是，很多工程师工程师在做时间预算的时候，会过于乐观。大部分工程师都比较乐观、积极、自信，他们沉浸在代码的世界里，试图把软件做的更好，却往往会忽略时间因素。当核对工期的时候，他们会根据自己的经验给出一个非常乐观的期限。</p>
-<p>和普通人一样，工程师们会高估自己的编程能力和对复杂逻辑的处理能力。甚至，有时候工程师给出的工期是自己负责那部分程序编写完成的时间；然而，一个功能的完成，包含编译、单元测试、提交代码、集成测试、功能测试、性能测试和上线。如果不是特别留意，这些细节往往会泯灭在项目进度的时间表里，无法体现出来。</p>
-<p>即使是一个很有估算经验得工程师，在新的项目中也有可能遇到各种各样的新问题，你会惊奇的发现，上一个项目中的方法在新的产品中失灵了。另外，开发中遇到的技术瓶颈或难以解决的Bug，也会耗费程序员大量的时间和精力，这时候我们能做的事情只有耐心等待，给他们时间去披荆斩棘，直到问题得以解决。</p>
-<p>所以，在这个阶段，往往需要技术领导给出参考性的意见或建议；除此之外，你最好留一些缓冲时间，因为实际工作中总会有一些不可预见的情况发生。</p>
-<hr>
-<h1 id="三-实时跟踪并做好b计划备用计划">三、实时跟踪，并做好B计划（备用计划）</h1>
-<p>技术领导要做好两手准备，比如，团队中有一部分人突然表现失常了怎么办？项目由于其他原因被阻塞了怎么办？</p>
-<p>这时候我们需要最好以下两点：<br>
-1.我们在“细分重组”中把工作分成了小块，在完成过程中，我们还需要设立各种里程碑。其中，有一些长期的大里程碑，也有一些为其一周到两周的小里程碑。这些里程碑就像你上高速行驶之前给自己订的目标：几点前要到某个服务区，几点前要到某个城市等等。有了这些里程碑，管理者就可以通过它们进行实时跟踪，了解项目进度，看看项目在开发过程中是不是按照正常节点进行，是不是出现问题了等等。</p>
-<p>2.一旦出现延迟，管理者要和任务的负责人一起分析原因，询问对方能否追上进度，会不会对整个项目的进程有重大影响。如果问题不严重，可以不做调整，继续跟进。如果影响比较大，就要启动B计划了，比如调整执行的人员、提供额外的资源、分析执行的方法、调动其它组支援，甚至你需要重新考虑项目进度。</p>
-<hr>
-<h1 id="总结">总结</h1>
-<p>其实说了那么多，总结起来就是：管理者首先要对大的项目进行细分重组，“打包装箱”之后再分配下去；其次，在工期估算方面，管理者要和任务负责人达成一致，并且要注意到，工程师们在进行时间估算的时候都比较乐观，最好为项目预留缓冲的时间；最后，要为项目设置大大小小的里程碑，并实时跟进，一旦项目出现问题，就要启动B计划。</p>
 ]]></content>
     </entry>
 </feed>
