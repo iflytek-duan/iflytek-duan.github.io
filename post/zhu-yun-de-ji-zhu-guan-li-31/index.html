@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://iflytek-duan.github.io//favicon.ico?v=1577105629708">
+<link rel="shortcut icon" href="https://iflytek-duan.github.io//favicon.ico?v=1577106064402">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://iflytek-duan.github.io//styles/main.css">
 
@@ -36,7 +36,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://iflytek-duan.github.io/">
-        <img src="https://iflytek-duan.github.io//images/avatar.png?v=1577105629708" class="site-logo">
+        <img src="https://iflytek-duan.github.io//images/avatar.png?v=1577106064402" class="site-logo">
         <h1 class="site-title">紫豪的Blog</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -140,13 +140,13 @@ Commit是指Github上的一次“Commit”行为，这是可以单独保存源�
 <h1 id="四-提交代码的类型">四、提交代码的类型</h1>
 <p>在进行Code Review之前，要搞清楚提交的代码到底是干什么的，然后针对性的进行审核。我们一般把代码分为四类：</p>
 <ol>
-<li>Bug修复<br>
+<li><strong>Bug修复</strong><br>
 一般公司都有独立的Bug追踪和管理体系，每个Bug都有一个票据（标识）。代码提交的PR，一般是和票据有关的。</li>
-<li>代码优化<br>
+<li><strong>代码优化</strong><br>
 比如文件的移动和拆分、部分函数的重构、部分计算方式的修改等。</li>
-<li>系统迁移<br>
+<li><strong>系统迁移</strong><br>
 包括代码库的拆分、用另外一种语言编程等。</li>
-<li>新系统和新功能<br>
+<li><strong>新系统和新功能</strong><br>
 新功能在实现之前都要进行设计审核，最终版本的设计文档会包括数据库的Schema、API的签名（Signature）、代码的流程和模块等内容；相关代码的提交，也就是PR，一般是和设计文档挂钩的。</li>
 </ol>
 <p>了解了提交代码的作用，审核就会更有针对性和效率，也更容易从作者的角度阅读代码。</p>
@@ -155,17 +155,17 @@ Commit是指Github上的一次“Commit”行为，这是可以单独保存源�
 <h2 id="从代码提交者的角度在代码审核中需要注意哪些问题呢">从代码提交者的角度，在代码审核中需要注意哪些问题呢？</h2>
 <ol>
 <li>
-<p>为什么要进行PR？<br>
+<p><strong>为什么要进行PR？</strong><br>
 原因一定要在提交的时候写得非常清楚，才能帮助审核者理解这次改动是不是合理。上面说的四种提交代码的类型，具体是哪一种，应该写到PR的小结中，写的越详细越好。</p>
 <p>这在以后需要进行回溯或追踪系统变化时，也是很有益的。如果改的是前端代码，最好贴一个改动前和改动后的截屏，让改动效果一目了然。</p>
 </li>
 <li>
-<p>除非是极其明显的单词拼写问题，尽量不要引入不是这个PR目的的改动。<br>
+<p><strong>除非是极其明显的单词拼写问题，尽量不要引入不是这个PR目的的改动。</strong><br>
 PR要尽可能保持目标的单一性。每次遇到有人把一些代码结构的优化合并到功能相关的改动时，都会让人有一种肝火上升的感觉。</p>
 <p>这种行为不仅会增加审核者的困难，降低效率，还会掩盖一些简单的错误。并且，如果因为功能的修改导致线上出了问题，一般需要退回到之前的版本，也就是反转PR，这时候，针对优化相关的改动也就必须被反转。总之是弊远远大于利的。</p>
 </li>
 <li>
-<p>找谁审核？<br>
+<p><strong>找谁审核？</strong><br>
 除了本组的人外，有时候代码还会和其他项目组的代码相关，需要找该组的成员审核，这时具体找谁呢？</p>
 <p>一般有两个机制来解决这种问题。一是在Github中@一个组，比如Payment组，Risk组等，这些组会通知组里的所有人，相关人看到了就会回去审核；二是有一些组的代码，不希望其他组的人在自己不知道的情况下进行改动，就会设置规则，如果有人动了这些代码，也会通知到整个组。</p>
 <p>最后，也是最重要的，一定确保所有的改动都是测试过的，无一例外。</p>
@@ -178,37 +178,37 @@ PR要尽可能保持目标的单一性。每次遇到有人把一些代码结构
 <p>具体哪些方面需要审核呢？总结一下大概有以下几点：</p>
 <ol>
 <li>
-<p>代码格式<br>
+<p><strong>代码格式</strong><br>
 很多公司研发部都有相关编程风格指南（Code Style Guideline），这是大家约定俗成，避免公司代码风格不一致，也避免了一些“要不要把闭括号另起一行”的无谓争论。老员工除非不小心，通常大家不会弄错；新员工在这方面不太熟悉，就有可能出问题。这一类问题比较容易指出的。</p>
 </li>
 <li>
-<p>代码可读性<br>
+<p><strong>代码可读性</strong><br>
 比如函数不要太长，太长就进行拆分。所有的变量要能说明它的用意和类型（比如hosting_address_hash，一看久知道是房东地址，而且是个哈希类型）。</p>
 <p>不要有太多层的条件语句或者循环语句。不要有一个太长的布尔类型（Boolean）判断语句。如果一个函数别人需要看你的长篇注释才能明白，那这个函数就一定有重构的空间。另外，如果不可避免有一些注释，则一定要保证注释准确且与代码完全一致。</p>
 </li>
 <li>
-<p>业务边界和逻辑死角<br>
+<p><strong>业务边界和逻辑死角</strong><br>
 你可以帮代码作者想想，他有没有遗漏掉任何业务边界和逻辑死角问题。很多时候这是业务逻辑相关的，尤其需要资深一点的工程师帮助其指出需要处理的所有情况。</p>
 </li>
 <li>
-<p>错误处理（Error Handling）<br>
+<p><strong>错误处理（Error Handling）</strong><br>
 这是最常见的问题，也是代码审核最容易帮助别人织出来的问题。</p>
 </li>
 <li>
-<p>确保测试用例覆盖到了所有功能路径<br>
+<p><strong>确保测试用例覆盖到了所有功能路径</strong><br>
 严格来说，每段代码都应该有测试用例。如果开发者能够预见到其他人的代码改动会引发自己的代码问题，一定要增加额外的测试用例防止这种情况的发生。</p>
 </li>
 <li>
-<p>代码质量和规范<br>
+<p><strong>代码质量和规范</strong><br>
 遵循公司制定的编程规范，比如，有重复的代码段，就应该提取出来公用，不要在代码里随意设置常数，所有的常数都应该有统一的定义，哪些变量应该是私有的，哪些应该是公有的，等等。</p>
 </li>
 <li>
-<p>代码架构<br>
+<p><strong>代码架构</strong><br>
 包括代码文件的组织方式，函数是不是抽象到lib或者helper文件里；是不是应该使用继承类；是不是和整个代码库的风格一致；API的定义是不是RESTful的等等。</p>
 </li>
 </ol>
 <hr>
-<h1 id="六公司层面的支持">六公司层面的支持</h1>
+<h1 id="六-公司层面的支持">六、公司层面的支持</h1>
 <p>从公司层面应该有哪些措施帮助员工有效的进行代码审核呢？</p>
 <ol>
 <li>统一的代码提交和审核流程与工具，并确保大家使用同样的工具，遵循相同的流程。</li>
