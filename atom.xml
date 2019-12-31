@@ -2,18 +2,18 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://iflytek-duan.github.io/</id>
     <title>紫豪的Blog</title>
-    <updated>2019-12-23T13:01:34.731Z</updated>
+    <updated>2019-12-31T02:36:45.620Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://iflytek-duan.github.io/"/>
-    <link rel="self" href="https://iflytek-duan.github.io//atom.xml"/>
+    <link rel="self" href="https://iflytek-duan.github.io/atom.xml"/>
     <subtitle>You cannot improve your past, but you can improve your future. Once time is wasted, life is wasted.</subtitle>
-    <logo>https://iflytek-duan.github.io//images/avatar.png</logo>
-    <icon>https://iflytek-duan.github.io//favicon.ico</icon>
+    <logo>https://iflytek-duan.github.io/images/avatar.png</logo>
+    <icon>https://iflytek-duan.github.io/favicon.ico</icon>
     <rights>All rights reserved 2019, 紫豪的Blog</rights>
     <entry>
         <title type="html"><![CDATA[【朱赟的技术管理】32-硅谷人如何做Code Review]]></title>
-        <id>https://iflytek-duan.github.io//post/zhu-yun-de-ji-zhu-guan-li-31</id>
-        <link href="https://iflytek-duan.github.io//post/zhu-yun-de-ji-zhu-guan-li-31">
+        <id>https://iflytek-duan.github.io/post/zhu-yun-de-ji-zhu-guan-li-31</id>
+        <link href="https://iflytek-duan.github.io/post/zhu-yun-de-ji-zhu-guan-li-31">
         </link>
         <updated>2019-12-23T09:14:05.000Z</updated>
         <content type="html"><![CDATA[<h1 id="前言">前言</h1>
@@ -131,8 +131,8 @@ PR要尽可能保持目标的单一性。每次遇到有人把一些代码结构
     </entry>
     <entry>
         <title type="html"><![CDATA[【Android】RxJava+Retrofit相关入门文章]]></title>
-        <id>https://iflytek-duan.github.io//post/bu-fa-bu-rxjavaretrofit-xiang-guan-ru-men-wen-zhang</id>
-        <link href="https://iflytek-duan.github.io//post/bu-fa-bu-rxjavaretrofit-xiang-guan-ru-men-wen-zhang">
+        <id>https://iflytek-duan.github.io/post/bu-fa-bu-rxjavaretrofit-xiang-guan-ru-men-wen-zhang</id>
+        <link href="https://iflytek-duan.github.io/post/bu-fa-bu-rxjavaretrofit-xiang-guan-ru-men-wen-zhang">
         </link>
         <updated>2019-12-21T08:19:42.000Z</updated>
         <content type="html"><![CDATA[<h1 id="retrofit2">Retrofit2</h1>
@@ -150,8 +150,8 @@ PR要尽可能保持目标的单一性。每次遇到有人把一些代码结构
     </entry>
     <entry>
         <title type="html"><![CDATA[【Android】多状态布局管理器]]></title>
-        <id>https://iflytek-duan.github.io//post/android-duo-zhuang-tai-bu-ju-guan-li-qi</id>
-        <link href="https://iflytek-duan.github.io//post/android-duo-zhuang-tai-bu-ju-guan-li-qi">
+        <id>https://iflytek-duan.github.io/post/android-duo-zhuang-tai-bu-ju-guan-li-qi</id>
+        <link href="https://iflytek-duan.github.io/post/android-duo-zhuang-tai-bu-ju-guan-li-qi">
         </link>
         <updated>2019-12-21T03:31:46.000Z</updated>
         <content type="html"><![CDATA[<h1 id="适用范围">适用范围</h1>
@@ -547,8 +547,8 @@ public abstract class StatusViewController extends LinearLayout {
     </entry>
     <entry>
         <title type="html"><![CDATA[【JJQ】Android开发规范（注释、命名、打包）]]></title>
-        <id>https://iflytek-duan.github.io//post/jjq-android-ming-ming-gui-fan</id>
-        <link href="https://iflytek-duan.github.io//post/jjq-android-ming-ming-gui-fan">
+        <id>https://iflytek-duan.github.io/post/jjq-android-ming-ming-gui-fan</id>
+        <link href="https://iflytek-duan.github.io/post/jjq-android-ming-ming-gui-fan">
         </link>
         <updated>2019-12-19T08:11:44.000Z</updated>
         <content type="html"><![CDATA[<h1 id="前言">前言</h1>
@@ -571,7 +571,7 @@ public abstract class StatusViewController extends LinearLayout {
 <p>模块命名(Module-Library name)</p>
 <ul>
 <li>命名规则：Library name采用<code>大驼峰式</code>命名，单词间连续无间隔，Module name会自动生成，不需修改；</li>
-<li>示例：<img src="https://iflytek-duan.github.io//post-images/1576744158007.png" alt="Module.png"></li>
+<li>示例：<img src="https://iflytek-duan.github.io//post-images/1576744158007.png" alt="Module.png" loading="lazy"></li>
 </ul>
 </li>
 <li>
@@ -581,7 +581,7 @@ public abstract class StatusViewController extends LinearLayout {
 <li>示例：
 <ul>
 <li>3级包名<code>applicationId</code>：一般为com.公司名.项目名，如com.dohenes.bywanjia 或 com.公司名.Module name，如com.dohenes.shop；</li>
-<li>4级包名：com.公司名.项目名/Module name.xxx，具体可参考下图<img src="https://iflytek-duan.github.io//post-images/1576744848085.png" alt="4级包名示例1.png"></li>
+<li>4级包名：com.公司名.项目名/Module name.xxx，具体可参考下图<img src="https://iflytek-duan.github.io//post-images/1576744848085.png" alt="4级包名示例1.png" loading="lazy"></li>
 </ul>
 </li>
 </ul>
@@ -967,8 +967,8 @@ public abstract class StatusViewController extends LinearLayout {
     </entry>
     <entry>
         <title type="html"><![CDATA[【朱赟的技术管理】29-硅谷互联网公司的开发流程]]></title>
-        <id>https://iflytek-duan.github.io//post/zhu-yun-de-ji-zhu-guan-li-29-huo-gu-hu-lian-wang-gong-si-de-kai-fa-liu-cheng</id>
-        <link href="https://iflytek-duan.github.io//post/zhu-yun-de-ji-zhu-guan-li-29-huo-gu-hu-lian-wang-gong-si-de-kai-fa-liu-cheng">
+        <id>https://iflytek-duan.github.io/post/zhu-yun-de-ji-zhu-guan-li-29-huo-gu-hu-lian-wang-gong-si-de-kai-fa-liu-cheng</id>
+        <link href="https://iflytek-duan.github.io/post/zhu-yun-de-ji-zhu-guan-li-29-huo-gu-hu-lian-wang-gong-si-de-kai-fa-liu-cheng">
         </link>
         <updated>2019-12-09T02:43:15.000Z</updated>
         <content type="html"><![CDATA[<h1 id="前言硅谷互联网公司的开发流程">前言：硅谷互联网公司的开发流程</h1>
@@ -1059,8 +1059,8 @@ public abstract class StatusViewController extends LinearLayout {
     </entry>
     <entry>
         <title type="html"><![CDATA[【朱赟的技术管理】28-如何激发团队人员的责任心]]></title>
-        <id>https://iflytek-duan.github.io//post/zhu-yun-de-ji-zhu-guan-li-28-ru-he-ji-fa-tuan-dui-ren-yuan-de-ze-ren-xin</id>
-        <link href="https://iflytek-duan.github.io//post/zhu-yun-de-ji-zhu-guan-li-28-ru-he-ji-fa-tuan-dui-ren-yuan-de-ze-ren-xin">
+        <id>https://iflytek-duan.github.io/post/zhu-yun-de-ji-zhu-guan-li-28-ru-he-ji-fa-tuan-dui-ren-yuan-de-ze-ren-xin</id>
+        <link href="https://iflytek-duan.github.io/post/zhu-yun-de-ji-zhu-guan-li-28-ru-he-ji-fa-tuan-dui-ren-yuan-de-ze-ren-xin">
         </link>
         <updated>2019-12-06T02:58:50.000Z</updated>
         <content type="html"><![CDATA[<h1 id="如何激发团队人员的责任心">如何激发团队人员的责任心</h1>
@@ -1089,8 +1089,8 @@ public abstract class StatusViewController extends LinearLayout {
     </entry>
     <entry>
         <title type="html"><![CDATA[【朱赟的技术管理】26-如何做自己的职场规划]]></title>
-        <id>https://iflytek-duan.github.io//post/zhu-yun-de-ji-zhu-guan-li-26-ru-guo-zuo-zi-ji-de-zhi-chang-gui-hua</id>
-        <link href="https://iflytek-duan.github.io//post/zhu-yun-de-ji-zhu-guan-li-26-ru-guo-zuo-zi-ji-de-zhi-chang-gui-hua">
+        <id>https://iflytek-duan.github.io/post/zhu-yun-de-ji-zhu-guan-li-26-ru-guo-zuo-zi-ji-de-zhi-chang-gui-hua</id>
+        <link href="https://iflytek-duan.github.io/post/zhu-yun-de-ji-zhu-guan-li-26-ru-guo-zuo-zi-ji-de-zhi-chang-gui-hua">
         </link>
         <updated>2019-12-03T03:26:53.000Z</updated>
         <content type="html"><![CDATA[<h1 id="一-在做职场规划前自己需要考虑什么">一、在做职场规划前自己需要考虑什么？</h1>
@@ -1135,8 +1135,8 @@ public abstract class StatusViewController extends LinearLayout {
     </entry>
     <entry>
         <title type="html"><![CDATA[【朱赟的技术管理】25-兼容并包的领导方式]]></title>
-        <id>https://iflytek-duan.github.io//post/zhu-yun-de-ji-zhu-guan-li-25-jian-rong-bing-bao-de-ling-dao-fang-shi</id>
-        <link href="https://iflytek-duan.github.io//post/zhu-yun-de-ji-zhu-guan-li-25-jian-rong-bing-bao-de-ling-dao-fang-shi">
+        <id>https://iflytek-duan.github.io/post/zhu-yun-de-ji-zhu-guan-li-25-jian-rong-bing-bao-de-ling-dao-fang-shi</id>
+        <link href="https://iflytek-duan.github.io/post/zhu-yun-de-ji-zhu-guan-li-25-jian-rong-bing-bao-de-ling-dao-fang-shi">
         </link>
         <updated>2019-12-02T08:27:13.000Z</updated>
         <content type="html"><![CDATA[<h1 id="前言">前言</h1>
@@ -1180,8 +1180,8 @@ public abstract class StatusViewController extends LinearLayout {
     </entry>
     <entry>
         <title type="html"><![CDATA[【朱赟的技术管理】24-编程语言漫谈]]></title>
-        <id>https://iflytek-duan.github.io//post/zhu-yun-de-ji-zhu-guan-li-24-bian-cheng-yu-yan-man-tan</id>
-        <link href="https://iflytek-duan.github.io//post/zhu-yun-de-ji-zhu-guan-li-24-bian-cheng-yu-yan-man-tan">
+        <id>https://iflytek-duan.github.io/post/zhu-yun-de-ji-zhu-guan-li-24-bian-cheng-yu-yan-man-tan</id>
+        <link href="https://iflytek-duan.github.io/post/zhu-yun-de-ji-zhu-guan-li-24-bian-cheng-yu-yan-man-tan">
         </link>
         <updated>2019-12-02T02:23:59.000Z</updated>
         <content type="html"><![CDATA[<h2 id="1初学者不要纠结先学哪种语言">1.初学者不要纠结“先学哪种语言”</h2>
@@ -1211,8 +1211,8 @@ public abstract class StatusViewController extends LinearLayout {
     </entry>
     <entry>
         <title type="html"><![CDATA[【朱赟的技术管理】23-如何处理工作中的人际关系？]]></title>
-        <id>https://iflytek-duan.github.io//post/zhu-yun-de-ji-zhu-guan-li-23-ru-he-chu-li-gong-zuo-zhong-de-ren-ji-guan-xi</id>
-        <link href="https://iflytek-duan.github.io//post/zhu-yun-de-ji-zhu-guan-li-23-ru-he-chu-li-gong-zuo-zhong-de-ren-ji-guan-xi">
+        <id>https://iflytek-duan.github.io/post/zhu-yun-de-ji-zhu-guan-li-23-ru-he-chu-li-gong-zuo-zhong-de-ren-ji-guan-xi</id>
+        <link href="https://iflytek-duan.github.io/post/zhu-yun-de-ji-zhu-guan-li-23-ru-he-chu-li-gong-zuo-zhong-de-ren-ji-guan-xi">
         </link>
         <updated>2019-11-27T08:18:36.000Z</updated>
         <content type="html"><![CDATA[<h1 id="前言">前言</h1>
