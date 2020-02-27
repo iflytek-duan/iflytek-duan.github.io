@@ -2,18 +2,150 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://iflytek-duan.github.io/</id>
     <title>紫豪的Blog</title>
-    <updated>2019-12-31T02:37:49.973Z</updated>
+    <updated>2020-02-27T07:39:21.261Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://iflytek-duan.github.io/"/>
     <link rel="self" href="https://iflytek-duan.github.io/atom.xml"/>
     <subtitle>You cannot improve your past, but you can improve your future. Once time is wasted, life is wasted.</subtitle>
     <logo>https://iflytek-duan.github.io/images/avatar.png</logo>
     <icon>https://iflytek-duan.github.io/favicon.ico</icon>
-    <rights>All rights reserved 2019, 紫豪的Blog</rights>
+    <rights>All rights reserved 2020, 紫豪的Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[【Android】4G网络状态下访问ipv6反应慢的解决方案]]></title>
+        <id>https://iflytek-duan.github.io/post/android-4g-wang-luo-zhuang-tai-xia-fang-wen-ipv6-fan-ying-man-de-jie-jue-fang-an/</id>
+        <link href="https://iflytek-duan.github.io/post/android-4g-wang-luo-zhuang-tai-xia-fang-wen-ipv6-fan-ying-man-de-jie-jue-fang-an/">
+        </link>
+        <updated>2020-02-27T07:21:21.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="前言">前言</h1>
+<p>本文转自<strong>feshfans</strong>的博客 <a href="https://www.cnblogs.com/feshfans/p/10269629.html">Android 在 4G 下访问 IPV6 慢的解决方案</a>，仅用于记录解决方式，如有侵权，烦请告知。</p>
+<hr>
+<h1 id="起因">起因</h1>
+<p>因公司iOS上架应用必须要使用ipv6协议，服务端这边新增了ipv6协议支持。<br>
+Android刚开始在wifi网络环境下访问一切正常，后来在切换到4G网络状态下时，发下每次请求的时间相对之前都延长了好多，经过搜索参阅上文后，发现是每次解析都会收到两个ip地址（ipv6、ipv4），ipv6总是排在前面，会被优先使用ipv6地址访问解析，所以决定采用文中方案，使用自定义DNS方式将ipv4优先级放在第一位，杜绝此类问题的发生。</p>
+<figure data-type="image" tabindex="1"><img src="https://iflytek-duan.github.io//post-images/1582788616554.png" alt="这里盗用一下排查图" loading="lazy"></figure>
+<hr>
+<h1 id="验证方式">验证方式</h1>
+<p>使用下面的代码，验证DNS解析到的IP地址：</p>
+<pre><code class="language-java">try {
+    InetAddress[] inetAddresses = InetAddress.getAllByName(&quot;server.xxxx.cn&quot;);
+    for (InetAddress inetAddress : inetAddresses) {
+        Log.d(TAG, inetAddress.getHostAddress());
+    }
+} catch (UnknownHostException e) {
+    e.printStackTrace();
+}
+</code></pre>
+<hr>
+<h1 id="解决方案">解决方案</h1>
+<p>通过上面的验证，基本断定为 4G 网络下，Android 端通过 ipv6 连接的服务地址。客户端的Retrofit是基于okHttp3为核心实现的网络请求 ，在查看 javadoc 后，发现其提供了 DNS 接口，代码如下：</p>
+<pre><code class="language-java">/**
+ * A domain name service that resolves IP addresses for host names. Most applications will use the
+ * {@linkplain #SYSTEM system DNS service}, which is the default. Some applications may provide
+ * their own implementation to use a different DNS server, to prefer IPv6 addresses, to prefer IPv4
+ * addresses, or to force a specific known IP address.
+ *
+ * &lt;p&gt;Implementations of this interface must be safe for concurrent use.
+ */
+public interface Dns {
+  /**
+   * A DNS that uses {@link InetAddress#getAllByName} to ask the underlying operating system to
+   * lookup IP addresses. Most custom {@link Dns} implementations should delegate to this instance.
+   */
+  Dns SYSTEM = hostname -&gt; {
+    if (hostname == null) throw new UnknownHostException(&quot;hostname == null&quot;);
+    try {
+      return Arrays.asList(InetAddress.getAllByName(hostname));
+    } catch (NullPointerException e) {
+      UnknownHostException unknownHostException =
+          new UnknownHostException(&quot;Broken system behaviour for dns lookup of &quot; + hostname);
+      unknownHostException.initCause(e);
+      throw unknownHostException;
+    }
+  };
+
+  /**
+   * Returns the IP addresses of {@code hostname}, in the order they will be attempted by OkHttp. If
+   * a connection to an address fails, OkHttp will retry the connection with the next address until
+   * either a connection is made, the set of IP addresses is exhausted, or a limit is exceeded.
+   */
+  List&lt;InetAddress&gt; lookup(String hostname) throws UnknownHostException;
+}
+</code></pre>
+<p>下面我们通过实现此接口，将解析到的 ip 顺序调整一下，如果是 ipv4 则将其放到数据的第一个，其它保持不变，如下图：</p>
+<pre><code class="language-java">package com.dohenes.common.data.remote;
+
+import java.net.Inet4Address;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.List;
+
+import okhttp3.Dns;
+import retrofit2.internal.EverythingIsNonNull;
+
+/**
+ * ClassName Ipv4Dns
+ * Describe TODO&lt;ipv4访问优先的DNS--解决ipv6环境下，4G网络访问太慢的问题&gt;
+ * Author zihao
+ * Date 2020/2/27 14:59
+ * Version v1.0
+ */
+@EverythingIsNonNull
+public class Ipv4PriorityDns implements Dns {
+
+    @Override
+    public List&lt;InetAddress&gt; lookup(String hostname) throws UnknownHostException {
+        try {
+            // 获取指定主机-hostname的IP地址数组（Android解析指定域名获取到的IP）
+            List&lt;InetAddress&gt; inetAddressList = new ArrayList&lt;&gt;();
+            InetAddress[] inetAddresses = InetAddress.getAllByName(hostname);
+
+            // 遍历获取到的地址，并将得到的ip顺序调整一下，使ipv4放在第一位（即优先使用ipv4协议访问）
+            for (InetAddress inetAddress : inetAddresses) {
+                if (inetAddress instanceof Inet4Address) {
+                    inetAddressList.add(0, inetAddress);
+                } else {
+                    inetAddressList.add(inetAddress);
+                }
+            }
+
+            return inetAddressList;
+        } catch (NullPointerException exception) {
+            UnknownHostException unknownHostException = new
+                    UnknownHostException(&quot;Broken system behavior&quot;);
+            unknownHostException.initCause(exception);
+            throw unknownHostException;
+        }
+    }
+}
+</code></pre>
+<p>然后设置Retrofit的OkHttpClient，修改其DNS解析类：</p>
+<pre><code class="language-java">OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder()
+okHttpClientBuilder.dns(new MyDns());
+OkHttpClient okHttpClient = okHttpClientBuilder.build();
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[【Android】项目结构的演变之路——单Project、模块化、组件化、插件化]]></title>
+        <id>https://iflytek-duan.github.io/post/android/</id>
+        <link href="https://iflytek-duan.github.io/post/android/">
+        </link>
+        <updated>2020-02-25T02:59:35.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="一-前言">一、前言</h1>
+<p>距2008年9月份Google发布Android 1.0操作系统至今已12个年头，Android操作系统、应用也在这个历程中逐步改进创新，丰富了用户的各方面体验。<br>
+作为一个开发者，在工作过程中最直观的表现就是开发工具的演变（从Eclipse/IDEA更换为Android Studio）和项目结构的演变（单Project、模块化、组件化、插件化）。</p>
+<hr>
+<h1 id="二-开发工具的演变">二、开发工具的演变</h1>
+<hr>
+<h1 id="三-项目结构的演变">三、项目结构的演变</h1>
+<hr>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[【朱赟的技术管理】32-硅谷人如何做Code Review]]></title>
-        <id>https://iflytek-duan.github.io/post/zhu-yun-de-ji-zhu-guan-li-31</id>
-        <link href="https://iflytek-duan.github.io/post/zhu-yun-de-ji-zhu-guan-li-31">
+        <id>https://iflytek-duan.github.io/post/zhu-yun-de-ji-zhu-guan-li-31/</id>
+        <link href="https://iflytek-duan.github.io/post/zhu-yun-de-ji-zhu-guan-li-31/">
         </link>
         <updated>2019-12-23T09:14:05.000Z</updated>
         <content type="html"><![CDATA[<h1 id="前言">前言</h1>
@@ -131,8 +263,8 @@ PR要尽可能保持目标的单一性。每次遇到有人把一些代码结构
     </entry>
     <entry>
         <title type="html"><![CDATA[【Android】RxJava+Retrofit相关入门文章]]></title>
-        <id>https://iflytek-duan.github.io/post/bu-fa-bu-rxjavaretrofit-xiang-guan-ru-men-wen-zhang</id>
-        <link href="https://iflytek-duan.github.io/post/bu-fa-bu-rxjavaretrofit-xiang-guan-ru-men-wen-zhang">
+        <id>https://iflytek-duan.github.io/post/bu-fa-bu-rxjavaretrofit-xiang-guan-ru-men-wen-zhang/</id>
+        <link href="https://iflytek-duan.github.io/post/bu-fa-bu-rxjavaretrofit-xiang-guan-ru-men-wen-zhang/">
         </link>
         <updated>2019-12-21T08:19:42.000Z</updated>
         <content type="html"><![CDATA[<h1 id="retrofit2">Retrofit2</h1>
@@ -150,8 +282,8 @@ PR要尽可能保持目标的单一性。每次遇到有人把一些代码结构
     </entry>
     <entry>
         <title type="html"><![CDATA[【Android】多状态布局管理器]]></title>
-        <id>https://iflytek-duan.github.io/post/android-duo-zhuang-tai-bu-ju-guan-li-qi</id>
-        <link href="https://iflytek-duan.github.io/post/android-duo-zhuang-tai-bu-ju-guan-li-qi">
+        <id>https://iflytek-duan.github.io/post/android-duo-zhuang-tai-bu-ju-guan-li-qi/</id>
+        <link href="https://iflytek-duan.github.io/post/android-duo-zhuang-tai-bu-ju-guan-li-qi/">
         </link>
         <updated>2019-12-21T03:31:46.000Z</updated>
         <content type="html"><![CDATA[<h1 id="适用范围">适用范围</h1>
@@ -547,8 +679,8 @@ public abstract class StatusViewController extends LinearLayout {
     </entry>
     <entry>
         <title type="html"><![CDATA[【JJQ】Android开发规范（注释、命名、打包）]]></title>
-        <id>https://iflytek-duan.github.io/post/jjq-android-ming-ming-gui-fan</id>
-        <link href="https://iflytek-duan.github.io/post/jjq-android-ming-ming-gui-fan">
+        <id>https://iflytek-duan.github.io/post/jjq-android-ming-ming-gui-fan/</id>
+        <link href="https://iflytek-duan.github.io/post/jjq-android-ming-ming-gui-fan/">
         </link>
         <updated>2019-12-19T08:11:44.000Z</updated>
         <content type="html"><![CDATA[<h1 id="前言">前言</h1>
@@ -967,8 +1099,8 @@ public abstract class StatusViewController extends LinearLayout {
     </entry>
     <entry>
         <title type="html"><![CDATA[【朱赟的技术管理】29-硅谷互联网公司的开发流程]]></title>
-        <id>https://iflytek-duan.github.io/post/zhu-yun-de-ji-zhu-guan-li-29-huo-gu-hu-lian-wang-gong-si-de-kai-fa-liu-cheng</id>
-        <link href="https://iflytek-duan.github.io/post/zhu-yun-de-ji-zhu-guan-li-29-huo-gu-hu-lian-wang-gong-si-de-kai-fa-liu-cheng">
+        <id>https://iflytek-duan.github.io/post/zhu-yun-de-ji-zhu-guan-li-29-huo-gu-hu-lian-wang-gong-si-de-kai-fa-liu-cheng/</id>
+        <link href="https://iflytek-duan.github.io/post/zhu-yun-de-ji-zhu-guan-li-29-huo-gu-hu-lian-wang-gong-si-de-kai-fa-liu-cheng/">
         </link>
         <updated>2019-12-09T02:43:15.000Z</updated>
         <content type="html"><![CDATA[<h1 id="前言硅谷互联网公司的开发流程">前言：硅谷互联网公司的开发流程</h1>
@@ -1059,8 +1191,8 @@ public abstract class StatusViewController extends LinearLayout {
     </entry>
     <entry>
         <title type="html"><![CDATA[【朱赟的技术管理】28-如何激发团队人员的责任心]]></title>
-        <id>https://iflytek-duan.github.io/post/zhu-yun-de-ji-zhu-guan-li-28-ru-he-ji-fa-tuan-dui-ren-yuan-de-ze-ren-xin</id>
-        <link href="https://iflytek-duan.github.io/post/zhu-yun-de-ji-zhu-guan-li-28-ru-he-ji-fa-tuan-dui-ren-yuan-de-ze-ren-xin">
+        <id>https://iflytek-duan.github.io/post/zhu-yun-de-ji-zhu-guan-li-28-ru-he-ji-fa-tuan-dui-ren-yuan-de-ze-ren-xin/</id>
+        <link href="https://iflytek-duan.github.io/post/zhu-yun-de-ji-zhu-guan-li-28-ru-he-ji-fa-tuan-dui-ren-yuan-de-ze-ren-xin/">
         </link>
         <updated>2019-12-06T02:58:50.000Z</updated>
         <content type="html"><![CDATA[<h1 id="如何激发团队人员的责任心">如何激发团队人员的责任心</h1>
@@ -1089,8 +1221,8 @@ public abstract class StatusViewController extends LinearLayout {
     </entry>
     <entry>
         <title type="html"><![CDATA[【朱赟的技术管理】26-如何做自己的职场规划]]></title>
-        <id>https://iflytek-duan.github.io/post/zhu-yun-de-ji-zhu-guan-li-26-ru-guo-zuo-zi-ji-de-zhi-chang-gui-hua</id>
-        <link href="https://iflytek-duan.github.io/post/zhu-yun-de-ji-zhu-guan-li-26-ru-guo-zuo-zi-ji-de-zhi-chang-gui-hua">
+        <id>https://iflytek-duan.github.io/post/zhu-yun-de-ji-zhu-guan-li-26-ru-guo-zuo-zi-ji-de-zhi-chang-gui-hua/</id>
+        <link href="https://iflytek-duan.github.io/post/zhu-yun-de-ji-zhu-guan-li-26-ru-guo-zuo-zi-ji-de-zhi-chang-gui-hua/">
         </link>
         <updated>2019-12-03T03:26:53.000Z</updated>
         <content type="html"><![CDATA[<h1 id="一-在做职场规划前自己需要考虑什么">一、在做职场规划前自己需要考虑什么？</h1>
@@ -1135,8 +1267,8 @@ public abstract class StatusViewController extends LinearLayout {
     </entry>
     <entry>
         <title type="html"><![CDATA[【朱赟的技术管理】25-兼容并包的领导方式]]></title>
-        <id>https://iflytek-duan.github.io/post/zhu-yun-de-ji-zhu-guan-li-25-jian-rong-bing-bao-de-ling-dao-fang-shi</id>
-        <link href="https://iflytek-duan.github.io/post/zhu-yun-de-ji-zhu-guan-li-25-jian-rong-bing-bao-de-ling-dao-fang-shi">
+        <id>https://iflytek-duan.github.io/post/zhu-yun-de-ji-zhu-guan-li-25-jian-rong-bing-bao-de-ling-dao-fang-shi/</id>
+        <link href="https://iflytek-duan.github.io/post/zhu-yun-de-ji-zhu-guan-li-25-jian-rong-bing-bao-de-ling-dao-fang-shi/">
         </link>
         <updated>2019-12-02T08:27:13.000Z</updated>
         <content type="html"><![CDATA[<h1 id="前言">前言</h1>
@@ -1176,78 +1308,6 @@ public abstract class StatusViewController extends LinearLayout {
 <li>合作的意愿<br>
 给每个人施展的机会和空间，提供公平和安全感，哪怕这意味着额外的代价和麻烦。</li>
 </ol>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[【朱赟的技术管理】24-编程语言漫谈]]></title>
-        <id>https://iflytek-duan.github.io/post/zhu-yun-de-ji-zhu-guan-li-24-bian-cheng-yu-yan-man-tan</id>
-        <link href="https://iflytek-duan.github.io/post/zhu-yun-de-ji-zhu-guan-li-24-bian-cheng-yu-yan-man-tan">
-        </link>
-        <updated>2019-12-02T02:23:59.000Z</updated>
-        <content type="html"><![CDATA[<h2 id="1初学者不要纠结先学哪种语言">1.初学者不要纠结“先学哪种语言”</h2>
-<p>初学者在先学哪种语言上花费时间纠结很不值得，还不如随便挑选一个语言，跳进去游几圈试试。对于工程师来说，学会第一种编程语言只是万里长征的第一步，只要你还在这个领域，就不可能只学习一种语言，只会一种语言的工程师根本不能称之为工程师。</p>
-<hr>
-<h2 id="2只有先掌握好一种语言才能快速学好其它语言">2.只有先掌握好一种语言，才能快速学好其它语言</h2>
-<p>如果你不能用一种编程语言的基本特性写好代码，那换成另外一种语言也无济于事，你会写出同样差的代码。比如，你的Java很糟糕，那么换成Go、Ruby，你的代码也会同样糟糕、甚至更差。</p>
-<hr>
-<h2 id="3脚本语言也可以作为入门语言">3.脚本语言也可以作为入门语言</h2>
-<p>很多人觉得不要用脚本语言入门，我觉得不一定，尤其是现在就着人工智能的浪潮搞机器学习的人，用Python入门就挺好。另外，脚本语言在面试中占优势。平时找工作Ruby、Python、C++和Java熟练度差不多，但面试中使用Ruby或者Python答题，写代码的时间估计是两者的一半。</p>
-<hr>
-<h2 id="4不要有明确的前后端分隔">4.不要有明确的前后端分隔</h2>
-<p>后端工程师要熟练掌握一门前端语言，前端工程师也要熟练掌握一门后端语言。倒不是为了提倡全栈或多能力储备，而是两者的编程思维模式很不一样。知己知彼，在架构设计和解决具体问题时，才会更精确的判断。</p>
-<p>另外，现在大前端的概念也比较流行，也就是大前端工程师能同时掌握Web编程语言、iOS和Android编程语言，原生技术（iOS和Android）和Web的配合越来越紧密。</p>
-<hr>
-<h2 id="5sql是一门非常重要并且应该熟练掌握的语言虽然它不能被称为编程语言">5.SQL是一门非常重要并且应该熟练掌握的语言（虽然它不能被称为编程语言）</h2>
-<p>如果你平时的编程工作中涉及到业务功能，而不是纯粹的技术架构，一定会使用到数据库。SQL就是数据的语言，通过它，你可以和数据建立连接和沟通。</p>
-<p>如果你数据访问模式写的很差，轻则代码性能一塌糊涂，重则引发Bug，而涉及数据的问题，Bug等级都比较高，后果可能很严重。</p>
-<hr>
-<h2 id="6工程师要具备搭建测试框架的能力">6.工程师要具备搭建测试框架的能力</h2>
-<p>无论什么语言，工程师都应该能够基于这种语言搭建测试框架，写好测试代码和写业务代码一样重要，甚至更重要。工作后你会发现，可能有时候我们只花五分钟写了一个程序，而为其写一个能差不多覆盖所有功能路径的测试用例集却花了一个小时。</p>
-<hr>
-<h2 id="7在任何时候都要用并发的-分布式的思维去看待你的程序">7.在任何时候都要用并发的、分布式的思维去看待你的程序</h2>
-<p>因为竞争条件或者并发中的不确定因素（比如调用顺序）导致的Bug，仅仅理解语言的基本特性，根本不能解释。</p>
-<p>每种语言都有自己的并发编程模式（比如Go的Goroutine，Java的ForkJoinPool，Swift的Swift Grand Central Dispatch等）。学习每一种语言，都应该深入了解它的并发模型，在这个多核的时代，不懂并发的程序员不可能是个好工程师。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[【朱赟的技术管理】23-如何处理工作中的人际关系？]]></title>
-        <id>https://iflytek-duan.github.io/post/zhu-yun-de-ji-zhu-guan-li-23-ru-he-chu-li-gong-zuo-zhong-de-ren-ji-guan-xi</id>
-        <link href="https://iflytek-duan.github.io/post/zhu-yun-de-ji-zhu-guan-li-23-ru-he-chu-li-gong-zuo-zhong-de-ren-ji-guan-xi">
-        </link>
-        <updated>2019-11-27T08:18:36.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="前言">前言</h1>
-<blockquote>
-<p>当我们初入职场时，职能级别可能比较低，大部分工作会比较独立，即使不是特别善于处理各种人际关系，问题也不算大，一来你不用协调资源，独立工作会占主要部分，很多时候都是处于闷头做事的状态中；二来，组里会有一些老员工，可以帮助你做各种沟通工作。<br>
-但是，若想职场进阶，一直往前走，到了某个阶段，比如需要你去做更多的协调和沟通工作而不仅仅是写代码的时候，如何处理人际关系就成了一项必不可少的软技能，重要性不比技术上的硬计能低。</p>
-</blockquote>
-<hr>
-<h1 id="如何更好的处理工作中的人际关系">如何更好的处理工作中的人际关系</h1>
-<ul>
-<li>
-<p><strong>首先，对于自己的上下级，保持开放的心态和愿意沟通的态度十分重要</strong><br>
-上下级是在职场中最无法避免的人际关系，因为各人性格不同，可能你和有些人更容易在看法和决策上达成一致，而有些人则经常不能很好的理解别人的意图，需要多次沟通，采用对应的沟通方式。上下级之间的利益关系大多时候是绑在一起的，如果处理不好，对彼此的工作有很大的影响不说，很多时候还会发生不愉快的事情。</p>
-</li>
-<li>
-<p><strong>其次，在交往过程中，尽可能地对别人分享、工作、交流持一种积极、友善和鼓励的态度</strong><br>
-我们常常把处理人际关系的态度分为三类。第一类是给予者，这类人，不怎么计较得失，总是尽最大可能的去帮助和支持别人。第二类人秉承对等关系，谁对他好，他就对谁好，自己帮了别人一次，或者别人帮了自己，都是一个人情，都会记在内心的小本本上，那是一个无形的账本。第三类人是索取者，这种人只会跟对自己有帮助的人接触，做的事也是从自身的利益出发。</p>
-<p>当提到这三种人时，我们脑海里可能会浮现出一些人物形象并对号入座，甚至还会想到现实中这样的例子。对于自身来说，大部分时候我们会认为自己是第一类人，也可能是第二类人，或者是介于第一跟第二类人之间，总之，绝对不会认为自己是第三类人。</p>
-<p>这其实说明了人们的潜意识里都认可第一类是最积极向上的处世之道，然而在现实中，因为能力、对方态度、利益关系等各种因素，我们能表现出来的“不计较得失”就可能有很大的局限性。</p>
-<p>如果我们每个人都向“给予者”的方向努力，那么便容易建立一个正能量满满的工作环境，与别人的交流也会更加顺畅。</p>
-</li>
-<li>
-<p><strong>第三，加入一些有利于自己成长的社交圈子</strong><br>
-比如特定技术有共同的兴趣社区，对摄影、读书有共同爱好的小组等。这些圈子可能很大很正式，比如一些商业组织，也可以是几个有共同困难或者目标的同事组成的微信群，平时进行一些非常随意的常规讨论。</p>
-</li>
-<li>
-<p><strong>第四，是当地寻求帮助</strong><br>
-很多时候主动向另一个人表示你需要他的帮助，其实会很巧妙的增加两个人的亲密度。当然，不要问不值得问的问题，注意是不是会耽误对方太多的时间，自己的态度也尽可能的开放、谦逊。</p>
-<p>反之，如果别人向你寻求帮助，尽可能耐心地协助对方解决问题，如果很忙或者时机不对，就告诉对方，并问是不是可以换个时间。如果对方比你资历浅，或者问的问题太简单，也不要摆架子或者显得很不耐烦。</p>
-</li>
-<li>
-<p><strong>第五，对于别人的意见要尽可能的认真对待</strong><br>
-即使没有任何实际行动，也让对方明白你的想法，为什么你没有采纳他的意见。自己给别人的意见也要诚恳，如果是个人看法，不要强迫于人，尤其不要拿一些理论上有争议的看法强迫别人接受，比如哪个设计模式更好。如果是真实案例里并且会影响到项目进展的对错，尽可能地摆事实举例子让对方明白你的想法和出发点，本着把事情做好的原则去沟通。</p>
-</li>
-</ul>
 ]]></content>
     </entry>
 </feed>

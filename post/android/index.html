@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>移动支付 | 紫豪的Blog</title>
+<title>【Android】项目结构的演变之路——单Project、模块化、组件化、插件化 | 紫豪的Blog</title>
 <meta name="description" content="You cannot improve your past, but you can improve your future. Once time is wasted, life is wasted.">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -13,6 +13,12 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://iflytek-duan.github.io//styles/main.css">
 
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
 
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -91,33 +97,42 @@
 
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
-          <h2 class="current-tag">标签: 移动支付</h2>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://iflytek-duan.github.io/post/zhu-yun-de-ji-zhu-guan-li-21-zhong-mei-zai-zhi-fu-ji-zhu-he-da-huan-jing-xia-de-chai-yi/">
-                  <h2 class="post-title">【朱赟的技术管理】21-中美在支付技术和大环境下的差异</h2>
-                </a>
-                <div class="post-date">
-                  2019-11-21
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-                <a class="right" href="https://iflytek-duan.github.io/post/zhu-yun-de-ji-zhu-guan-li-21-zhong-mei-zai-zhi-fu-ji-zhu-he-da-huan-jing-xia-de-chai-yi/">
-                  <div class="feature-container" style="background-image: url('https://iflytek-duan.github.io//post-images/zhu-yun-de-ji-zhu-guan-li-21-zhong-mei-zai-zhi-fu-ji-zhu-he-da-huan-jing-xia-de-chai-yi.png')">
-                  </div>
-                </a>
-              
-            </article>
-          
+          <div class="post-detail">
+            <h2 class="post-title">【Android】项目结构的演变之路——单Project、模块化、组件化、插件化</h2>
+            <div class="post-date">2020-02-25</div>
+            
+            <div class="post-content">
+              <h1 id="一-前言">一、前言</h1>
+<p>距2008年9月份Google发布Android 1.0操作系统至今已12个年头，Android操作系统、应用也在这个历程中逐步改进创新，丰富了用户的各方面体验。<br>
+作为一个开发者，在工作过程中最直观的表现就是开发工具的演变（从Eclipse/IDEA更换为Android Studio）和项目结构的演变（单Project、模块化、组件化、插件化）。</p>
+<hr>
+<h1 id="二-开发工具的演变">二、开发工具的演变</h1>
+<hr>
+<h1 id="三-项目结构的演变">三、项目结构的演变</h1>
+<hr>
 
-          <div class="pagination-container">
-  
-  
-</div>
+            </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://iflytek-duan.github.io/post/zhu-yun-de-ji-zhu-guan-li-31/">
+                  <h3 class="post-title">
+                    【朱赟的技术管理】32-硅谷人如何做Code Review
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
 
         </div>
       </div>
@@ -139,6 +154,29 @@ var app = new Vue({
 })
 
 </script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: 'cae2b8f6a4ade000f9d7',
+        clientSecret: '2d3862d6cd21351bfb3e50fd5a51880756c4b684',
+        repo: 'iflytek-duan.github.io',
+        owner: 'iflytek-duan',
+        admin: ['iflytek-duan'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
 
 
 
