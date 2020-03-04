@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://iflytek-duan.github.io/</id>
     <title>紫豪的Blog</title>
-    <updated>2020-02-27T07:42:49.126Z</updated>
+    <updated>2020-03-04T01:50:46.924Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://iflytek-duan.github.io/"/>
     <link rel="self" href="https://iflytek-duan.github.io/atom.xml"/>
@@ -10,6 +10,20 @@
     <logo>https://iflytek-duan.github.io/images/avatar.png</logo>
     <icon>https://iflytek-duan.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 紫豪的Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[【Android】AndroidStudio升级3.6后如何进入xml布局文件代码编辑页面]]></title>
+        <id>https://iflytek-duan.github.io/post/android-androidstudio-sheng-ji-36-hou-ru-he-jin-ru-xml-bu-ju-wen-jian-dai-ma-bian-ji-ye-mian/</id>
+        <link href="https://iflytek-duan.github.io/post/android-androidstudio-sheng-ji-36-hou-ru-he-jin-ru-xml-bu-ju-wen-jian-dai-ma-bian-ji-ye-mian/">
+        </link>
+        <updated>2020-03-04T01:38:09.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="androidstudio升级36版本前的xml布局文件代码边界页面的进入方式">AndroidStudio升级3.6版本前的xml布局文件代码边界页面的进入方式</h2>
+<figure data-type="image" tabindex="1"><img src="https://iflytek-duan.github.io//post-images/1583285974553.png" alt="3.6之前" loading="lazy"></figure>
+<h2 id="升级36版本之后的xml预览界面左下角的designtext切换按钮找不到了">升级3.6版本之后的xml预览界面，左下角的Design/Text切换按钮找不到了</h2>
+<figure data-type="image" tabindex="2"><img src="https://iflytek-duan.github.io//post-images/1583286117122.png" alt="3.6版本的预览界面" loading="lazy"></figure>
+<h2 id="如何进入代码编辑界面点击右上角的图标切换进入即可详情如下图">如何进入代码编辑界面（点击右上角的图标切换进入即可），详情如下图</h2>
+<figure data-type="image" tabindex="3"><img src="https://iflytek-duan.github.io//post-images/1583286340534.png" alt="解决方式" loading="lazy"></figure>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[【Android】4G网络状态下访问ipv6反应慢的解决方案]]></title>
         <id>https://iflytek-duan.github.io/post/android-4g-wang-luo-zhuang-tai-xia-fang-wen-ipv6-fan-ying-man-de-jie-jue-fang-an/</id>
@@ -1262,51 +1276,6 @@ public abstract class StatusViewController extends LinearLayout {
 <li>和领导者沟通，得到一些有前提或者回馈的支持或帮助；</li>
 <li>设定目标，制定一个你和你的领导都同意的计划和期限，确保计划会让你和目标更接近；</li>
 <li>让计划变得可执行和可追踪，按部就班的完成和跟进，同时根据情况调整不合理或者不完善的地方，持续改进。</li>
-</ol>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[【朱赟的技术管理】25-兼容并包的领导方式]]></title>
-        <id>https://iflytek-duan.github.io/post/zhu-yun-de-ji-zhu-guan-li-25-jian-rong-bing-bao-de-ling-dao-fang-shi/</id>
-        <link href="https://iflytek-duan.github.io/post/zhu-yun-de-ji-zhu-guan-li-25-jian-rong-bing-bao-de-ling-dao-fang-shi/">
-        </link>
-        <updated>2019-12-02T08:27:13.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="前言">前言</h1>
-<blockquote>
-<p>你可能听说，很多硅谷公司都有个不成文的规定，叫做“多样化（Diversity）”，这是什么意思呢？<br>
-简单来说，就是要求公司在招聘人才的时候，尽可能保持员工组成的多样化。</p>
-</blockquote>
-<hr>
-<h1 id="一-为什么要保持员工组成的多样化">一、为什么要保持员工组成的多样化？</h1>
-<p>第一个原因是，互联网时代的市场组成是多样化的。很多欧美产品在中国市场的销售额是公司营收的主要组成部分，国内很多产品也都开始具备国际化意识，逐步介入欧美中东等地区的市场。</p>
-<p>并且，硅谷地区的人口结构和美国整体是不同的，多次殖民和移民的历史，让硅谷的人口本身就呈现多样化，也因此硅谷公司的国际化视角从创建之初就有了。</p>
-<p>在思维方式上，我们希望在构建产品的时候就开始兼顾市场的多样化，比如考虑设计、本地化、语言、使用习惯等等，而多样化的员工可以更好地帮助实现产品多样化的功能特性。</p>
-<p>第二个原因是，产品的用户也是多种多样的。每个客户会希望产品具有个性化特性，也就是有“这个特性感觉上是为我做的，更适合我使用”的需求。因此，要保持产品的竞争力，就需要了解更多客户的不同需求。</p>
-<p>产品或者平台怎样才能让每个用户都能体验到想要的个性化呢？这就要求设计者必须意识到用户的多样化和需求的差异化，也就从根本上要求了组成设计者的员工是多样化的。</p>
-<hr>
-<h1 id="二-如何才能保持员工的多样化">二、如何才能保持员工的多样化？</h1>
-<p>首先，多样化可以体现在国际、性别和人种这种外部区别上，比如：白种人、黄种人、黑人都要保持一定的比例；性别上也要求保持平衡，也就是比较健康的男女员工数量。还有一些公司会要求有一定比例的同性恋、不同类型的宗教徒等等。</p>
-<p>其次，员工的多样化也可以体现在团队内部的差异上，互联网时代需要多种多样的人才，人才库的组成也应是多元化的。一个团队里，需要具备开创性思维、敢打敢拼的人，也需要一些能够深思熟虑，以及能够把事情落地和执行的人。</p>
-<p>最后，员工的多样化也体现在团队的创新思维上。一个公司，如果有一个Idea，一个产品，那么这个公司早晚会被时代的大潮抛弃。比尔·盖茨曾经说过：“组织要么创新，要么死亡”，就是这个道理。</p>
-<p>因此，团队内部需要有创新者，或者是“异见人士”的存在，他们的思路和见解并不是总和产品的主要设计者保持一致；这种情况下，团队很难“想到一块去”，也就保持了团队创新的活力。</p>
-<p>有一些不同的声音，对于“哪些重要，哪些该做”有些不同的看法，哪怕这些方法在初期会被认为风险太高、太离谱，但在某种程度上，它们会让团队的活力更持久。</p>
-<hr>
-<h1 id="三-领导需要具备兼容并包的思维">三、领导需要具备兼容并包的思维</h1>
-<p><strong>多样化的员工组成保证了多样化的企业文化，所以在很多时候，这也要求领导者要具备兼容并包的思维。</strong></p>
-<p>“包容性领导的六个特征”（The six signature traits of inclusive leadership）一文中提出了一种新的领导方式，文中认为领导者应该具备以下六种计能或特征：</p>
-<ol>
-<li>坚定的承诺<br>
-领导者需要从内心深处认为多样化和融合是一个正确的人生观和价值观。保持开放接纳的心态，平等对待每一种人和文化，对企业有益。</li>
-<li>谦卑的勇气<br>
-领导者不要有盲目的自我优越感，而应该客观的看待自己的优点和缺点。对待他人都要保持一种谦虚的态度，无论他们是何种教育背景、人种、性别。</li>
-<li>正确的认知<br>
-领导者需要知道自己和企业有盲点、有偏见，知道问题出在哪，知道解决问题的方向。</li>
-<li>开放的心态<br>
-领导者需要真诚地渴望了解不同人的看法，可以接受别人的一些价值观，并且知道所有的事务都有一定程度的不确定性。</li>
-<li>高情商<br>
-领导者能够和不同职位不同职业背景的人愉快合作和交流。哪怕不是百分之百的认可，也可以很专业地处理。</li>
-<li>合作的意愿<br>
-给每个人施展的机会和空间，提供公平和安全感，哪怕这意味着额外的代价和麻烦。</li>
 </ol>
 ]]></content>
     </entry>
