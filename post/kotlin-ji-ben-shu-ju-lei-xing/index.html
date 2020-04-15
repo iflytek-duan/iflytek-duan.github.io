@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>【Kotlin】基本类型 | 紫豪的Blog</title>
+<meta name="description" content="You cannot improve your past, but you can improve your future. Once time is wasted, life is wasted.">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://iflytek-duan.github.io//favicon.ico?v=1586940898950">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://iflytek-duan.github.io//styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://iflytek-duan.github.io/">
+        <img src="https://iflytek-duan.github.io//images/avatar.png?v=1586940898950" class="site-logo">
+        <h1 class="site-title">紫豪的Blog</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="https://iflytek-duan.github.io/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      You cannot improve your past, but you can improve your future. Once time is wasted, life is wasted.
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://iflytek-duan.github.io//atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">【Kotlin】基本类型</h2>
+            <div class="post-date">2020-04-15</div>
+            
+              <div class="feature-container" style="background-image: url('https://iflytek-duan.github.io//post-images/kotlin-ji-ben-shu-ju-lei-xing.jpg')">
+              </div>
+            
+            <div class="post-content">
+              <p>一、<code>Kotlin</code>、<code>Java</code>基本类型参照表</p>
+<table>
+    <tr>
+        <th></th>
+        <th>Kotlin</th>
+        <th>Java</th>
+    </tr>
+    <tr>
+        <th>字节</th>
+        <th>Byte</th>
+        <th>byte/Byte</th>
+    </tr>
+    <tr>
+        <th>整型</th>
+        <th>Int & Long</th>
+        <th>int/integer & long/Long</th>
+    </tr>
+    <tr>
+        <th>浮点型</th>
+        <th>Float & Double</th>
+        <th>float/Float & double/Double</th>
+    </tr>
+    <tr>
+        <th>字符</th>
+        <th>Char</th>
+        <th>char/Char</th>
+    </tr>
+    <tr>
+        <th>字符串</th>
+        <th>String</th>
+        <th>String</th>
+    </tr>
+</table>
+<hr>
+<p>二、声明变量</p>
+<ul>
+<li>
+<p>只读变量（不可重新赋值）<br>
+通过<code>val</code>修饰符声明，我们可以认为它是<strong>java中带了<code>final</code>修饰符的变量</strong>。</p>
+<p>声明变量格式：修饰符 变量名: 类型 = 初始赋值<br>
+示例：<br>
+<code>val b: String = &quot;Hello Kotlin&quot;</code></p>
+</li>
+<li>
+<p>可读写变量（可重新赋值）<br>
+通过<code>var</code>修饰符声明。</p>
+</li>
+<li>
+<p><code>Kotlin</code>支持自动类型推导<br>
+<code>kotlin</code>支持自动类型的推导，可以到达简化代码的作用。<br>
+如：<code>val b: String = &quot;Hello Kotlin&quot;</code>可以直接写成<code>val b = &quot;Hello Kotlin&quot;</code>。</p>
+</li>
+<li>
+<p><code>Kotlin</code>与<code>Java</code>声明变量对比<br>
+<code>Kotlin</code>声明变量：</p>
+<pre><code class="language-kotlin">var a: Int = 2
+val b: String = &quot;Hello Kotlin&quot;
+</code></pre>
+<p><code>Java</code>声明变量：</p>
+<pre><code class="language-java">int a = 2;
+final String b = &quot;Hello Java&quot;;
+</code></pre>
+</li>
+</ul>
+<hr>
+<p>三、易混淆的Long类型标记<br>
+在<code>Java</code>里，开发者在代码中通过以下方式进行<code>Long</code>类型的声明：</p>
+<pre><code class="language-java">   long a = 12345678910l;// 小写易混淆
+   long b = 12345678910L;// 大写方便识别
+</code></pre>
+<p>在<code>Kotlin</code>中，声明<code>Long</code>类型变量时，<strong>不支持小写L进行类型声明</strong>，否则编译器会报错</p>
+<pre><code class="language-kotlin">   val c = 12345678910L
+</code></pre>
+<hr>
+<p>四、<code>Kotlin</code>的数值类型转换<br>
+在<code>Java</code>中，我们可以通过<strong>隐式转换</strong>的方式进行数值类型的转换，示例如下：</p>
+<pre><code class="language-java">    int e = 10;
+    long f = e;// implicit conversion
+</code></pre>
+<p>在<code>Kotlin</code>中，这种行为是不被允许的，这也是争议比较大的一点（支持者认为隐式转换安全性存在问题，反对者认为去除隐式转换给开发者带来一些开发过程中的麻烦），示例代码如下：</p>
+<pre><code class="language-kotlin">    val e: Int = 10
+    val f: Long = e.toLong()
+</code></pre>
+<hr>
+<p>五、无符号类型（v1.3）<br>
+<code>Kotlin</code>在兼容<code>C</code>时，创造了与之对应的无符号类型，具体如下：</p>
+<table>
+    <tr>
+        <th></th>
+        <th>有符号类型</th>
+        <th>无符号类型</th>
+    </tr>
+    <tr>
+        <th>字节</th>
+        <th>Byte</th>
+        <th>UByte</th>
+    </tr>
+    <tr>
+        <th>短整型</th>
+        <th>Short</th>
+        <th>UShort</th>
+    </tr>
+    <tr>
+        <th>整型</th>
+        <th>Int</th>
+        <th>UInt</th>
+    </tr>
+    <tr>
+        <th>长整型</th>
+        <th>Long</th>
+        <th>ULong</th>
+    </tr>
+    <tr>
+        <th>字符串</th>
+        <th>String</th>
+        <th>String</th>
+    </tr>
+</table>
+<p>无符号类型声明变量示例:</p>
+<pre><code class="language-kotlin">    val ua: UInt = 10u
+    val ub: ULong = 12345678910u
+    val uc: UByte = 1u
+</code></pre>
+<hr>
+<p>六、<code>Kotlin</code>中的变量值比较<br>
+<code>kotlin</code>中的值比较通过<code>==</code>操作符来进行，这个有异于<code>Java</code>（<code>Java</code>中是通过<code>equals</code>方法进行值比较，<code>==</code>比较的是变量引用）。</p>
+<p>示例：</p>
+<pre><code class="language-kotlin">    val k = &quot;Hello Kotlin&quot;
+    val m = String(&quot;Hello Kotlin&quot;.toCharArray())
+
+    println(k === m) // compare references-比较引用
+    println(k==m) // compare values-比较值
+</code></pre>
+<p>而<code>Java</code>中则是以下形式：</p>
+<pre><code class="language-java">    String k = &quot;Hello Kotlin&quot;;
+    String m = new String(&quot;Hello Kotlin&quot;);
+
+    System.out.println(k==m);// compare references-比较引用
+    System.out.println(k.equals(m));// compare values-比较值
+</code></pre>
+<hr>
+<p>七、<code>Kotlin</code>中的字符串</p>
+<ul>
+<li>字符串比较
+<ul>
+<li>a == b ：比较内容，等价于<code>Java</code>的<code>equals</code>。</li>
+<li>a === b ：比较对象是否是<strong>同一个对象</strong>。</li>
+</ul>
+</li>
+<li>字符串模板
+<ul>
+<li>“Hello，$name”=&gt;&quot;Hello，小明&quot;</li>
+</ul>
+</li>
+</ul>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://iflytek-duan.github.io/tag/fvbltJpq3/" class="tag">
+                    kotlin
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://iflytek-duan.github.io/post/android-androidstudio-sheng-ji-36-hou-ru-he-jin-ru-xml-bu-ju-wen-jian-dai-ma-bian-ji-ye-mian/">
+                  <h3 class="post-title">
+                    【Android】AndroidStudio升级3.6后如何进入xml布局文件代码编辑页面
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: 'cae2b8f6a4ade000f9d7',
+        clientSecret: '2d3862d6cd21351bfb3e50fd5a51880756c4b684',
+        repo: 'iflytek-duan.github.io',
+        owner: 'iflytek-duan',
+        admin: ['iflytek-duan'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

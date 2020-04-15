@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://iflytek-duan.github.io/</id>
     <title>紫豪的Blog</title>
-    <updated>2020-03-04T01:50:46.924Z</updated>
+    <updated>2020-04-15T08:55:12.019Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://iflytek-duan.github.io/"/>
     <link rel="self" href="https://iflytek-duan.github.io/atom.xml"/>
@@ -10,6 +10,169 @@
     <logo>https://iflytek-duan.github.io/images/avatar.png</logo>
     <icon>https://iflytek-duan.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 紫豪的Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[【Kotlin】基本类型]]></title>
+        <id>https://iflytek-duan.github.io/post/kotlin-ji-ben-shu-ju-lei-xing/</id>
+        <link href="https://iflytek-duan.github.io/post/kotlin-ji-ben-shu-ju-lei-xing/">
+        </link>
+        <updated>2020-04-15T07:38:43.000Z</updated>
+        <content type="html"><![CDATA[<p>一、<code>Kotlin</code>、<code>Java</code>基本类型参照表</p>
+<table>
+    <tr>
+        <th></th>
+        <th>Kotlin</th>
+        <th>Java</th>
+    </tr>
+    <tr>
+        <th>字节</th>
+        <th>Byte</th>
+        <th>byte/Byte</th>
+    </tr>
+    <tr>
+        <th>整型</th>
+        <th>Int & Long</th>
+        <th>int/integer & long/Long</th>
+    </tr>
+    <tr>
+        <th>浮点型</th>
+        <th>Float & Double</th>
+        <th>float/Float & double/Double</th>
+    </tr>
+    <tr>
+        <th>字符</th>
+        <th>Char</th>
+        <th>char/Char</th>
+    </tr>
+    <tr>
+        <th>字符串</th>
+        <th>String</th>
+        <th>String</th>
+    </tr>
+</table>
+<hr>
+<p>二、声明变量</p>
+<ul>
+<li>
+<p>只读变量（不可重新赋值）<br>
+通过<code>val</code>修饰符声明，我们可以认为它是<strong>java中带了<code>final</code>修饰符的变量</strong>。</p>
+<p>声明变量格式：修饰符 变量名: 类型 = 初始赋值<br>
+示例：<br>
+<code>val b: String = &quot;Hello Kotlin&quot;</code></p>
+</li>
+<li>
+<p>可读写变量（可重新赋值）<br>
+通过<code>var</code>修饰符声明。</p>
+</li>
+<li>
+<p><code>Kotlin</code>支持自动类型推导<br>
+<code>kotlin</code>支持自动类型的推导，可以到达简化代码的作用。<br>
+如：<code>val b: String = &quot;Hello Kotlin&quot;</code>可以直接写成<code>val b = &quot;Hello Kotlin&quot;</code>。</p>
+</li>
+<li>
+<p><code>Kotlin</code>与<code>Java</code>声明变量对比<br>
+<code>Kotlin</code>声明变量：</p>
+<pre><code class="language-kotlin">var a: Int = 2
+val b: String = &quot;Hello Kotlin&quot;
+</code></pre>
+<p><code>Java</code>声明变量：</p>
+<pre><code class="language-java">int a = 2;
+final String b = &quot;Hello Java&quot;;
+</code></pre>
+</li>
+</ul>
+<hr>
+<p>三、易混淆的Long类型标记<br>
+在<code>Java</code>里，开发者在代码中通过以下方式进行<code>Long</code>类型的声明：</p>
+<pre><code class="language-java">   long a = 12345678910l;// 小写易混淆
+   long b = 12345678910L;// 大写方便识别
+</code></pre>
+<p>在<code>Kotlin</code>中，声明<code>Long</code>类型变量时，<strong>不支持小写L进行类型声明</strong>，否则编译器会报错</p>
+<pre><code class="language-kotlin">   val c = 12345678910L
+</code></pre>
+<hr>
+<p>四、<code>Kotlin</code>的数值类型转换<br>
+在<code>Java</code>中，我们可以通过<strong>隐式转换</strong>的方式进行数值类型的转换，示例如下：</p>
+<pre><code class="language-java">    int e = 10;
+    long f = e;// implicit conversion
+</code></pre>
+<p>在<code>Kotlin</code>中，这种行为是不被允许的，这也是争议比较大的一点（支持者认为隐式转换安全性存在问题，反对者认为去除隐式转换给开发者带来一些开发过程中的麻烦），示例代码如下：</p>
+<pre><code class="language-kotlin">    val e: Int = 10
+    val f: Long = e.toLong()
+</code></pre>
+<hr>
+<p>五、无符号类型（v1.3）<br>
+<code>Kotlin</code>在兼容<code>C</code>时，创造了与之对应的无符号类型，具体如下：</p>
+<table>
+    <tr>
+        <th></th>
+        <th>有符号类型</th>
+        <th>无符号类型</th>
+    </tr>
+    <tr>
+        <th>字节</th>
+        <th>Byte</th>
+        <th>UByte</th>
+    </tr>
+    <tr>
+        <th>短整型</th>
+        <th>Short</th>
+        <th>UShort</th>
+    </tr>
+    <tr>
+        <th>整型</th>
+        <th>Int</th>
+        <th>UInt</th>
+    </tr>
+    <tr>
+        <th>长整型</th>
+        <th>Long</th>
+        <th>ULong</th>
+    </tr>
+    <tr>
+        <th>字符串</th>
+        <th>String</th>
+        <th>String</th>
+    </tr>
+</table>
+<p>无符号类型声明变量示例:</p>
+<pre><code class="language-kotlin">    val ua: UInt = 10u
+    val ub: ULong = 12345678910u
+    val uc: UByte = 1u
+</code></pre>
+<hr>
+<p>六、<code>Kotlin</code>中的变量值比较<br>
+<code>kotlin</code>中的值比较通过<code>==</code>操作符来进行，这个有异于<code>Java</code>（<code>Java</code>中是通过<code>equals</code>方法进行值比较，<code>==</code>比较的是变量引用）。</p>
+<p>示例：</p>
+<pre><code class="language-kotlin">    val k = &quot;Hello Kotlin&quot;
+    val m = String(&quot;Hello Kotlin&quot;.toCharArray())
+
+    println(k === m) // compare references-比较引用
+    println(k==m) // compare values-比较值
+</code></pre>
+<p>而<code>Java</code>中则是以下形式：</p>
+<pre><code class="language-java">    String k = &quot;Hello Kotlin&quot;;
+    String m = new String(&quot;Hello Kotlin&quot;);
+
+    System.out.println(k==m);// compare references-比较引用
+    System.out.println(k.equals(m));// compare values-比较值
+</code></pre>
+<hr>
+<p>七、<code>Kotlin</code>中的字符串</p>
+<ul>
+<li>字符串比较
+<ul>
+<li>a == b ：比较内容，等价于<code>Java</code>的<code>equals</code>。</li>
+<li>a === b ：比较对象是否是<strong>同一个对象</strong>。</li>
+</ul>
+</li>
+<li>字符串模板
+<ul>
+<li>“Hello，$name”=&gt;&quot;Hello，小明&quot;</li>
+</ul>
+</li>
+</ul>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[【Android】AndroidStudio升级3.6后如何进入xml布局文件代码编辑页面]]></title>
         <id>https://iflytek-duan.github.io/post/android-androidstudio-sheng-ji-36-hou-ru-he-jin-ru-xml-bu-ju-wen-jian-dai-ma-bian-ji-ye-mian/</id>
@@ -1231,52 +1394,6 @@ public abstract class StatusViewController extends LinearLayout {
 <p>不要变成一个微观管理者，也不要成为一个纯粹的规则执行者。那样对团队人员的责任感、上进心和积极性等，都有害无益。</p>
 <p><strong>最后谈谈归属感</strong>。归属感是指某个人对某样事物、组织的从属感觉，是一种主观的个人感受。</p>
 <p>比如一个对公司有归属感的人，会对公司产生一种“家”的感觉，觉得自己是公司的一分子，会非常在意公司发生的一切，并希望公司发展得更好，自己也会有更多的空间；相反，如果员工对公司没有归属感，始终会认为自己是这个公司的过客，总有一天会离开的，自然也谈不上什么责任心，能够做一天和尚撞一天钟就不错了如何增加员工的归属感呢？首先要在有利公司发展的基础上建立独特的企业文化，创新、公开透明、积极向上，这些因素可以留住更优秀的员工。需要强调的是，公司不是温情脉脉的家，公司是一艘大船，有了方向，大家合力划桨，才能到达理想的彼岸。想要优秀的人产生归属感，仅仅靠丰厚的薪酬待遇和舒适的工作环境是不够的，他们还需要远大的目标和坚定的信念，只有真正伟大的创见，才能让这些优秀的人与公司一起往前走。除此之外，管理者还应该以身作则，让员工看到自己的努力，对公司目标的追求，对企业文化的践行。真诚对人，能够从员工角度考虑问题，对好的行为认可并加以鼓励，同时做一些仪式感比较强的团队活动和建设，都是增加员工归属感的好方式。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[【朱赟的技术管理】26-如何做自己的职场规划]]></title>
-        <id>https://iflytek-duan.github.io/post/zhu-yun-de-ji-zhu-guan-li-26-ru-guo-zuo-zi-ji-de-zhi-chang-gui-hua/</id>
-        <link href="https://iflytek-duan.github.io/post/zhu-yun-de-ji-zhu-guan-li-26-ru-guo-zuo-zi-ji-de-zhi-chang-gui-hua/">
-        </link>
-        <updated>2019-12-03T03:26:53.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="一-在做职场规划前自己需要考虑什么">一、在做职场规划前自己需要考虑什么？</h1>
-<p><strong>做一个职场规划时，你作为当事人，自己先要想清楚很多问题，然后再和你领导交流沟通，寻求他的支持和帮助。</strong></p>
-<p>那么，下面的问题是你首先要考虑的：</p>
-<ol>
-<li>你的个人价值观是什么，最在意什么？换句话说，什么样的情境或者状态会让你有幸福感或者自信心。比如，在你的成长路上哪些是你在意的，是独立解决问题的能力，还是挑战别人做不到的事情；是受欢迎程度，和所有人有良好的关系，还是更在意自由、健康的家庭生活。</li>
-<li>你的长期愿景是什么，五年甚至十年后，你希望自己成为一个什么样的人？</li>
-<li>为了达到目标，你还需要哪些技能或经验？你可以在短期内发展什么技能让你走得更远？想达成你的梦想职业，或者在工作中取得成功，你还需要做什么，需要哪些必备的计能？哪些计能对你来说不是必须的，但是会有很大好处？</li>
-<li>你的优势和长处是什么？是合作性、独立思考、行动快速，还是有良好的产品思维。你现在的日常工作能否让你展示自己的长处，又是如何展示的，你觉得你比别人在哪些方面做的好，能不能举出写具体的例子？</li>
-</ol>
-<p>当你想清楚以上问题的时候，大概就知道自己想要什么了。如果你是一个管理者，也可以试着用这些问题去启发你的团队队员。</p>
-<hr>
-<h1 id="二-需要领导提供什么样的支持">二、需要领导提供什么样的支持？</h1>
-<p>在思考完自己的问题后，接下来，也就是最重要的问题就是：<strong>你需要你的领导者提供什么样的支持？</strong><br>
-例如:</p>
-<ol>
-<li>需要一个能够证明自己的项目；</li>
-<li>需要一个能带自己的老员工，这个员工可能是你的榜样（Role Model），也可能是为你提供日常指导的人；</li>
-<li>需要更多练手的机会；</li>
-<li>需要专注培养自己的某一项技能；</li>
-<li>需要让自己接触更多的业务或者架构相关的讨论；</li>
-<li>需要参加一个系统的培训。</li>
-</ol>
-<p>在这些问题或者要求提出之前，你应该考虑到领导者的资源和整体项目进度，也就是说，领导者在提供这些支持之前，很可能会有一些限制或者要求。</p>
-<p>比如，你想要一个能证明自己的项目，那么在你承担重任之前，可能需要完成另外一些不那么重要的项目，甚至是脏活累活来证明自己。这种情况下，沟通的关键就是契约，你需要如何证明自己，才能去做自己喜欢的项目，组里是不是有人明显比你胜任的多？</p>
-<p>比如，你需要一个能够带着自己往前走的老员工，那你就要知道，对新人的指导会花费老员工很多时间和精力，当你这样要求的时候，是不是可以提供一些力所能及的回馈呢？比如主动帮助老员工做一些他手上的杂活，也可以把老员工传授给你的经验写成文档，这样，你被指导了一次，却留下了以后新人都能使用的文档资源。老员工会更愿意去带这样的新人。</p>
-<p>比如，你想接触更多业务和架构相关的讨论，那你是否按时完成了自己的本职工作？如果你自己很勤奋，虽然参与了各种讨论，但自己的工作完成得又快又好，甚至利用自己的休息或娱乐时间做了一部分工作，这样领导者才不会有顾虑。如果你作为新人，该做的工作没做，整天参加各种讨论开眼界，这让领导者怎么管理团队里的其他人呢？</p>
-<p>在这个过程中，作为员工，不要提过于脱离实际的要求。作为管理者，要明确的让对方了解不让他承担这个项目的理由是什么，风险在哪里，让对方知道自己的不足，并提供机会让他先提升这方面的技能。</p>
-<p>你和你的领导都应该明确，所有的支持和帮助对你的长期目标和短期发展都是有益的。不要提一些似是而非的需求，也不要人云亦云，如果这些要求不会让你离你的目标越来越近，那就是无用功。</p>
-<p>得到领导者的支持和帮助后，剩下的就是让这一切变得可执行和可追踪。你可以和你的领导一起为你的“成功”或“进步”定义一些可测量的标准，制定可执行的行动计划，然后记录你的发展，按时和你的领导进行一对一沟通，讨论你的进步，反省做的不够和不好的地方。需要的话，你可以适时地调整你的计划，完成自我发展。</p>
-<hr>
-<h1 id="总结">总结</h1>
-<p>如何做自己的职场规划？我们来总结一下，你需要完成以下四个步骤：</p>
-<ol>
-<li>知道自己想要什么，知道现在的你和理想的你差距在什么地方；</li>
-<li>和领导者沟通，得到一些有前提或者回馈的支持或帮助；</li>
-<li>设定目标，制定一个你和你的领导都同意的计划和期限，确保计划会让你和目标更接近；</li>
-<li>让计划变得可执行和可追踪，按部就班的完成和跟进，同时根据情况调整不合理或者不完善的地方，持续改进。</li>
-</ol>
 ]]></content>
     </entry>
 </feed>
