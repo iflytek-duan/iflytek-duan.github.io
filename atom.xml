@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://iflytek-duan.github.io/</id>
     <title>紫豪的Blog</title>
-    <updated>2020-04-20T07:59:27.192Z</updated>
+    <updated>2020-04-20T09:01:59.901Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://iflytek-duan.github.io/"/>
     <link rel="self" href="https://iflytek-duan.github.io/atom.xml"/>
@@ -10,6 +10,109 @@
     <logo>https://iflytek-duan.github.io/images/avatar.png</logo>
     <icon>https://iflytek-duan.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 紫豪的Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[Kotlin（三）区间 Range]]></title>
+        <id>https://iflytek-duan.github.io/post/kotlinsan-qu-jian-range/</id>
+        <link href="https://iflytek-duan.github.io/post/kotlinsan-qu-jian-range/">
+        </link>
+        <updated>2020-04-20T08:03:29.000Z</updated>
+        <content type="html"><![CDATA[<blockquote>
+<p>区间在Java中是没有这个概念的，它在Kotlin中是特有的。</p>
+</blockquote>
+<h2 id="一-区间的创建">一、区间的创建</h2>
+<ul>
+<li>
+<p><strong>什么是区间</strong><br>
+区间是数学上的一个表示范围的概念。</p>
+</li>
+<li>
+<p><strong>区间的类型</strong></p>
+<ul>
+<li>
+<p>闭区间<br>
+闭区间是指包含起止值的区间。</p>
+<p><em>例：设 a,b 是两个实数,且 a ≤ b，满足 a ≤ x ≤ b 的实数 x 的集合,<br>
+表示为 [ a,b ],叫做闭区间</em></p>
+</li>
+<li>
+<p>开区间<br>
+开区间是指不包含起止值的区间。</p>
+<p><em>例：设 a,b 是两个实数,且 a ≤ b，满足 a ＜ x ＜b 的实数 x 的集合,<br>
+表示为 ( a,b ),叫做开区间</em></p>
+</li>
+<li>
+<p>半开区间<br>
+半开区间是指包含起始值或终止值得区间（也叫前半开区间、后半开区）。</p>
+<p><em>例：设 a,b 是两个实数,且 a ≤ b，满足 a ≤ x ＜b,a ＜x ≤ b 的实数 x 的集合,<br>
+分别表示为 [ a,b ),( a,b ],叫做半开区间</em></p>
+</li>
+<li>
+<p>倒序区间<br>
+区间的值由大到小排列。</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>区间如何创建</strong></p>
+<ul>
+<li>创建闭区间<pre><code class="language-kotlin">val intRange = 1..10 // [1,10]
+val charRange = 'a'..'z' // [a,z]
+val longRange = 1L..100L // [1L,100L]
+</code></pre>
+</li>
+<li>创建开区间（半开区间）<pre><code class="language-kotlin">// 前闭后开区间，不包含结束值
+val intRangeExclusive = 1 until 10 // [1,10)
+val charRangeExclusive = 'a' until 'z' // [a,z)
+val longRangeExclusive = 1L until 100L // [1L,100L)
+</code></pre>
+</li>
+<li>创建倒序区间<pre><code class="language-kotlin">// 区间值由大到小
+val intRangeReverse = 10 downTo 1 // [10,9...,1]
+val charRangeReverse = 'z' downTo 'a' // [z,a]
+val longRangeReverse = 100L downTo 1L // [100L,1L]
+</code></pre>
+</li>
+<li>区间值的打印<br>
+通过<code>println(range.joinToString())</code>方法打印即可。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="二-区间的步长">二、区间的步长</h2>
+<blockquote>
+<p>在创建区间时，有时候我们希望区间值之间以固定的间隔进行跳跃，例如原先排列为1，2，3，4，...，10的区间想变成1,3,5,7,...,9的区间，这个时候我们可以通过设置区间的步长（即两两之间的间隔）来达到预期。</p>
+</blockquote>
+<pre><code class="language-kotlin">// 区间步长的使用
+val intRangeWithStep = 1...10 step 2 // [1,3,5,...,9]
+val charRangeWithStep = 'a'...'z' step 2 // [a,c,e,...,y]
+val longRangeWithStep = 1L...100L step 2 // [1L,3L,...,99L]
+</code></pre>
+<hr>
+<h2 id="三-区间的迭代">三、区间的迭代</h2>
+<blockquote>
+<p>区间的迭代方式类似于数组的迭代方式。</p>
+</blockquote>
+<pre><code class="language-kotlin">for(element in intRange){
+    println(element)
+}
+
+intRange.foreach{
+    println(it)
+}
+</code></pre>
+<hr>
+<h2 id="四-区间的包含关系">四、区间的包含关系</h2>
+<pre><code class="language-kotlin">if(3 in intRage){
+    println(&quot;3 in range 'intRange'&quot;)
+}
+
+if(12 !in intRange){
+    println(&quot;12 not in range 'intRange'&quot;)
+}
+</code></pre>
+<hr>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[【Kotlin】（二）数组Array]]></title>
         <id>https://iflytek-duan.github.io/post/kotlin-er-shu-zu-array/</id>
@@ -128,6 +231,10 @@ println(&quot;${str[0]}, ${str[1]}&quot;)// 使用字符串模板打印
 for(float element : floats){
     System.out.println(element);
 }
+
+for(int i=0;i&lt;floats.length;i++){
+    System.out.println(floats[i]);
+}
 </code></pre>
 </li>
 <li><strong>Kotlin</strong><pre><code class="language-kotlin">val floatArray = floatArrayOf(1f,3f,5f,7f)
@@ -138,6 +245,11 @@ for(element in floatArray){
 // 或者使用以下方式遍历
 floatArray.foreach{ element -&gt;
   println(element)
+}
+
+// 或者下面的方式（对标java中的 for(int i=0;i&lt;floats.length;i++)遍历方式）
+for(i in floats.indices){
+    println(floats[i])
 }
 </code></pre>
 </li>
@@ -153,7 +265,7 @@ for(int i : intArray){
 }
 </code></pre>
 </li>
-<li><strong>Kotlin</strong><pre><code class="language-kotlin">val intArray = IntArray(5){1,2,3,4,5}
+<li><strong>Kotlin</strong><pre><code class="language-kotlin">val intArray = IntArray(5){ it +1 }
 if(4 in intArray){
     println(&quot;4 exists in variable 'intArray'&quot;)
 }
@@ -1424,98 +1536,6 @@ public abstract class StatusViewController extends LinearLayout {
 <h1 id="关于app打包命名">关于App打包命名</h1>
 <p>release版本在项目混淆、加固(目前采用360加固)的基础上，按照以下规范命名，其它情况不考虑：<br>
 <a href="https://www.jianshu.com/p/d7dc4624a122">【Android】apk打包命名规则交流篇</a></p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[【朱赟的技术管理】29-硅谷互联网公司的开发流程]]></title>
-        <id>https://iflytek-duan.github.io/post/zhu-yun-de-ji-zhu-guan-li-29-huo-gu-hu-lian-wang-gong-si-de-kai-fa-liu-cheng/</id>
-        <link href="https://iflytek-duan.github.io/post/zhu-yun-de-ji-zhu-guan-li-29-huo-gu-hu-lian-wang-gong-si-de-kai-fa-liu-cheng/">
-        </link>
-        <updated>2019-12-09T02:43:15.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="前言硅谷互联网公司的开发流程">前言：硅谷互联网公司的开发流程</h1>
-<p>总的来说，硅谷互联网公司的开发流程包括以下几个阶段：</p>
-<ol>
-<li>OKR的设立；</li>
-<li>主项目及其子项目的确立；</li>
-<li>每个子项目的生命周期；</li>
-<li>主项目的生命周期；</li>
-<li>收尾、维护、复盘。</li>
-</ol>
-<hr>
-<h1 id="第一点okr的设立">第一点，OKR的设立</h1>
-<p>所有项目的起始，都应从Roadmap做起。硅谷公司的OKR（Objectives and Key Results）一般都是自顶而下的。也就是说，先有整个公司的OKR，然后有每个部门的OKR，继而是大组的OKR，再到小组的OKR，确保整个公司有一致的目标。在这个过程里面，技术驱动反映在哪些方面呢：</p>
-<p>首先，确定Roadmap的过程中，我们会采用调查（Survey）模式，确保工程师的声音可以准确地触达管理层。比如:工程师们觉得基础架构比较薄弱，公司就会加大这一块的支持力度。如果大家觉得开发环境很低效，就会把这个因素也放到OKR考虑。硅谷的公司一般会分为产品组和系统架构组。总的来说，系统架构组的OKR里，工程师的声音会很大。</p>
-<p>其次，项目怎么做，怎么规划，一般是由工程师来决定的。OKR只确立目标，是不是要构建新的服务，是不是要沿用现有架构，如何进行技术选型等，这些不是OKR的组成部分。</p>
-<p>最后，估算OKR里的工期目标的时候，我们会去除一些用来做技术创新和支持的时间，比如编程马拉松，开源支持等事务。谷歌的员工会给自己预留20%的自由项目时间，这些都是时间缓冲区。</p>
-<blockquote>
-<p>OKR是企业进行目标管理的一个简单有效的系统，能够将目标管理自上而下的贯穿到基层。</p>
-</blockquote>
-<hr>
-<h1 id="第二点主项目及其子项目的确立">第二点，主项目及其子项目的确立</h1>
-<p>一旦确立了OKR，下一步就是确立主项目和子项目了。主项目是主要的技术或商业产品，一般由产品经理、技术经理和一些技术骨干经过产品需求和技术讨论后，确定要做什么（Scope），不做什么（Non Scope）和大的里程碑（Miliestone）。</p>
-<p>一旦主项目确定了，就需要安排不同的人做不同的模块，也就是子项目。一般团队协作有两种模式：一种是每个人负责一个子项目，从始至终；另一种是大家先一起完成基本架构，然后逐个需求、逐个模块推进，最终一起完成整个项目。</p>
-<p>下面，我来谈谈两种协作模式在实践中的优缺点对比：<br>
-<strong>第一种方法：每个人完成一个子项目</strong></p>
-<ul>
-<li>优点<br>
-责任清晰，每个人都知道自己的职责，工程师也有更多的拥有感，他们可以独立负责产品的设计、实现、测试和维护，工作贯穿整个项目流程。</li>
-<li>缺点<br>
-如果负责某个子项目的工程师设计或者实现能力不足，由于比较独立，这个子项目很容易成为路障或者瓶颈，工程师之间也缺乏相互学习的机会。<br>
-另外，因为是按人并行推进项目，需要根据每个人设置里程碑，管理的时候，技术管理者需要常常跟进每个人的进度，管理代价更高。代码审核也往往是几个有限的人参与。</li>
-</ul>
-<p><strong>第二种方法：所有人一起逐次完成每个模块或需求</strong></p>
-<ul>
-<li>优点<br>
-工程师之间合作最大化，可以彼此协调、彼此学习、在对方有事的时候相互补位。项目管理有明确统一的里程碑，每个工程师都有机会接触更多的工作，每个人的代码可以有更多的人参与审核。</li>
-<li>缺点<br>
-每个工程师的责任划分并不是那么明显，很容易出现能者多劳、勤者多劳的现象。一些新人总是做一些执行或打杂的事，得不到锻炼。</li>
-</ul>
-<p>这两种模式对比来看，它们各有利弊。现实中可以根据情况组合使用。比如，两到三人合作负责一个模块，也可以在每人一个模块的基础上，将小模块合并成大模块。然后每个大模块都有技术负责人（Tech Lead），对一些能力不足的工程师给予指导和支持等等。</p>
-<hr>
-<h1 id="第三点每个子项目的生命周期">第三点，每个子项目的生命周期</h1>
-<p>子项目一旦确认，它的生命周期就会融入到工程师的日常工作中，内容如下：</p>
-<ol>
-<li>
-<p>开发初期的设计文档<br>
-一般可以使用共享的谷歌文档（Google Docs），Quip等（国内一般用腾讯文档、石墨文档多一些）。不同的人可以编辑或评论、阅读。一般设计文档会先由组内工程师和产品经理审核，然后到大组评审（包括Legal，Compliance，Fiance等）。</p>
-<p>如果涉及到公司的整体架构，还需要发给全公司审核。参与审核的人员是所有工程师。很多人会有选择的参与一些设计的审核，通常技术骨干会预留时间审核所有的技术设计文档。设计文档不仅包括怎么实现，还有选型理由、考虑的因素、支持和不支持的属性、时间线等等。</p>
-</li>
-<li>
-<p>设计测试实验，这是可选的，如果针对某个产品需求我们想知道用户的反馈，就需要数据工程师参与设计实验，也就是A/B测试。实验中的数据埋点也会在下一步实现中完成。</p>
-</li>
-<li>
-<p>一旦设计文档锁定，就可以开始实现了。不论是单人负责还是多人合作，实现都是按照多次代码提交（Pull Requests）来迭代的。每次代码提交都要写清楚代码改动的摘要和测试。并通知不同的工程师审核。</p>
-</li>
-<li>
-<p>所有的实现都要加入监控、日志、预警代码。</p>
-</li>
-<li>
-<p>所有的实现都隐藏在一个开关后。当代码就位后，就开始灰度发布。通常是先发布给几个开发人员测试，然后到项目组，然后到其它员工（Google称之为Dog Food，因为他们可以大量使用自己的产品），然后按照百分比推给用户。</p>
-</li>
-<li>
-<p>对一些需要重构的关键产品链路，有时候也会使用双重写（Dual Write），就是新特性和就特性都写入数据库，并通过不同的方式比较两个实现的结果。只有验证结果一致时，才会将交易（Traffic）从旧实现切换到新实现。</p>
-</li>
-<li>
-<p>最后是一些扫尾工作，包括移除用来做A/B测试和灰度发布的代码开关等，有时候还会有一些次要需求的实现。</p>
-</li>
-</ol>
-<hr>
-<h1 id="第四点主项目的生命周期">第四点，主项目的生命周期</h1>
-<p>主项目的生命周期根据子项目的实现方式会有所不同，但有些特点是共有的。</p>
-<ol>
-<li>项目开始都有一个整体的设计文档，界定子项目的范围和相关性、时间线等等。</li>
-<li>在所有子项目进行的过程中，有时候会发现一些共同需要的架构或服务，可以单独提取成公共服务或库，比如一个调度服务，或者一个幂等实现等等。</li>
-<li>给相关人员做进度报告，包括主项目的里程碑。</li>
-<li>由于子项目完成时间可能不一样，需要进行人员的重新配置。</li>
-<li>在开发过程中不断更新文档。</li>
-<li>因为不确定的需求变动，会取消或者生成新的子项目。</li>
-<li>有时候，也会因为公司的方向变化或战略调整，对主项目做比较大的变更，同时对应调整相关的子项目。</li>
-<li>在项目开始和结束的时候，需要做好对外的交流和沟通。一来确保自己的项目改动不会影响倒期他的项目，二来让将会依赖这个项目的产品组了解相关信息，确定计划。</li>
-</ol>
-<hr>
-<h1 id="第五点收尾-维护-复盘">第五点，收尾、维护、复盘</h1>
-<p>整个项目结束后，一般都会做一些代码清理和文档的更新和整理，有时候还需要写新的用户手册或Wiki等。一些基本的错误和异常处理要写到运维手册（Oncall Playbook）里，便于以后运维的人知道怎么处理一些已知的问题。</p>
-<p>每个项目结束后都会进行复盘，总结整个项目的教训和经验。有时候还需要在组内做些演讲，让更多的人了解这个项目。</p>
 ]]></content>
     </entry>
 </feed>
