@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>【朱赟的技术管理】17-管理者不用亲力亲为：关键是什么？ | 紫豪的Blog</title>
+<title>【Kotlin】（二）数组Array | 紫豪的Blog</title>
 <meta name="description" content="You cannot improve your past, but you can improve your future. Once time is wasted, life is wasted.">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -98,54 +98,164 @@
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">【朱赟的技术管理】17-管理者不用亲力亲为：关键是什么？</h2>
-            <div class="post-date">2019-11-20</div>
+            <h2 class="post-title">【Kotlin】（二）数组Array</h2>
+            <div class="post-date">2020-04-20</div>
             
-              <div class="feature-container" style="background-image: url('https://iflytek-duan.github.io//post-images/zhu-yun-de-ji-zhu-guan-li-17-guan-li-zhe-bu-yong-qin-li-qin-wei-guan-jian-shi-shi-me.jpg')">
+              <div class="feature-container" style="background-image: url('https://iflytek-duan.github.io//post-images/kotlin-er-shu-zu-array.jpg')">
               </div>
             
             <div class="post-content">
-              <h1 id="前言">前言</h1>
-<blockquote>
-<p>大部分被提拔为技术领导的工程师都有一定的领导力，最重要的是，他们都具备出色的业务能力；这些技术能力强悍的工程师在刚刚走上管理岗位时，往往喜欢亲力亲为，他们对别人干活并不是很放心，恨不得自己把所有的重要工作都给做了。然而这样只会让自己变得越来越累，工作越来越吃力，作为一个技术管理者，应该适度授权给别人，在过程中学会掌握任务分配技巧，只有这样，才能快速胜任管理岗位，带领团队越做越好。</p>
-</blockquote>
+              <h2 id="一-kotlin-java中的数组对比">一、Kotlin、Java中的数组对比</h2>
+<table>
+    <tr>
+        <th>数组分类</th>
+        <th>Kotlin</th>
+        <th>Java</th>
+    </tr>
+    <tr>
+        <th>整型</th>
+        <th>IntArray</th>
+        <th>int[]</th>
+    </tr>
+    <tr>
+        <th>整型装箱</th>
+        <th>Array&lt;Int&gt;</th>
+        <th>Integer[]</th>
+    </tr>
+    <tr>
+        <th>字符</th>
+        <th>CharArray</th>
+        <th>char[]</th>
+    </tr>
+    <tr>
+        <th>字符装箱</th>
+        <th>Array&lt;Char&gt;</th>
+        <th>Character[]</th>
+    </tr>
+    <tr>
+        <th>字符串</th>
+        <th>Array<String></th>
+        <th>String[]</th>
+    </tr>
+    <tr>
+        <th>浮点型</th>
+        <th>FloatArray</th>
+        <th>float[]</th>
+    </tr>
+    <tr>
+        <th>浮点型装箱</th>
+        <th>Array&lt;Float&gt;</th>
+        <th>Float[]</th>
+    </tr>
+    <tr>
+        <th>双精度</th>
+        <th>DoubleArray</th>
+        <th>double[]</th>
+    </tr>
+    <tr>
+        <th>双精度装箱</th>
+        <th>Array&lt;Double&gt;</th>
+        <th>Double[]</th>
+    </tr>
+</table>
 <hr>
-<h1 id="作为一个技术管理者在授权和任务分配时我们应该注意哪些方面">作为一个技术管理者，在授权和任务分配时我们应该注意哪些方面？</h1>
-<h2 id="1明确任务目标">1.明确任务目标</h2>
-<pre><code>要让接受任务的人明确目标，知道最终要达成什么样的预期效果。
-</code></pre>
-<p>比如：在什么时间内完成什么样的任务，你对这个任务成功的定义是什么，如果有取舍的话，哪些最重要，哪些是次要的，哪些是可以妥协的。如果这些标准没有说清楚，很可能会出现认知的偏差，比如对方觉得做的很好，但是你认为有些很重要的东西并没有照顾到。</p>
-<h2 id="2严谨的计划制定">2.严谨的计划制定</h2>
-<pre><code>制定一个计划，并保持跟进。
-</code></pre>
-<p>跟进不是指导，不是让自己频繁的去介入别人的工作任务，告诉对方下面该做什么了；而是需要你在对方在某个环节出现问题得时候，能够提供帮助。这种帮助可能是解决方案，也可能是技术方向。当对方在下一步该怎么做没有头绪的时候，你可以与其讨论，给出建议或者线索，确保没有大的阻碍阻止他取得关键性的进展。</p>
-<h2 id="3适时给出反馈">3.适时给出反馈</h2>
-<pre><code>在任务执行过程中，要适时地给出反馈，尤其是正面的反馈。
-</code></pre>
-<p>当对方做的很好的时候，你要及时的给予肯定。对方处于平台期没有突破的时候，只要他还在努力，就应当给予适当的鼓励。反馈要尽可能的客观，不要在小细节上有太多的意见。如果在方向或者优先级上偏离了你的预期，要及时交流纠正，了解对方的想法，找到问题的原因，让项目走上正轨。</p>
-<hr>
-<h1 id="管理者不用亲力亲为的关键是什么">管理者不用亲力亲为的关键是什么？</h1>
-<p>关键就在于要<strong>学会授权和任务分配</strong>。在这个过程中，我们要注意以下两点：</p>
+<h2 id="二-数组的创建">二、数组的创建</h2>
 <ul>
-<li>要有效地把任务分配出去；</li>
-<li>要保证被分配出去的任务能够圆满完成。</li>
+<li>
+<p><strong>Java</strong></p>
+<pre><code class="language-java">int[] c = new int[]{1,2,3,4,5};
+</code></pre>
+</li>
+<li>
+<p><strong>Kotlin</strong></p>
+<pre><code class="language-kotlin">val k0 = intArrayOf(1,2,3,4,5) // 变长参数
+val k1 = IntArray(5){ it + 1 }// kotlin中新建一个对象不需要new关键字，参数一：数 组长度；参数二：lamda表达式，it的值为数组下标。
+
+println(k0.contentToString())
+println(k1.contentToString())
+</code></pre>
+</li>
 </ul>
-<p>事情无论是自己做还是交给别人做，让事情更快更好的完成永远是第一位的。很多优秀的工程师最初都是独行侠，他们单枪匹马完成了很多丰功伟绩，也更习惯自己独立的去完成工作，但一旦他们发现团队协作可以获取更大的成就时，就会从亲力亲为转变为授权模式，帮助别人成功，团队才会获得更大的成功。</p>
+<hr>
+<h2 id="三-数组的长度">三、数组的长度</h2>
+<ul>
+<li>
+<p><strong>Java</strong></p>
+<pre><code class="language-java">int[] array = new int[5];
+System.out.println(array.length);
+</code></pre>
+</li>
+<li>
+<p><strong>Kotlin</strong></p>
+<pre><code class="language-kotlin">val array = IntArray(5)
+println(array.size)
+</code></pre>
+</li>
+</ul>
+<hr>
+<h2 id="四-数组的读写">四、数组的读写</h2>
+<ul>
+<li>
+<p><strong>Java</strong></p>
+<pre><code class="language-java">String[] str = new String[]{&quot;Hello&quot;,&quot;World&quot;};
+str[1] = &quot;Java&quot;;
+System.out.println(str[0] + &quot;, &quot; + str[1]);
+</code></pre>
+</li>
+<li>
+<p><strong>Kotlin</strong></p>
+<pre><code class="language-kotlin">val str = arrayOf(&quot;Hello&quot;,&quot;World&quot;)
+str[1] = &quot;Kotlin&quot;
+println(&quot;${str[0]}, ${str[1]}&quot;)// 使用字符串模板打印
+</code></pre>
+</li>
+</ul>
+<hr>
+<h2 id="五-数组的遍历">五、数组的遍历</h2>
+<ul>
+<li><strong>Java</strong><pre><code class="language-java">float[] floats = new float[]{1,3,5,7};
+for(float element : floats){
+    System.out.println(element);
+}
+</code></pre>
+</li>
+<li><strong>Kotlin</strong><pre><code class="language-kotlin">val floatArray = floatArrayOf(1f,3f,5f,7f)
+for(element in floatArray){
+    println(element)
+}
+
+// 或者使用以下方式遍历
+floatArray.foreach{ element -&gt;
+  println(element)
+}
+</code></pre>
+</li>
+</ul>
+<hr>
+<h2 id="六-判断数组中是否包含某个元素数组的包含关系">六、判断数组中是否包含某个元素（数组的包含关系）</h2>
+<ul>
+<li><strong>Java</strong><pre><code class="language-java">int[] intArray = new int[]{1,2,3,4,5};
+for(int i : intArray){
+    if(i == 4){
+        System.out.println(&quot;4 exists in variable 'intArray'&quot;);
+    }
+}
+</code></pre>
+</li>
+<li><strong>Kotlin</strong><pre><code class="language-kotlin">val intArray = IntArray(5){1,2,3,4,5}
+if(4 in intArray){
+    println(&quot;4 exists in variable 'intArray'&quot;)
+}
+</code></pre>
+</li>
+</ul>
 
             </div>
             
               <div class="tag-container">
                 
-                  <a href="https://iflytek-duan.github.io/tag/bLB_9Gt76/" class="tag">
-                    管理
-                  </a>
-                
-                  <a href="https://iflytek-duan.github.io/tag/9raW-gICI/" class="tag">
-                    学习笔记
-                  </a>
-                
-                  <a href="https://iflytek-duan.github.io/tag/myRGoPdmt1/" class="tag">
-                    朱赟
+                  <a href="https://iflytek-duan.github.io/tag/fvbltJpq3/" class="tag">
+                    kotlin
                   </a>
                 
               </div>
@@ -153,9 +263,9 @@
             
               <div class="next-post">
                 <div class="next">下一篇</div>
-                <a href="https://iflytek-duan.github.io/post/zhu-yun-de-ji-zhu-guan-li-16-ji-zhu-ren-ru-he-jian-li-ge-ren-ying-xiang-li/">
+                <a href="https://iflytek-duan.github.io/post/kotlin-ji-ben-shu-ju-lei-xing/">
                   <h3 class="post-title">
-                    【朱赟的技术管理】16-技术人如何建立个人影响力
+                    【Kotlin】（一）基本类型
                   </h3>
                 </a>
               </div>
