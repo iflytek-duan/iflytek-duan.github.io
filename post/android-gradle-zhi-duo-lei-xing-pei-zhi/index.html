@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>关于 | 紫豪的Blog</title>
+<title>【Android】Gradle之多类型配置 | 紫豪的Blog</title>
 <meta name="description" content="You cannot improve your past, but you can improve your future. Once time is wasted, life is wasted.">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -98,28 +98,76 @@
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">关于</h2>
-            <div class="post-date">2019-01-25</div>
+            <h2 class="post-title">【Android】Gradle之多类型配置</h2>
+            <div class="post-date">2020-06-10</div>
+            
+              <div class="feature-container" style="background-image: url('https://iflytek-duan.github.io//post-images/android-gradle-zhi-duo-lei-xing-pei-zhi.jpg')">
+              </div>
             
             <div class="post-content">
-              <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
+              <h2 id="前言">前言</h2>
+<p>一般情况下，我们的开发环境分为<code>debug</code>与<code>release</code>两个环境，这个一般在新建Android项目时，Gradle文件中已完成了默认的配置，代码如下（<code>debug</code>默认存在）：</p>
+<pre><code class="language-java">buildTypes {
+    release {
+        minifyEnabled false
+        proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+    }
+}
+</code></pre>
+<p>那么，如果我们在有的项目中需要配置其它环境（如alpha、beta等），这个时候就需要额外的配置了。</p>
+<hr>
+<h2 id="buildtypes配置构建类型">buildTypes（配置构建类型）</h2>
+<p><code>buildTypes</code>位于<code>app-build.gradle</code>文件的<code>android{}</code>代码块中，它是用来创建和配置app的构建类型的，新建一个项目在模块的<code>build.gradle</code>文件中会默认生成<code>debug</code>与<code>release</code>两个环境版本。</p>
+<hr>
+<h2 id="多类型配置与其作用">多类型配置与其作用</h2>
+<p>当我们app需要在不同的环境下生成对应的版本时，这个时候就需要在<code>buildTypes</code>内进行对应版本类型的配置工作（如：网络baseUrl的配置），示例代码如下：</p>
+<pre><code class="language-java">buildTypes {
+    release {
+        minifyEnabled false
+        buildConfigField 'String', 'BASE_URL', '&quot;http://xxxx-release.**/&quot;'
+        proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+    }
+
+    alpha {
+        minifyEnabled false
+        buildConfigField 'String', 'BASE_URL', '&quot;http://xxxx-alpha.**/&quot;'
+    }
+
+    beta {
+        minifyEnabled false
+        buildConfigField 'String', 'BASE_URL', '&quot;http://xxxx-beta.**/&quot;'
+    }
+}
+</code></pre>
+<p>通过如上配置，我们可以实现针对不同的环境创建对应的版本类型。</p>
+<blockquote>
+<p>通过Gradle-&gt;app-&gt;build-&gt;assemble可以一键进行所有类型版本的构建，生成对应的apk文件。</p>
 </blockquote>
-<h2 id="关于本站">🏠 关于本站</h2>
-<pre><code>我有权保持沉默
-</code></pre>
-<h2 id="博主是谁">👨‍💻 博主是谁</h2>
-<pre><code>zihao
-</code></pre>
-<h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
-<pre><code>暂无
-</code></pre>
-<h2 id="联系我呀">📬 联系我呀</h2>
-<pre><code>QQ：609103872
-</code></pre>
+<hr>
 
             </div>
             
+              <div class="tag-container">
+                
+                  <a href="https://iflytek-duan.github.io/tag/MnJlUZFkz/" class="tag">
+                    Gradle
+                  </a>
+                
+                  <a href="https://iflytek-duan.github.io/tag/SrlbRb6sn/" class="tag">
+                    Android
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://iflytek-duan.github.io/post/kotlinsan-qu-jian-range/">
+                  <h3 class="post-title">
+                    Kotlin（三）区间 Range
+                  </h3>
+                </a>
+              </div>
             
 
             
