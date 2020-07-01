@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://iflytek-duan.github.io/</id>
     <title>紫豪的Blog</title>
-    <updated>2020-07-01T03:01:55.920Z</updated>
+    <updated>2020-07-01T03:05:59.370Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://iflytek-duan.github.io/"/>
     <link rel="self" href="https://iflytek-duan.github.io/atom.xml"/>
@@ -231,6 +231,181 @@
 ]]></content>
     </entry>
     <entry>
+        <title type="html"><![CDATA[【Kotlin】（四）集合框架]]></title>
+        <id>https://iflytek-duan.github.io/post/kotlin-si-ji-he-kuang-jia/</id>
+        <link href="https://iflytek-duan.github.io/post/kotlin-si-ji-he-kuang-jia/">
+        </link>
+        <updated>2020-06-19T06:24:24.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="一-概述">一、概述</h2>
+<p><strong>Kotlin中集合框架相对于Java：</strong></p>
+<ol>
+<li>增加了“不可变”集合框架的接口；</li>
+<li>没有另起炉灶，复用Java API的所有实现类型；</li>
+<li>提供了丰富易用的方法，例如<code>forEach/map/flatMap</code>；</li>
+<li>运算符级别的支持，简化了集合框架的访问。</li>
+</ol>
+<hr>
+<h2 id="二-集合框架的接口类型对比">二、集合框架的接口类型对比</h2>
+<table>
+    <tr>
+        <th></th>
+        <th>Kotlin</th>
+        <th>Java</th>
+    </tr>
+    <tr>
+        <th>不可变List</th>
+        <th>List&lt;T&gt;</th>
+        <th rowspan="2">List&lt;T&gt;</th>
+    </tr>
+    <tr>
+        <th>可变List</th>
+        <th>MutableList&lt;T&gt;</th>
+    </tr>
+    <tr>
+        <th>不可变Map</th>
+        <th>Map&lt;K,V&gt;</th>
+        <th rowspan="2">Map&lt;K,V&gt;</th>
+    </tr>
+    <tr>
+        <th>可变Map</th>
+        <th>MutableMap&lt;K,V&gt;</th>
+    </tr>
+    <tr>
+        <th>不可变Set</th>
+        <th>Set&lt;T&gt;</th>
+        <th rowspan="2">Set&lt;T&gt;</th>
+    </tr>
+    <tr>
+        <th>可变Set</th>
+        <th>MutableSet&lt;T&gt;</th>
+    </tr>
+</table>
+<blockquote>
+<p>注：Mutable标识可变的。</p>
+</blockquote>
+<hr>
+<h2 id="三-集合框架的创建">三、集合框架的创建</h2>
+<p><strong>1.List的创建</strong></p>
+<ul>
+<li>Java中创建List<pre><code class="language-java">  List&lt;Integer&gt; intList = new ArrayList&lt;&gt;(Arrays.asList(1, 2, 3));
+</code></pre>
+</li>
+<li>Kotlin中创建List<pre><code class="language-kotlin">  // 不可变List：不能添加或者删除元素
+  val intList: List&lt;Int&gt; = listOf(1, 2, 3)
+
+  // 可变List：可以添加或者删除元素
+  val intList2: MutableList&lt;Int&gt; = mutableListOf(1, 2, 3)
+</code></pre>
+</li>
+</ul>
+<p><strong>2.Map的创建</strong></p>
+<ul>
+<li>Java中创建Map<pre><code class="language-java">   Map&lt;String, Object&gt; map = new HashMap&lt;&gt;();
+    map.put(&quot;zhangsan&quot;, 20)；
+</code></pre>
+</li>
+<li>Kotlin中创建Map<pre><code class="language-kotlin">   // 不可变
+    // &quot;name&quot; to &quot;zhangsan&quot;，这里可以理解为K-V(Key to Value)即可
+    // Any等价于Java中的Object
+    val map: Map&lt;String, Any&gt; = mapOf(&quot;name&quot; to &quot;zhangsan&quot;, &quot;age&quot; to 22)
+
+    // 可变
+    val map2: MutableMap&lt;String, Any&gt; = mutableMapOf(&quot;name&quot; to &quot;zhangsan&quot;, &quot;age&quot; to 22)
+</code></pre>
+</li>
+</ul>
+<hr>
+<h2 id="四-集合实现类服用与类型别名kotlin特性">四、集合实现类服用与类型别名(Kotlin特性)</h2>
+<p>以下是集合对应的类型别名：</p>
+<pre><code class="language-java">    typealias ArrayList&lt;E&gt; = java.util.ArrayList&lt;E&gt;
+    typealias LinkedHashMap&lt;K, V&gt; = java.util.LinedHashMap&lt;K, V&gt;
+    typealias HashMap&lt;K, V&gt; = java.util.HashMap&lt;K, V&gt;
+    typealias LinedHashSet&lt;E&gt; = java.util.LinedHashSet&lt;E&gt;
+    typealias HashSet&lt;E&gt; = java.util.HashSet&lt;E&gt;
+</code></pre>
+<hr>
+<h2 id="五-集合框架的修改">五、集合框架的修改</h2>
+<ol>
+<li><strong>添加元素</strong>
+<ul>
+<li>java<pre><code class="language-java">   for(int i = 0; i&lt; 10; i++){
+           stringList.add(&quot;num:&quot; + i);
+   }
+</code></pre>
+</li>
+<li>kotlin<pre><code class="language-kotlin">   for(i in 0 .. 10){
+       stringList += &quot;num:$i&quot;
+   }
+</code></pre>
+</li>
+</ul>
+</li>
+<li><strong>移除元素</strong>
+<ul>
+<li>java<pre><code class="language-java">   for(int i = 0; i&lt; 10; i++){
+           stringList.remove(&quot;num:&quot; + i);
+   }
+</code></pre>
+</li>
+<li>kotlin<pre><code class="language-kotlin">   for(i in 0 .. 10){
+       stringList -= &quot;num:$i&quot;
+   }
+</code></pre>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="六-集合框架的读写">六、集合框架的读写</h2>
+<ul>
+<li>java</li>
+</ul>
+<pre><code class="language-java">    // List的读写
+    stringList.set(3, &quot;HelloWorld&quot;);
+    String valueAt3 = stringList.get(3);
+
+    // Map的读写
+    HashMap&lt;String, Integer&gt; map = new HashMap&lt;&gt;();
+    map.put(&quot;Hello&quot;, 10);
+    System.out.println(map.get(&quot;Hello&quot;));
+</code></pre>
+<ul>
+<li>kotlin</li>
+</ul>
+<pre><code class="language-kotlin">    // List的读写
+    stringList[3] = &quot;HelloWorld&quot;
+    val valueAt3 = stringList[3]
+
+    // Map的读写
+    val map = HashMap&lt;String, Int&gt;()
+    map[&quot;Hello&quot;] = 10
+    println(map[&quot;Hello&quot;])
+
+    // []内的值实际上就是key
+</code></pre>
+<hr>
+<h2 id="七-pair">七、Pair</h2>
+<p>Pair表示两个值的通用对（键值对），这个是Kotlin独有的。</p>
+<pre><code class="language-java">    val pair = &quot;Hello&quot; to &quot;Kotlin&quot;
+    val pair2 = Pair(&quot;Hello&quot;, &quot;Kotlin&quot;)
+    val first = pair.first
+    val second = pair.second
+
+    // 解构表达式，相当于把pair拆分给x,y
+    val (x, y) = pair
+</code></pre>
+<hr>
+<h2 id="八-triple类似pair用于三个元素的键值对维护">八、Triple（类似Pair，用于三个元素的键值对维护）</h2>
+<pre><code class="language-java">    val triple = Triple(&quot;x&quot;, 2, 3.0)
+    val first = triple.first
+    val second = triple.second
+    val third = triple.third
+    val (x, y, z) = triple
+</code></pre>
+<p>--</p>
+]]></content>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[【Android】Gradle之多类型、类型包名后缀、源集（对应文件资源）配置]]></title>
         <id>https://iflytek-duan.github.io/post/android-gradle-zhi-duo-lei-xing-pei-zhi/</id>
         <link href="https://iflytek-duan.github.io/post/android-gradle-zhi-duo-lei-xing-pei-zhi/">
@@ -324,6 +499,109 @@
 <strong><a href="https://www.jianshu.com/p/a8870dccda1f">Android Studio Set of source 代码源集</a>  源集创建等操作</strong><br>
 <strong><a href="https://developer.android.google.cn/studio/build/build-variants">官方文档</a></strong></p>
 </blockquote>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[【Kotlin】（三）区间 Range]]></title>
+        <id>https://iflytek-duan.github.io/post/kotlinsan-qu-jian-range/</id>
+        <link href="https://iflytek-duan.github.io/post/kotlinsan-qu-jian-range/">
+        </link>
+        <updated>2020-04-20T08:03:29.000Z</updated>
+        <content type="html"><![CDATA[<blockquote>
+<p>区间在Java中是没有这个概念的，它在Kotlin中是特有的。</p>
+</blockquote>
+<h2 id="一-区间的创建">一、区间的创建</h2>
+<ul>
+<li>
+<p><strong>什么是区间</strong><br>
+区间是数学上的一个表示范围的概念。</p>
+</li>
+<li>
+<p><strong>区间的类型</strong></p>
+<ul>
+<li>
+<p>闭区间<br>
+闭区间是指包含起止值的区间。</p>
+<p><em>例：设 a,b 是两个实数,且 a ≤ b，满足 a ≤ x ≤ b 的实数 x 的集合,<br>
+表示为 [ a,b ],叫做闭区间</em></p>
+</li>
+<li>
+<p>开区间<br>
+开区间是指不包含起止值的区间。</p>
+<p><em>例：设 a,b 是两个实数,且 a ≤ b，满足 a ＜ x ＜b 的实数 x 的集合,<br>
+表示为 ( a,b ),叫做开区间</em></p>
+</li>
+<li>
+<p>半开区间<br>
+半开区间是指包含起始值或终止值得区间（也叫前半开区间、后半开区）。</p>
+<p><em>例：设 a,b 是两个实数,且 a ≤ b，满足 a ≤ x ＜b,a ＜x ≤ b 的实数 x 的集合,<br>
+分别表示为 [ a,b ),( a,b ],叫做半开区间</em></p>
+</li>
+<li>
+<p>倒序区间<br>
+区间的值由大到小排列。</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>区间如何创建</strong></p>
+<ul>
+<li>创建闭区间<pre><code class="language-kotlin">val intRange = 1..10 // [1,10]
+val charRange = 'a'..'z' // [a,z]
+val longRange = 1L..100L // [1L,100L]
+</code></pre>
+</li>
+<li>创建开区间（半开区间）<pre><code class="language-kotlin">// 前闭后开区间，不包含结束值
+val intRangeExclusive = 1 until 10 // [1,10)
+val charRangeExclusive = 'a' until 'z' // [a,z)
+val longRangeExclusive = 1L until 100L // [1L,100L)
+</code></pre>
+</li>
+<li>创建倒序区间<pre><code class="language-kotlin">// 区间值由大到小
+val intRangeReverse = 10 downTo 1 // [10,9...,1]
+val charRangeReverse = 'z' downTo 'a' // [z,a]
+val longRangeReverse = 100L downTo 1L // [100L,1L]
+</code></pre>
+</li>
+<li>区间值的打印<br>
+通过<code>println(range.joinToString())</code>方法打印即可。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="二-区间的步长">二、区间的步长</h2>
+<blockquote>
+<p>在创建区间时，有时候我们希望区间值之间以固定的间隔进行跳跃，例如原先排列为1，2，3，4，...，10的区间想变成1,3,5,7,...,9的区间，这个时候我们可以通过设置区间的步长（即两两之间的间隔）来达到预期。</p>
+</blockquote>
+<pre><code class="language-kotlin">// 区间步长的使用
+val intRangeWithStep = 1...10 step 2 // [1,3,5,...,9]
+val charRangeWithStep = 'a'...'z' step 2 // [a,c,e,...,y]
+val longRangeWithStep = 1L...100L step 2 // [1L,3L,...,99L]
+</code></pre>
+<hr>
+<h2 id="三-区间的迭代">三、区间的迭代</h2>
+<blockquote>
+<p>区间的迭代方式类似于数组的迭代方式。</p>
+</blockquote>
+<pre><code class="language-kotlin">for(element in intRange){
+    println(element)
+}
+
+intRange.foreach{
+    println(it)
+}
+</code></pre>
+<hr>
+<h2 id="四-区间的包含关系">四、区间的包含关系</h2>
+<pre><code class="language-kotlin">if(3 in intRage){
+    println(&quot;3 in range 'intRange'&quot;)
+}
+
+if(12 !in intRange){
+    println(&quot;12 not in range 'intRange'&quot;)
+}
+</code></pre>
+<hr>
 ]]></content>
     </entry>
     <entry>
@@ -913,422 +1191,6 @@ PR要尽可能保持目标的单一性。每次遇到有人把一些代码结构
 <li>制定统一的编程规范和代码风格，尤其是有争议的地方，这样可以解决因为一部分人的偏好带来的矛盾。</li>
 </ol>
 <p>代码审核和编程一样，都是日常工作，不要情绪化。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[【Android】RxJava+Retrofit相关入门文章]]></title>
-        <id>https://iflytek-duan.github.io/post/bu-fa-bu-rxjavaretrofit-xiang-guan-ru-men-wen-zhang/</id>
-        <link href="https://iflytek-duan.github.io/post/bu-fa-bu-rxjavaretrofit-xiang-guan-ru-men-wen-zhang/">
-        </link>
-        <updated>2019-12-21T08:19:42.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="retrofit2">Retrofit2</h1>
-<ul>
-<li><a href="https://www.jianshu.com/p/0c055ad46b6c">Android：手把手带你 深入读懂 Retrofit 2.0 源码</a></li>
-<li><a href="https://www.jianshu.com/p/a3e162261ab6">Android Retrofit 2.0 的详细 使用攻略（含实例讲解）</a></li>
-</ul>
-<hr>
-<h1 id="rxjava2">RxJava2</h1>
-<ul>
-<li><a href="https://blog.csdn.net/xiangshiweiyu_hd/article/details/83924707">初识RxJava（二）延时类 操作符</a></li>
-<li><a href="https://www.jianshu.com/p/c935d0860186">RxJava2 实战知识梳理(1) - 后台执行耗时操作，实时通知 UI 更新</a></li>
-</ul>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[【Android】多状态布局管理器]]></title>
-        <id>https://iflytek-duan.github.io/post/android-duo-zhuang-tai-bu-ju-guan-li-qi/</id>
-        <link href="https://iflytek-duan.github.io/post/android-duo-zhuang-tai-bu-ju-guan-li-qi/">
-        </link>
-        <updated>2019-12-21T03:31:46.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="适用范围">适用范围</h1>
-<p>主要适用于Acitivty/Fragment需要根据不同的状态来展示对应的状态页面。</p>
-<hr>
-<h1 id="设计思路">设计思路</h1>
-<ul>
-<li>设计一个布局管理器，用于管理各个状态的布局显示/隐藏</li>
-<li>在布局管理器的根layout文件中，通过ViewStubCompat导入对应状态的layout</li>
-<li>通过getViewGroup方法获取对应调用该管理类调用者的根Layout——即数据正常展示的UI</li>
-<li>根据State进行对应的Page显示/隐藏</li>
-</ul>
-<hr>
-<h1 id="实现后的statusviewcontrollerjava类">实现后的StatusViewController.java类</h1>
-<pre><code class="language-java">package com.dohenes.common.view;
-
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.text.TextUtils;
-import android.util.AttributeSet;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.widget.ViewStubCompat;
-
-import com.dohenes.common.R;
-
-/**
- * ClassName StatusViewController
- * Describe TODO&lt;状态试图控制器&gt;
- * Author jgduan
- * Date 2019/12/16 11:09
- * Version v1.0
- */
-public abstract class StatusViewController extends LinearLayout {
-    private static final String TAG = StatusViewController.class.getSimpleName();
-
-    /**
-     * 状态枚举类，对应不同的状态
-     * Empty对应空数据内容提示
-     * Load对应加载中内容提示
-     * Error对应发生异常提示
-     * NoNetwork对应无网络提示
-     * Success对应的是调用者自身的初始布局页面
-     */
-    public enum State {
-        Empty, Load, Error, NoNetwork, Success
-    }
-
-    private View mEmptyView;// 空数据提示View
-    private View mErrorView;// 异常提示View
-    private View mLoadingView;// 加载中View
-    private View mNoNetworkView;// 无网络提示View
-    private ViewGroup mSuccessView;// 这个实际上是对标调用StatusViewController的Activity/Fragment根View
-    private View mTitle;// Activity设置的Title
-
-    public StatusViewController(@NonNull Context context) {
-        super(context);
-        init(context);
-    }
-
-    public StatusViewController(@NonNull Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
-        init(context);
-    }
-
-    /**
-     * 一些初始化的操作
-     *
-     * @param context context
-     */
-    private void init(@NonNull Context context) {
-        setOrientation(VERTICAL);
-        inflate(context, R.layout.status_view, this);// 引入多状态布局layout
-        mSuccessView = getViewGroup();// 获取调用者自身的初始View
-        mTitle = mSuccessView.findViewWithTag(&quot;title&quot;);
-        this.addView(mSuccessView, ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT);// 添加默认的初始View进来
-    }
-
-    /**
-     * 开始载入数据
-     */
-    private void loadData() {
-        showPageWithState(State.Load);
-        onLoadData();// 通知调用的Activity这里触发了载入数据操作，需要它配合做出处理
-    }
-
-    /**
-     * 自定义的点击事件，只针对重新加载按钮
-     */
-    private OnClickListener mRetryClickListener = new OnClickListener() {
-
-        @Override
-        public void onClick(View v) {
-            loadData();
-        }
-    };
-
-    /**
-     * 获取调用该控制器Activity/Fragment的根ViewGroup
-     *
-     * @return ViewGroup
-     */
-    public abstract ViewGroup getViewGroup();
-
-    /**
-     * 载入数据回调
-     */
-    public abstract void onLoadData();
-
-    /**
-     * 根据状态类型展示对应的页面
-     *
-     * @param status State
-     */
-    @SuppressLint(&quot;RestrictedApi&quot;)
-    public void showPageWithState(State status) {
-        if (mTitle != null) {
-            String tag = (String) getChildAt(0).getTag();
-            if (!TextUtils.equals(tag, &quot;title&quot;)) {// 没有标题栏
-                mSuccessView.removeView(mTitle);
-                addView(mTitle, 0);
-            }
-        }
-        switch (status) {
-            case Success:
-                if (mLoadingView != null) {
-                    mLoadingView.setVisibility(View.GONE);
-                }
-                if (mErrorView != null) {
-                    mErrorView.setVisibility(View.GONE);
-                }
-                if (mNoNetworkView != null) {
-                    mNoNetworkView.setVisibility(View.GONE);
-                }
-                if (mEmptyView != null) {
-                    mEmptyView.setVisibility(View.GONE);
-                }
-                mSuccessView.setVisibility(View.VISIBLE);
-                break;
-            case Empty:
-                mSuccessView.setVisibility(View.GONE);
-                if (mLoadingView != null) {
-                    mLoadingView.setVisibility(View.GONE);
-                }
-                if (mErrorView != null) {
-                    mErrorView.setVisibility(View.GONE);
-                }
-                if (mNoNetworkView != null) {
-                    mNoNetworkView.setVisibility(View.GONE);
-                }
-                if (mEmptyView == null) {
-                    ViewStubCompat viewStub = findViewById(R.id.svc_stub_empty);
-                    mEmptyView = viewStub.inflate();
-                } else {
-                    mEmptyView.setVisibility(View.VISIBLE);
-                }
-                mEmptyView.findViewById(R.id.vcs_btn_empty)
-                        .setOnClickListener(mRetryClickListener);
-                break;
-            case Load:
-                mSuccessView.setVisibility(View.GONE);
-                if (mEmptyView != null) {
-                    mEmptyView.setVisibility(View.GONE);
-                }
-                if (mErrorView != null) {
-                    mErrorView.setVisibility(View.GONE);
-                }
-                if (mNoNetworkView != null) {
-                    mNoNetworkView.setVisibility(View.GONE);
-                }
-                if (mLoadingView == null) {
-                    ViewStubCompat viewStub = findViewById(R.id.svc_stub_loading);
-                    mLoadingView = viewStub.inflate();
-                } else {
-                    mLoadingView.setVisibility(View.VISIBLE);
-                }
-                break;
-            case Error:
-                mSuccessView.setVisibility(View.GONE);
-                if (mEmptyView != null) {
-                    mEmptyView.setVisibility(View.GONE);
-                }
-                if (mLoadingView != null) {
-                    mLoadingView.setVisibility(View.GONE);
-                }
-                if (mNoNetworkView != null) {
-                    mNoNetworkView.setVisibility(View.GONE);
-                }
-                if (mErrorView == null) {
-                    ViewStubCompat viewStub = findViewById(R.id.svc_stub_error);
-                    mErrorView = viewStub.inflate();
-                } else {
-                    mErrorView.setVisibility(View.VISIBLE);
-                }
-                mErrorView.findViewById(R.id.vcs_btn_error)
-                        .setOnClickListener(mRetryClickListener);
-                break;
-            case NoNetwork:
-                mSuccessView.setVisibility(View.GONE);
-                if (mEmptyView != null) {
-                    mEmptyView.setVisibility(View.GONE);
-                }
-                if (mErrorView != null) {
-                    mErrorView.setVisibility(View.GONE);
-                }
-                if (mLoadingView != null) {
-                    mLoadingView.setVisibility(View.GONE);
-                }
-                if (mNoNetworkView == null) {
-                    ViewStubCompat viewStub = findViewById(R.id.svc_stub_no_network);
-                    mNoNetworkView = viewStub.inflate();
-                } else {
-                    mNoNetworkView.setVisibility(View.VISIBLE);
-                }
-                mNoNetworkView.findViewById(R.id.vcs_btn_no_net)
-                        .setOnClickListener(mRetryClickListener);
-                break;
-            default:
-                break;
-        }
-    }
-
-}
-
-// 用法示例：修改baseActivity中的setContentView(getView());
-//    private StatusViewController statusViewController;
-//
-//    private View getView() {
-//        statusViewController = new StatusViewController(this) {
-//            @Override
-//            public ViewGroup getViewGroup() {
-//                return getLayoutInflaterViewGroup();
-//            }
-//
-//            @Override
-//            public void onLoadData() {
-//                // 这里需要在开始载入数据，暂时写个延迟模拟操作成功的效果
-//                Observable.timer(3, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
-//                        .subscribe(new Observer&lt;Long&gt;() {
-//                            @Override
-//                            public void onCompleted() {
-//                                statusViewController.showPageWithState(State.Success);
-//                            }
-//
-//                            @Override
-//                            public void onError(Throwable e) {
-//
-//                            }
-//
-//                            @Override
-//                            public void onNext(Long aLong) {
-//
-//                            }
-//                        });
-//            }
-//        };
-//        // 默认应该是Load状态，示例放上Empty状态，便于更直观的体验流程
-//        statusViewController.showPageWithState(StatusViewController.State.Empty);
-//        return statusViewController;
-//    }
-//
-//    private ViewGroup getLayoutInflaterViewGroup() {
-//        return (ViewGroup) View.inflate(this, getContentViewID(), null);
-//    }
-</code></pre>
-<hr>
-<h1 id="对应的布局代码">对应的布局代码</h1>
-<ul>
-<li>StatusViewController对应的根布局<code>status_view.mxl</code></li>
-</ul>
-<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-&lt;merge xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&gt;
-
-    &lt;androidx.appcompat.widget.ViewStubCompat
-        android:id=&quot;@+id/svc_stub_loading&quot;
-        android:layout_width=&quot;match_parent&quot;
-        android:layout_height=&quot;0dp&quot;
-        android:layout_weight=&quot;1&quot;
-        android:layout=&quot;@layout/status_loading&quot; /&gt;
-
-    &lt;androidx.appcompat.widget.ViewStubCompat
-        android:id=&quot;@+id/svc_stub_empty&quot;
-        android:layout_width=&quot;match_parent&quot;
-        android:layout_height=&quot;0dp&quot;
-        android:layout_weight=&quot;1&quot;
-        android:layout=&quot;@layout/status_empty&quot; /&gt;
-
-    &lt;androidx.appcompat.widget.ViewStubCompat
-        android:id=&quot;@+id/svc_stub_error&quot;
-        android:layout_width=&quot;match_parent&quot;
-        android:layout_height=&quot;0dp&quot;
-        android:layout_weight=&quot;1&quot;
-        android:layout=&quot;@layout/status_error&quot; /&gt;
-
-    &lt;androidx.appcompat.widget.ViewStubCompat
-        android:id=&quot;@+id/svc_stub_no_network&quot;
-        android:layout_width=&quot;match_parent&quot;
-        android:layout_height=&quot;0dp&quot;
-        android:layout_weight=&quot;1&quot;
-        android:layout=&quot;@layout/status_no_network&quot; /&gt;
-&lt;/merge&gt;
-</code></pre>
-<ul>
-<li><code>status_empty.xml</code></li>
-</ul>
-<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
-    android:layout_width=&quot;match_parent&quot;
-    android:layout_height=&quot;match_parent&quot;
-    android:gravity=&quot;center&quot;
-    android:orientation=&quot;vertical&quot;&gt;
-
-    &lt;Button
-        android:id=&quot;@+id/vcs_btn_empty&quot;
-        android:layout_width=&quot;wrap_content&quot;
-        android:layout_height=&quot;wrap_content&quot;
-        android:text=&quot;@string/vsc_empty_tips&quot; /&gt;
-
-&lt;/LinearLayout&gt;
-</code></pre>
-<ul>
-<li><code>status_error.xml</code></li>
-</ul>
-<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
-    android:layout_width=&quot;match_parent&quot;
-    android:layout_height=&quot;match_parent&quot;
-    android:gravity=&quot;center&quot;
-    android:orientation=&quot;vertical&quot;&gt;
-
-    &lt;Button
-        android:id=&quot;@+id/vcs_btn_error&quot;
-        android:layout_width=&quot;wrap_content&quot;
-        android:layout_height=&quot;wrap_content&quot;
-        android:text=&quot;@string/vcs_error_tips&quot; /&gt;
-
-&lt;/LinearLayout&gt;
-</code></pre>
-<ul>
-<li><code>status_loading.xml</code></li>
-</ul>
-<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
-    android:layout_width=&quot;match_parent&quot;
-    android:layout_height=&quot;match_parent&quot;
-    android:background=&quot;@android:color/white&quot;
-    android:gravity=&quot;center&quot;
-    android:orientation=&quot;vertical&quot;&gt;
-
-    &lt;ProgressBar
-        android:id=&quot;@+id/vcs_pb_loading&quot;
-        style=&quot;?android:attr/progressBarStyle&quot;
-        android:layout_width=&quot;wrap_content&quot;
-        android:layout_height=&quot;wrap_content&quot; /&gt;
-&lt;/LinearLayout&gt;
-</code></pre>
-<ul>
-<li><code>status_no_network.xml</code></li>
-</ul>
-<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
-    android:layout_width=&quot;match_parent&quot;
-    android:layout_height=&quot;match_parent&quot;
-    android:background=&quot;@android:color/white&quot;
-    android:gravity=&quot;center&quot;
-    android:orientation=&quot;vertical&quot;&gt;
-
-    &lt;Button
-        android:id=&quot;@+id/vcs_btn_no_net&quot;
-        android:layout_width=&quot;wrap_content&quot;
-        android:layout_height=&quot;wrap_content&quot;
-        android:text=&quot;@string/vcs_no_net_tips&quot; /&gt;
-
-&lt;/LinearLayout&gt;
-</code></pre>
-<ul>
-<li>对应的values值</li>
-</ul>
-<pre><code>    &lt;string name=&quot;vsc_empty_tips&quot;&gt;没有加载到数据，重新加载&lt;/string&gt;
-    &lt;string name=&quot;vcs_error_tips&quot;&gt;发生错误，点击重新加载&lt;/string&gt;
-    &lt;string name=&quot;vcs_no_net_tips&quot;&gt;没有网络，点击重试&lt;/string&gt;
-</code></pre>
-<hr>
-<h1 id="三方库推荐">三方库推荐</h1>
-<p><a href="https://github.com/hongyangAndroid/LoadingAndRetryManager"><strong>张鸿洋_LoadingAndRetryManager</strong></a><br>
-<a href="https://github.com/long216/MultiPageControl"><strong>MultiPageControl</strong></a></p>
 ]]></content>
     </entry>
 </feed>

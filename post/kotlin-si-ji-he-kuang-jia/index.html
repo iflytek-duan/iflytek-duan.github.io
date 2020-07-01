@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>【Kotlin】（四）集合框架 | 紫豪的Blog</title>
+<meta name="description" content="You cannot improve your past, but you can improve your future. Once time is wasted, life is wasted.">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://iflytek-duan.github.io//favicon.ico?v=1593572537053">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://iflytek-duan.github.io//styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://iflytek-duan.github.io/">
+        <img src="https://iflytek-duan.github.io//images/avatar.png?v=1593572537053" class="site-logo">
+        <h1 class="site-title">紫豪的Blog</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="https://iflytek-duan.github.io/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      You cannot improve your past, but you can improve your future. Once time is wasted, life is wasted.
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://iflytek-duan.github.io//atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">【Kotlin】（四）集合框架</h2>
+            <div class="post-date">2020-06-19</div>
+            
+              <div class="feature-container" style="background-image: url('https://iflytek-duan.github.io//post-images/kotlin-si-ji-he-kuang-jia.jpg')">
+              </div>
+            
+            <div class="post-content">
+              <h2 id="一-概述">一、概述</h2>
+<p><strong>Kotlin中集合框架相对于Java：</strong></p>
+<ol>
+<li>增加了“不可变”集合框架的接口；</li>
+<li>没有另起炉灶，复用Java API的所有实现类型；</li>
+<li>提供了丰富易用的方法，例如<code>forEach/map/flatMap</code>；</li>
+<li>运算符级别的支持，简化了集合框架的访问。</li>
+</ol>
+<hr>
+<h2 id="二-集合框架的接口类型对比">二、集合框架的接口类型对比</h2>
+<table>
+    <tr>
+        <th></th>
+        <th>Kotlin</th>
+        <th>Java</th>
+    </tr>
+    <tr>
+        <th>不可变List</th>
+        <th>List&lt;T&gt;</th>
+        <th rowspan="2">List&lt;T&gt;</th>
+    </tr>
+    <tr>
+        <th>可变List</th>
+        <th>MutableList&lt;T&gt;</th>
+    </tr>
+    <tr>
+        <th>不可变Map</th>
+        <th>Map&lt;K,V&gt;</th>
+        <th rowspan="2">Map&lt;K,V&gt;</th>
+    </tr>
+    <tr>
+        <th>可变Map</th>
+        <th>MutableMap&lt;K,V&gt;</th>
+    </tr>
+    <tr>
+        <th>不可变Set</th>
+        <th>Set&lt;T&gt;</th>
+        <th rowspan="2">Set&lt;T&gt;</th>
+    </tr>
+    <tr>
+        <th>可变Set</th>
+        <th>MutableSet&lt;T&gt;</th>
+    </tr>
+</table>
+<blockquote>
+<p>注：Mutable标识可变的。</p>
+</blockquote>
+<hr>
+<h2 id="三-集合框架的创建">三、集合框架的创建</h2>
+<p><strong>1.List的创建</strong></p>
+<ul>
+<li>Java中创建List<pre><code class="language-java">  List&lt;Integer&gt; intList = new ArrayList&lt;&gt;(Arrays.asList(1, 2, 3));
+</code></pre>
+</li>
+<li>Kotlin中创建List<pre><code class="language-kotlin">  // 不可变List：不能添加或者删除元素
+  val intList: List&lt;Int&gt; = listOf(1, 2, 3)
+
+  // 可变List：可以添加或者删除元素
+  val intList2: MutableList&lt;Int&gt; = mutableListOf(1, 2, 3)
+</code></pre>
+</li>
+</ul>
+<p><strong>2.Map的创建</strong></p>
+<ul>
+<li>Java中创建Map<pre><code class="language-java">   Map&lt;String, Object&gt; map = new HashMap&lt;&gt;();
+    map.put(&quot;zhangsan&quot;, 20)；
+</code></pre>
+</li>
+<li>Kotlin中创建Map<pre><code class="language-kotlin">   // 不可变
+    // &quot;name&quot; to &quot;zhangsan&quot;，这里可以理解为K-V(Key to Value)即可
+    // Any等价于Java中的Object
+    val map: Map&lt;String, Any&gt; = mapOf(&quot;name&quot; to &quot;zhangsan&quot;, &quot;age&quot; to 22)
+
+    // 可变
+    val map2: MutableMap&lt;String, Any&gt; = mutableMapOf(&quot;name&quot; to &quot;zhangsan&quot;, &quot;age&quot; to 22)
+</code></pre>
+</li>
+</ul>
+<hr>
+<h2 id="四-集合实现类服用与类型别名kotlin特性">四、集合实现类服用与类型别名(Kotlin特性)</h2>
+<p>以下是集合对应的类型别名：</p>
+<pre><code class="language-java">    typealias ArrayList&lt;E&gt; = java.util.ArrayList&lt;E&gt;
+    typealias LinkedHashMap&lt;K, V&gt; = java.util.LinedHashMap&lt;K, V&gt;
+    typealias HashMap&lt;K, V&gt; = java.util.HashMap&lt;K, V&gt;
+    typealias LinedHashSet&lt;E&gt; = java.util.LinedHashSet&lt;E&gt;
+    typealias HashSet&lt;E&gt; = java.util.HashSet&lt;E&gt;
+</code></pre>
+<hr>
+<h2 id="五-集合框架的修改">五、集合框架的修改</h2>
+<ol>
+<li><strong>添加元素</strong>
+<ul>
+<li>java<pre><code class="language-java">   for(int i = 0; i&lt; 10; i++){
+           stringList.add(&quot;num:&quot; + i);
+   }
+</code></pre>
+</li>
+<li>kotlin<pre><code class="language-kotlin">   for(i in 0 .. 10){
+       stringList += &quot;num:$i&quot;
+   }
+</code></pre>
+</li>
+</ul>
+</li>
+<li><strong>移除元素</strong>
+<ul>
+<li>java<pre><code class="language-java">   for(int i = 0; i&lt; 10; i++){
+           stringList.remove(&quot;num:&quot; + i);
+   }
+</code></pre>
+</li>
+<li>kotlin<pre><code class="language-kotlin">   for(i in 0 .. 10){
+       stringList -= &quot;num:$i&quot;
+   }
+</code></pre>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="六-集合框架的读写">六、集合框架的读写</h2>
+<ul>
+<li>java</li>
+</ul>
+<pre><code class="language-java">    // List的读写
+    stringList.set(3, &quot;HelloWorld&quot;);
+    String valueAt3 = stringList.get(3);
+
+    // Map的读写
+    HashMap&lt;String, Integer&gt; map = new HashMap&lt;&gt;();
+    map.put(&quot;Hello&quot;, 10);
+    System.out.println(map.get(&quot;Hello&quot;));
+</code></pre>
+<ul>
+<li>kotlin</li>
+</ul>
+<pre><code class="language-kotlin">    // List的读写
+    stringList[3] = &quot;HelloWorld&quot;
+    val valueAt3 = stringList[3]
+
+    // Map的读写
+    val map = HashMap&lt;String, Int&gt;()
+    map[&quot;Hello&quot;] = 10
+    println(map[&quot;Hello&quot;])
+
+    // []内的值实际上就是key
+</code></pre>
+<hr>
+<h2 id="七-pair">七、Pair</h2>
+<p>Pair表示两个值的通用对（键值对），这个是Kotlin独有的。</p>
+<pre><code class="language-java">    val pair = &quot;Hello&quot; to &quot;Kotlin&quot;
+    val pair2 = Pair(&quot;Hello&quot;, &quot;Kotlin&quot;)
+    val first = pair.first
+    val second = pair.second
+
+    // 解构表达式，相当于把pair拆分给x,y
+    val (x, y) = pair
+</code></pre>
+<hr>
+<h2 id="八-triple类似pair用于三个元素的键值对维护">八、Triple（类似Pair，用于三个元素的键值对维护）</h2>
+<pre><code class="language-java">    val triple = Triple(&quot;x&quot;, 2, 3.0)
+    val first = triple.first
+    val second = triple.second
+    val third = triple.third
+    val (x, y, z) = triple
+</code></pre>
+<p>--</p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://iflytek-duan.github.io/tag/fvbltJpq3/" class="tag">
+                    kotlin
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://iflytek-duan.github.io/post/android-gradle-zhi-duo-lei-xing-pei-zhi/">
+                  <h3 class="post-title">
+                    【Android】Gradle之多类型、类型包名后缀、源集（对应文件资源）配置
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: 'cae2b8f6a4ade000f9d7',
+        clientSecret: '2d3862d6cd21351bfb3e50fd5a51880756c4b684',
+        repo: 'iflytek-duan.github.io',
+        owner: 'iflytek-duan',
+        admin: ['iflytek-duan'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>
