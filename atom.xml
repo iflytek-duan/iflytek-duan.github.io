@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://iflytek-duan.github.io/</id>
     <title>紫豪的Blog</title>
-    <updated>2020-08-31T10:01:14.448Z</updated>
+    <updated>2020-08-31T10:03:23.321Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://iflytek-duan.github.io/"/>
     <link rel="self" href="https://iflytek-duan.github.io/atom.xml"/>
@@ -10,6 +10,159 @@
     <logo>https://iflytek-duan.github.io/images/avatar.png</logo>
     <icon>https://iflytek-duan.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 紫豪的Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[【Kotlin】（五）函数]]></title>
+        <id>https://iflytek-duan.github.io/post/kotlin-wu-han-shu/</id>
+        <link href="https://iflytek-duan.github.io/post/kotlin-wu-han-shu/">
+        </link>
+        <updated>2020-08-31T08:54:55.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="一-函数的定义">一、函数的定义</h1>
+<ul>
+<li><strong>格式：</strong><br>
+关键字(fun) 函数名(参数列表): 返回值类型{<br>
+// 函数体<br>
+}</li>
+<li><strong>示例：</strong><pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;): Unit {// Unit等价于Java中的void，函数返回值为Unit可省略
+    println(args.contentToString)
+}
+</code></pre>
+</li>
+</ul>
+<hr>
+<h1 id="二-函数-vs-方法">二、函数 vs 方法</h1>
+<ul>
+<li><strong>方法可以认为是函数的一种特殊类型</strong></li>
+<li><strong>从形式上，有receiver(接收者)的函数即为方法</strong><pre><code class="language-kotlin">    @JvmStatic
+    fun main(vararg args: String) {
+        val foo: Foo = Foo();
+        foo.bar(&quot;helloKotlin&quot;, 0L) // foo就是上文所述的receiver
+    }
+
+    class Foo {
+        fun bar(p0: String, p1: Long): Any {
+            println(&quot;The first param is $p0&quot;)
+            return p1
+        }
+    }
+</code></pre>
+</li>
+</ul>
+<p>注：其实所谓的方法就是外面套了一个类，它的receiver就是外面套的类的实例。</p>
+<hr>
+<h1 id="三-函数的类型">三、函数的类型</h1>
+<table>
+<tr>
+<th>函数</th>
+<th>返回值类型</th>
+</tr>
+<tr>
+<th>fun foo(){ }</th>
+<th>() -> Unit</th>
+</tr>
+<tr>
+<th>fun foo(p0: Int): String {...}</th>
+<th> (Int) -> String</th>
+</tr>
+<tr>
+<th>
+class Foo {
+    fun bar(p0: String, p1:Long): Any {...}        
+}
+</th>
+<th>Foo.(String, Long) -> Any</th>
+</tr>
+</table>
+<hr>
+<h1 id="四-函数的引用">四、函数的引用</h1>
+<ul>
+<li><strong>函数的引用类似于C语言中的函数指针，可以用于函数传递</strong><pre><code class="language-kotlin">fun foo() {}// 定义函数
+::foo// 函数引用
+val f: () -&gt; Unit = ::foo// 定义变量接收引用
+
+fun foo(p0: Int): String {...}
+::foo
+val g: (Int) -&gt; String = ::foo
+
+// 带有receiver的函数引用
+class Foo {
+    fun bar(p0: String,p1: Long): Any {...}
+}
+Foo::bar
+val h: (Foo, String, Long) -&gt; Any = Foo::bar
+
+val foo = Foo()
+val m: (String, Long) -&gt; Any = foo::bar // 绑定receiver的函数引用
+</code></pre>
+</li>
+</ul>
+<hr>
+<h1 id="五-变长参数">五、变长参数</h1>
+<blockquote>
+<p>变长参数就是指我们在调用一个函数的时候可以根据情况传入不同数量的参数，个数在调用之前是不确定的，在调用的时候长度、类型都是确定的。</p>
+</blockquote>
+<ul>
+<li>
+<p><strong>java中的变长参数:</strong></p>
+<pre><code class="language-java">public static void main(String[] args) {
+//
+}
+</code></pre>
+</li>
+<li>
+<p><strong>kotlin中的变长参数：</strong></p>
+<pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
+//
+}
+</code></pre>
+</li>
+</ul>
+<h1 id="六-多返回值">六、多返回值</h1>
+<blockquote>
+<p>多返回值返回值的个数是确定的，但是是多个。</p>
+</blockquote>
+<ul>
+<li><strong>kotlin中的多返回值</strong><pre><code class="language-kotlin">fun multiReturnValues(): Triple&lt;Int, Long, Double&gt; {
+    return Triple(3, 4L, 5.0);
+}
+
+val (a, b, c) = multiReturnValues()
+</code></pre>
+</li>
+</ul>
+<hr>
+<h1 id="七-默认参数">七、默认参数</h1>
+<ul>
+<li>
+<p><strong>函数的定义：</strong></p>
+<pre><code class="language-kotlin">    /**
+    * 默认参数
+    */
+    fun defaultParameter(x: Int, y: String, z: Long = 0L) {
+        println(&quot;defaultParameter&quot;)
+    }
+</code></pre>
+</li>
+<li>
+<p><strong>函数的使用</strong></p>
+<pre><code class="language-kotlin">    // 默认参数
+    defaultParameter(1, &quot;test&quot;)
+</code></pre>
+</li>
+</ul>
+<hr>
+<h1 id="八-具名参数">八、具名参数</h1>
+<pre><code class="language-kotlin">    /**
+     * 默认参数
+     */
+    fun defaultParameter(x: Int = 5, y: String, z: Long = 0L) {
+        println(&quot;defaultParameter&quot;)
+    }
+
+    // 具名参数--形参y来显示接收参数
+    defaultParameter(y = &quot;HelloX&quot;)
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[【Android】代码混淆]]></title>
         <id>https://iflytek-duan.github.io/post/android-dai-ma-hun-yao/</id>
@@ -1072,125 +1225,6 @@ OkHttpClient okHttpClient = okHttpClientBuilder.build();
 <hr>
 <h1 id="三-项目结构的演变">三、项目结构的演变</h1>
 <hr>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[【朱赟的技术管理】32-硅谷人如何做Code Review]]></title>
-        <id>https://iflytek-duan.github.io/post/zhu-yun-de-ji-zhu-guan-li-31/</id>
-        <link href="https://iflytek-duan.github.io/post/zhu-yun-de-ji-zhu-guan-li-31/">
-        </link>
-        <updated>2019-12-23T09:14:05.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="前言">前言</h1>
-<blockquote>
-<p>Code Review（代码评审）主要在软件开发的过程中，对源代码进行同级评审，其目的是找出并修正开发过程中出现的错误，保证软件质量，提高开发者自身水平。</p>
-</blockquote>
-<hr>
-<h1 id="一-code-review的commint与pr">一、Code Review的Commint与PR</h1>
-<p>硅谷大部分公司是使用Github企业版来管理自己的代码仓库，Github里的Commit和PR的概念在代码审核中风场重要。</p>
-<ol>
-<li>
-<p><strong>Commit</strong><br>
-Commit是指Github上的一次“Commit”行为，这是可以单独保存源代码的最小改动单位。</p>
-</li>
-<li>
-<p><strong>PR</strong><br>
-也就是Pull Request，是一次代码提交请求。一个PR可以包含一次Commit，也可以是多个。提交请求后Github会在相关页面上显示这次提交请求的代码和原代码的所有不同之处，这就是本次PR的所有改动。</p>
-</li>
-</ol>
-<p>请求提交后，其它工程师可以在PR页面上提出意见和建议，也可以针对某一些代码的改动进行讨论，也可以给出整体评价。代码的作者也可以回复这些意见和建议，或者按照建议进行改动，新的改动将为本次PR中提交新的Commit（也可以覆盖之前的Commit）。</p>
-<p>关于Github和Pull Request，池建强老师之前曾经写过一篇<a href="https://mp.weixin.qq.com/s/Ed_qK-Y8hh1hW_CCs6o7KA"><strong>GitHub 为编程世界带来了什么改变？</strong></a>，这边文章中有着比较详细的描述，大家有兴趣的话可以去阅读学习下。</p>
-<hr>
-<h1 id="二-关于代码合并规则">二、关于代码合并规则</h1>
-<p>一般情况下，所有的PR都必须有至少一个人认可，才能进行合并。如果改动的内容涉及多个项目，则需要每个项目都有相关人员确认才可合并。还有一些特别关键的代码，比如支付相关的，通常也会需要支付组的人确认才行。</p>
-<p>在代码合并之前，进行Code Review的工程师们会在Github的相关页上给出各种评论，页面是共享的，这些信息是大家都能看的到的。</p>
-<p>有些评论是询问，代码的作者直接回复或解释就行，有些是指出代码的问题，代码作者可能会据此改动，也可能不会同意，那就需要回复评论，阐述观点，你来我往。有时候一个实现细节，讨论的主题可能多达十几条或几十条，最终需要达成一致才能合并。</p>
-<hr>
-<h1 id="三-帮助别人成长而不是帮他写代码">三、帮助别人成长，而不是帮他写代码</h1>
-<p>可能有时候，有的人看到别人代码写的“太烂”，觉得在Github上回复评论效率太低，忍不住冲上去帮他搞定，其实这并不是一个非常合适的做法。</p>
-<p>首先，从对方的角度来说，代码写不好，可能是对业务不熟悉，对编程语言不熟悉，也可能是公司整体代码结构的不熟悉。如果你帮他“写”，而不是耐心地指出哪里有问题，那么下一次他可能还不知道怎么做。这样不仅无益于别人成长，有时候会让别人有挫败感。</p>
-<p>并且，帮别人写代码的方式可拓展性很差。即使Code Review会花掉十倍于你自己写代码的时间和精力，但它会让人明白代码该怎么写，从长远来看，这其实是在一定程度上“复制”了你的生产力赋能给被帮助的人。</p>
-<p>作为一个工程师或者管理者，你不能什么都要自己写，尤其是作为一个带项目、新人的管理者，每天Code Review多个人的代码和写多个人的代码，长期而言哪个更划算呢？答案显然是前者更加划算、更具拓展性。</p>
-<p>写代码是一个学习的过程，怎么做一个好的代码审核人更是一个学习和成长的过程。自己绕过一个坑不难，难的是看到别人那么走，远远的你就能告诉他那里有个坑，而他在你的指导下成长，以后也会帮助其它人支出类似的问题。</p>
-<hr>
-<h1 id="四-提交代码的类型">四、提交代码的类型</h1>
-<p>在进行Code Review之前，要搞清楚提交的代码到底是干什么的，然后针对性的进行审核。我们一般把代码分为四类：</p>
-<ol>
-<li><strong>Bug修复</strong><br>
-一般公司都有独立的Bug追踪和管理体系，每个Bug都有一个票据（标识）。代码提交的PR，一般是和票据有关的。</li>
-<li><strong>代码优化</strong><br>
-比如文件的移动和拆分、部分函数的重构、部分计算方式的修改等。</li>
-<li><strong>系统迁移</strong><br>
-包括代码库的拆分、用另外一种语言编程等。</li>
-<li><strong>新系统和新功能</strong><br>
-新功能在实现之前都要进行设计审核，最终版本的设计文档会包括数据库的Schema、API的签名（Signature）、代码的流程和模块等内容；相关代码的提交，也就是PR，一般是和设计文档挂钩的。</li>
-</ol>
-<p>了解了提交代码的作用，审核就会更有针对性和效率，也更容易从作者的角度阅读代码。</p>
-<hr>
-<h1 id="五-code-review的注意事项">五、Code Review的注意事项</h1>
-<h2 id="从代码提交者的角度在代码审核中需要注意哪些问题呢">从代码提交者的角度，在代码审核中需要注意哪些问题呢？</h2>
-<ol>
-<li>
-<p><strong>为什么要进行PR？</strong><br>
-原因一定要在提交的时候写得非常清楚，才能帮助审核者理解这次改动是不是合理。上面说的四种提交代码的类型，具体是哪一种，应该写到PR的小结中，写的越详细越好。</p>
-<p>这在以后需要进行回溯或追踪系统变化时，也是很有益的。如果改的是前端代码，最好贴一个改动前和改动后的截屏，让改动效果一目了然。</p>
-</li>
-<li>
-<p><strong>除非是极其明显的单词拼写问题，尽量不要引入不是这个PR目的的改动。</strong><br>
-PR要尽可能保持目标的单一性。每次遇到有人把一些代码结构的优化合并到功能相关的改动时，都会让人有一种肝火上升的感觉。</p>
-<p>这种行为不仅会增加审核者的困难，降低效率，还会掩盖一些简单的错误。并且，如果因为功能的修改导致线上出了问题，一般需要退回到之前的版本，也就是反转PR，这时候，针对优化相关的改动也就必须被反转。总之是弊远远大于利的。</p>
-</li>
-<li>
-<p><strong>找谁审核？</strong><br>
-除了本组的人外，有时候代码还会和其他项目组的代码相关，需要找该组的成员审核，这时具体找谁呢？</p>
-<p>一般有两个机制来解决这种问题。一是在Github中@一个组，比如Payment组，Risk组等，这些组会通知组里的所有人，相关人看到了就会回去审核；二是有一些组的代码，不希望其他组的人在自己不知道的情况下进行改动，就会设置规则，如果有人动了这些代码，也会通知到整个组。</p>
-<p>最后，也是最重要的，一定确保所有的改动都是测试过的，无一例外。</p>
-</li>
-</ol>
-<h2 id="从代码审核者的角度又需要注意哪些问题呢">从代码审核者的角度，又需要注意哪些问题呢？</h2>
-<p>审核的粒度要多细？是不是每次审核都要花费很多时间？当然，如果时间足够，自然是看得越细越好。如果特别忙的时候，可以做一些筛选。</p>
-<p>比如，你可以看一下算法或编程思路，然后加一个评论“算法部分看起来没有问题”；也可以只看你关心的部分，然后加评论“支付部分没问题”，或者“API部分没问题”。还可以再@一些你觉得可以对其他部分追加评论的人。</p>
-<p>另外，如果新人的代码，尽可能的在风格、性能方面都加以审核。如果是一个老员工，这些方面可以给予更多的信任。</p>
-<p>具体哪些方面需要审核呢？总结一下大概有以下几点：</p>
-<ol>
-<li>
-<p><strong>代码格式</strong><br>
-很多公司研发部都有相关编程风格指南（Code Style Guideline），这是大家约定俗成，避免公司代码风格不一致，也避免了一些“要不要把闭括号另起一行”的无谓争论。老员工除非不小心，通常大家不会弄错；新员工在这方面不太熟悉，就有可能出问题。这一类问题比较容易指出的。</p>
-</li>
-<li>
-<p><strong>代码可读性</strong><br>
-比如函数不要太长，太长就进行拆分。所有的变量要能说明它的用意和类型（比如hosting_address_hash，一看久知道是房东地址，而且是个哈希类型）。</p>
-<p>不要有太多层的条件语句或者循环语句。不要有一个太长的布尔类型（Boolean）判断语句。如果一个函数别人需要看你的长篇注释才能明白，那这个函数就一定有重构的空间。另外，如果不可避免有一些注释，则一定要保证注释准确且与代码完全一致。</p>
-</li>
-<li>
-<p><strong>业务边界和逻辑死角</strong><br>
-你可以帮代码作者想想，他有没有遗漏掉任何业务边界和逻辑死角问题。很多时候这是业务逻辑相关的，尤其需要资深一点的工程师帮助其指出需要处理的所有情况。</p>
-</li>
-<li>
-<p><strong>错误处理（Error Handling）</strong><br>
-这是最常见的问题，也是代码审核最容易帮助别人织出来的问题。</p>
-</li>
-<li>
-<p><strong>确保测试用例覆盖到了所有功能路径</strong><br>
-严格来说，每段代码都应该有测试用例。如果开发者能够预见到其他人的代码改动会引发自己的代码问题，一定要增加额外的测试用例防止这种情况的发生。</p>
-</li>
-<li>
-<p><strong>代码质量和规范</strong><br>
-遵循公司制定的编程规范，比如，有重复的代码段，就应该提取出来公用，不要在代码里随意设置常数，所有的常数都应该有统一的定义，哪些变量应该是私有的，哪些应该是公有的，等等。</p>
-</li>
-<li>
-<p><strong>代码架构</strong><br>
-包括代码文件的组织方式，函数是不是抽象到lib或者helper文件里；是不是应该使用继承类；是不是和整个代码库的风格一致；API的定义是不是RESTful的等等。</p>
-</li>
-</ol>
-<hr>
-<h1 id="六-公司层面的支持">六、公司层面的支持</h1>
-<p>从公司层面应该有哪些措施帮助员工有效的进行代码审核呢？</p>
-<ol>
-<li>统一的代码提交和审核流程与工具，并确保大家使用同样的工具，遵循相同的流程。</li>
-<li>鼓励员工帮助别人审核代码，甚至可以做到绩效评估中。</li>
-<li>制定统一的编程规范和代码风格，尤其是有争议的地方，这样可以解决因为一部分人的偏好带来的矛盾。</li>
-</ol>
-<p>代码审核和编程一样，都是日常工作，不要情绪化。</p>
 ]]></content>
     </entry>
 </feed>
