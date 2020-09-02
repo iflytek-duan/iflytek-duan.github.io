@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>【Kotlin】（六）类和接口 | 紫豪的Blog</title>
+<meta name="description" content="You cannot improve your past, but you can improve your future. Once time is wasted, life is wasted.">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://iflytek-duan.github.io//favicon.ico?v=1599035877649">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://iflytek-duan.github.io//styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://iflytek-duan.github.io/">
+        <img src="https://iflytek-duan.github.io//images/avatar.png?v=1599035877649" class="site-logo">
+        <h1 class="site-title">紫豪的Blog</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="https://iflytek-duan.github.io/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      You cannot improve your past, but you can improve your future. Once time is wasted, life is wasted.
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://iflytek-duan.github.io//atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">【Kotlin】（六）类和接口</h2>
+            <div class="post-date">2020-09-02</div>
+            
+              <div class="feature-container" style="background-image: url('https://iflytek-duan.github.io//post-images/kotlin-lei-he-jie-kou.jpg')">
+              </div>
+            
+            <div class="post-content">
+              <h1 id="一-类的定义">一、类的定义</h1>
+<ul>
+<li>
+<p><strong>java中定义类</strong></p>
+<pre><code class="language-java">public class SimpleClass {
+    // 定义成员变量
+    public int x;
+
+    // 定义构造方法
+    public SimpleClass(int x) {
+        this.x = x;
+    }
+
+    // 定义方法
+    public void y() {
+    }
+}
+</code></pre>
+</li>
+<li>
+<p><strong>kotlin中定义类</strong></p>
+<ul>
+<li>
+<p><strong>副构造器写法</strong></p>
+<pre><code class="language-kotlin">class SimpleClass {// Kotlin中的类默认都是public
+    // 定义成员变量，Kotlin中必须初始化
+    var x: Int = 0
+
+    // 定义构造方法，对应Kotlin中的副构造器
+    constructor(x: Int) {
+        this.x = x
+    }
+
+    // 定义方法
+    fun y() {
+    }
+}
+</code></pre>
+</li>
+<li>
+<p><strong>主构造器写法</strong></p>
+<pre><code class="language-kotlin">// 对应Kotlin中的主构造器的概念，主构造器要求其它所有的构造器都要调用它
+class SimpleClass
+        constructor(x: Int){
+            var x: Int = x
+}
+
+// 精简写法
+class SimpleClass(x: Int){
+            var x: Int = x
+}
+
+// 精简写法2
+class SimpleClass(var x: Int){
+}
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1 id="二-类的实例化">二、类的实例化</h1>
+<ul>
+<li>
+<p><strong>Java中类的实例化</strong></p>
+<pre><code class="language-java">SimpleClass simpleClass = new SimpleClass(1)
+System.out.println(simpleClass.x);
+simpleClass.y();
+</code></pre>
+</li>
+<li>
+<p><strong>Kotlin中类的实例化</strong></p>
+<pre><code class="language-kotlin">val simpleClass = SimpleClass(2)
+println(simpleClass.x)
+simpleClass.y()
+</code></pre>
+</li>
+</ul>
+<hr>
+<h1 id="三-接口的定义">三、接口的定义</h1>
+<ul>
+<li>
+<p><strong>Java中接口的定义</strong></p>
+<pre><code class="language-java">public interface SimpleInterface {
+    void simpleMethod();
+}
+</code></pre>
+</li>
+<li>
+<p><strong>Kotlin中接口的定义</strong></p>
+<pre><code class="language-kotlin">interface SimpleInterface {
+    fun simpleMethod()
+}
+</code></pre>
+</li>
+</ul>
+<hr>
+<h1 id="四-接口的实现">四、接口的实现</h1>
+<ul>
+<li>
+<p><strong>Java中接口的实现</strong></p>
+<pre><code class="language-java">public class SimpleClass
+        implements SimpleInterface {
+            ...
+            @Override
+            public void simpleMethod(){
+            }
+}
+</code></pre>
+</li>
+<li>
+<p><strong>Kotlin中接口的实现</strong></p>
+<pre><code class="language-kotlin">class SimpleClass(var x: Int)
+    : SimpleInterface {
+        ...
+        override fun simpleMethod() {
+        }
+}
+</code></pre>
+</li>
+</ul>
+<blockquote>
+<p>注：Java中的<code>Override</code>是<code>jdk 1.5</code>以后引入的一个注解，在<code>Java</code>中它不是强制必须要添加的，在Kotlin中你必须要添加<code>override</code>关键字；<br>
+<code>Override</code>表示覆盖，它是一个比较危险的行为——有可能会覆写到别人的方法。</p>
+</blockquote>
+<hr>
+<h1 id="五-抽象类的定义">五、抽象类的定义</h1>
+<ul>
+<li>
+<p><strong>Java中抽象类的定义</strong></p>
+<pre><code class="language-java">public abstract class AbsClass {
+    // 抽象方法，它是一定用来被覆写的
+    public abstract void absMethod();
+    // 未添加final关键字的方法默认也是可以被覆写的
+    protected void overrideable() { }
+    // 添加final关键字的方法不能被覆写
+    public final void nonOverrideable() { }
+}
+</code></pre>
+</li>
+<li>
+<p><strong>Kotlin中抽象类的定义</strong></p>
+<pre><code class="language-kotlin">abstract class AbsClass {
+    // 抽象方法，它是一定用来被覆写的
+    abstract fun absMethod()
+    // Kotlin抽象类中的方法默认不可以被覆写，你必须添加open关键字才能够对它进行覆写
+    open fun overrideable() { }
+    fun nonOverrideable() { }
+}
+</code></pre>
+</li>
+</ul>
+<blockquote>
+<p>注意：<br>
+1.<code>Java</code>和<code>Kotlin</code>抽象类中的抽象方法都可以被覆写；<br>
+2.<code>Java</code>抽象类中的其它方法默认是可以被覆写的，而<code>Kotlin</code>中则默认不可以被覆写；<br>
+3.<code>Java</code>抽象类中在方法前添加<code>final</code>关键字可以保证该方法不能被覆写；<br>
+4.<code>Kotlin</code>抽象类中在方法前添加<code>open</code>关键字可以允许该方法能被覆写。</p>
+</blockquote>
+<hr>
+<h1 id="六-类的继承">六、类的继承</h1>
+<ul>
+<li>
+<p><strong>Java中类的继承</strong></p>
+<pre><code class="language-java">public class SimpleClass
+    extends AbsClass implements SimpleInterface {
+        ...
+}
+</code></pre>
+</li>
+<li>
+<p><strong>Kotlin中类的继承</strong></p>
+<pre><code class="language-kotlin">// kotlin在继承类的时候相对实现接口会在类名后多一个()，因为它调用了父类的构造方法
+class SimpleClass(var x: Int)
+    : AbsClass(), SimpleInterface {
+        ...
+}
+</code></pre>
+</li>
+</ul>
+<hr>
+<h1 id="七-属性property">七、属性Property</h1>
+<blockquote>
+<p><code>Java</code>中没有属性这个概念，而是通过语法约定的形式来实现</p>
+</blockquote>
+<pre><code class="language-java">public class Person {
+    private int age;// field-领域
+    public int getAge() {
+        return age;
+    }
+    public void setAge(int age) {
+        this.age = age;
+    }
+}
+</code></pre>
+<p><strong>Kotlin中的属性Property</strong></p>
+<pre><code class="language-kotlin">class Person(age: Int) {
+    var age: Int = age // Property，它等于Java中的filed+get+set
+        get() {
+            return filed
+        }
+        set(value) {
+            filed = value
+        }
+}
+</code></pre>
+<hr>
+<h1 id="八-属性引用">八、属性引用</h1>
+<blockquote>
+<p>Kotlin中的属性引用类似于函数引用</p>
+</blockquote>
+<pre><code class="language-kotlin">// 未绑定Receiver
+val ageRef = Person::age
+val person = Person(18)
+ageRef.set(person, 22)
+
+// 绑定Receiver
+val ageRef2 = person::age
+ageRef2.set(33)
+</code></pre>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://iflytek-duan.github.io/tag/fvbltJpq3/" class="tag">
+                    kotlin
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://iflytek-duan.github.io/post/kotlin-wu-han-shu/">
+                  <h3 class="post-title">
+                    【Kotlin】（五）函数
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: 'cae2b8f6a4ade000f9d7',
+        clientSecret: '2d3862d6cd21351bfb3e50fd5a51880756c4b684',
+        repo: 'iflytek-duan.github.io',
+        owner: 'iflytek-duan',
+        admin: ['iflytek-duan'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://iflytek-duan.github.io/</id>
     <title>紫豪的Blog</title>
-    <updated>2020-09-01T01:30:33.095Z</updated>
+    <updated>2020-09-02T08:38:02.891Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://iflytek-duan.github.io/"/>
     <link rel="self" href="https://iflytek-duan.github.io/atom.xml"/>
@@ -10,6 +10,234 @@
     <logo>https://iflytek-duan.github.io/images/avatar.png</logo>
     <icon>https://iflytek-duan.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 紫豪的Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[【Kotlin】（六）类和接口]]></title>
+        <id>https://iflytek-duan.github.io/post/kotlin-lei-he-jie-kou/</id>
+        <link href="https://iflytek-duan.github.io/post/kotlin-lei-he-jie-kou/">
+        </link>
+        <updated>2020-09-02T07:15:02.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="一-类的定义">一、类的定义</h1>
+<ul>
+<li>
+<p><strong>java中定义类</strong></p>
+<pre><code class="language-java">public class SimpleClass {
+    // 定义成员变量
+    public int x;
+
+    // 定义构造方法
+    public SimpleClass(int x) {
+        this.x = x;
+    }
+
+    // 定义方法
+    public void y() {
+    }
+}
+</code></pre>
+</li>
+<li>
+<p><strong>kotlin中定义类</strong></p>
+<ul>
+<li>
+<p><strong>副构造器写法</strong></p>
+<pre><code class="language-kotlin">class SimpleClass {// Kotlin中的类默认都是public
+    // 定义成员变量，Kotlin中必须初始化
+    var x: Int = 0
+
+    // 定义构造方法，对应Kotlin中的副构造器
+    constructor(x: Int) {
+        this.x = x
+    }
+
+    // 定义方法
+    fun y() {
+    }
+}
+</code></pre>
+</li>
+<li>
+<p><strong>主构造器写法</strong></p>
+<pre><code class="language-kotlin">// 对应Kotlin中的主构造器的概念，主构造器要求其它所有的构造器都要调用它
+class SimpleClass
+        constructor(x: Int){
+            var x: Int = x
+}
+
+// 精简写法
+class SimpleClass(x: Int){
+            var x: Int = x
+}
+
+// 精简写法2
+class SimpleClass(var x: Int){
+}
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1 id="二-类的实例化">二、类的实例化</h1>
+<ul>
+<li>
+<p><strong>Java中类的实例化</strong></p>
+<pre><code class="language-java">SimpleClass simpleClass = new SimpleClass(1)
+System.out.println(simpleClass.x);
+simpleClass.y();
+</code></pre>
+</li>
+<li>
+<p><strong>Kotlin中类的实例化</strong></p>
+<pre><code class="language-kotlin">val simpleClass = SimpleClass(2)
+println(simpleClass.x)
+simpleClass.y()
+</code></pre>
+</li>
+</ul>
+<hr>
+<h1 id="三-接口的定义">三、接口的定义</h1>
+<ul>
+<li>
+<p><strong>Java中接口的定义</strong></p>
+<pre><code class="language-java">public interface SimpleInterface {
+    void simpleMethod();
+}
+</code></pre>
+</li>
+<li>
+<p><strong>Kotlin中接口的定义</strong></p>
+<pre><code class="language-kotlin">interface SimpleInterface {
+    fun simpleMethod()
+}
+</code></pre>
+</li>
+</ul>
+<hr>
+<h1 id="四-接口的实现">四、接口的实现</h1>
+<ul>
+<li>
+<p><strong>Java中接口的实现</strong></p>
+<pre><code class="language-java">public class SimpleClass
+        implements SimpleInterface {
+            ...
+            @Override
+            public void simpleMethod(){
+            }
+}
+</code></pre>
+</li>
+<li>
+<p><strong>Kotlin中接口的实现</strong></p>
+<pre><code class="language-kotlin">class SimpleClass(var x: Int)
+    : SimpleInterface {
+        ...
+        override fun simpleMethod() {
+        }
+}
+</code></pre>
+</li>
+</ul>
+<blockquote>
+<p>注：Java中的<code>Override</code>是<code>jdk 1.5</code>以后引入的一个注解，在<code>Java</code>中它不是强制必须要添加的，在Kotlin中你必须要添加<code>override</code>关键字；<br>
+<code>Override</code>表示覆盖，它是一个比较危险的行为——有可能会覆写到别人的方法。</p>
+</blockquote>
+<hr>
+<h1 id="五-抽象类的定义">五、抽象类的定义</h1>
+<ul>
+<li>
+<p><strong>Java中抽象类的定义</strong></p>
+<pre><code class="language-java">public abstract class AbsClass {
+    // 抽象方法，它是一定用来被覆写的
+    public abstract void absMethod();
+    // 未添加final关键字的方法默认也是可以被覆写的
+    protected void overrideable() { }
+    // 添加final关键字的方法不能被覆写
+    public final void nonOverrideable() { }
+}
+</code></pre>
+</li>
+<li>
+<p><strong>Kotlin中抽象类的定义</strong></p>
+<pre><code class="language-kotlin">abstract class AbsClass {
+    // 抽象方法，它是一定用来被覆写的
+    abstract fun absMethod()
+    // Kotlin抽象类中的方法默认不可以被覆写，你必须添加open关键字才能够对它进行覆写
+    open fun overrideable() { }
+    fun nonOverrideable() { }
+}
+</code></pre>
+</li>
+</ul>
+<blockquote>
+<p>注意：<br>
+1.<code>Java</code>和<code>Kotlin</code>抽象类中的抽象方法都可以被覆写；<br>
+2.<code>Java</code>抽象类中的其它方法默认是可以被覆写的，而<code>Kotlin</code>中则默认不可以被覆写；<br>
+3.<code>Java</code>抽象类中在方法前添加<code>final</code>关键字可以保证该方法不能被覆写；<br>
+4.<code>Kotlin</code>抽象类中在方法前添加<code>open</code>关键字可以允许该方法能被覆写。</p>
+</blockquote>
+<hr>
+<h1 id="六-类的继承">六、类的继承</h1>
+<ul>
+<li>
+<p><strong>Java中类的继承</strong></p>
+<pre><code class="language-java">public class SimpleClass
+    extends AbsClass implements SimpleInterface {
+        ...
+}
+</code></pre>
+</li>
+<li>
+<p><strong>Kotlin中类的继承</strong></p>
+<pre><code class="language-kotlin">// kotlin在继承类的时候相对实现接口会在类名后多一个()，因为它调用了父类的构造方法
+class SimpleClass(var x: Int)
+    : AbsClass(), SimpleInterface {
+        ...
+}
+</code></pre>
+</li>
+</ul>
+<hr>
+<h1 id="七-属性property">七、属性Property</h1>
+<blockquote>
+<p><code>Java</code>中没有属性这个概念，而是通过语法约定的形式来实现</p>
+</blockquote>
+<pre><code class="language-java">public class Person {
+    private int age;// field-领域
+    public int getAge() {
+        return age;
+    }
+    public void setAge(int age) {
+        this.age = age;
+    }
+}
+</code></pre>
+<p><strong>Kotlin中的属性Property</strong></p>
+<pre><code class="language-kotlin">class Person(age: Int) {
+    var age: Int = age // Property，它等于Java中的filed+get+set
+        get() {
+            return filed
+        }
+        set(value) {
+            filed = value
+        }
+}
+</code></pre>
+<hr>
+<h1 id="八-属性引用">八、属性引用</h1>
+<blockquote>
+<p>Kotlin中的属性引用类似于函数引用</p>
+</blockquote>
+<pre><code class="language-kotlin">// 未绑定Receiver
+val ageRef = Person::age
+val person = Person(18)
+ageRef.set(person, 22)
+
+// 绑定Receiver
+val ageRef2 = person::age
+ageRef2.set(33)
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[【Kotlin】（五）函数]]></title>
         <id>https://iflytek-duan.github.io/post/kotlin-wu-han-shu/</id>
@@ -1209,22 +1437,6 @@ public class Ipv4PriorityDns implements Dns {
 okHttpClientBuilder.dns(new MyDns());
 OkHttpClient okHttpClient = okHttpClientBuilder.build();
 </code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[【Android】项目结构的演变之路——单Project、模块化、组件化、插件化]]></title>
-        <id>https://iflytek-duan.github.io/post/android/</id>
-        <link href="https://iflytek-duan.github.io/post/android/">
-        </link>
-        <updated>2020-02-25T02:59:35.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="一-前言">一、前言</h1>
-<p>距2008年9月份Google发布Android 1.0操作系统至今已12个年头，Android操作系统、应用也在这个历程中逐步改进创新，丰富了用户的各方面体验。<br>
-作为一个开发者，在工作过程中最直观的表现就是开发工具的演变（从Eclipse/IDEA更换为Android Studio）和项目结构的演变（单Project、模块化、组件化、插件化）。</p>
-<hr>
-<h1 id="二-开发工具的演变">二、开发工具的演变</h1>
-<hr>
-<h1 id="三-项目结构的演变">三、项目结构的演变</h1>
-<hr>
 ]]></content>
     </entry>
 </feed>
