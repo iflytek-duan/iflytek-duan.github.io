@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>【Kotlin】（七）扩展方法 | 紫豪的Blog</title>
+<meta name="description" content="You cannot improve your past, but you can improve your future. Once time is wasted, life is wasted.">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://iflytek-duan.github.io//favicon.ico?v=1599124243882">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://iflytek-duan.github.io//styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://iflytek-duan.github.io/">
+        <img src="https://iflytek-duan.github.io//images/avatar.png?v=1599124243882" class="site-logo">
+        <h1 class="site-title">紫豪的Blog</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="https://iflytek-duan.github.io/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      You cannot improve your past, but you can improve your future. Once time is wasted, life is wasted.
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://iflytek-duan.github.io//atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">【Kotlin】（七）扩展方法</h2>
+            <div class="post-date">2020-09-03</div>
+            
+              <div class="feature-container" style="background-image: url('https://iflytek-duan.github.io//post-images/kotlin-qi-kuo-zhan-fang-fa.jpeg')">
+              </div>
+            
+            <div class="post-content">
+              <h1 id="一-扩展方法的概述">一、<a href="https://www.runoob.com/kotlin/kotlin-extensions.html">扩展方法</a>的概述</h1>
+<p><code>Kotlin</code> 可以对一个类的属性和方法进行扩展，且不需要继承或使用<code>Decorator</code>（装饰者）模式。<br>
+<strong>扩展是一种静态行为，对被扩展的类代码本身不会造成任何影响。</strong></p>
+<blockquote>
+<p>例如，你可以为一个你不能修改的、来自第三方库中的类编写一个新的函数。 这个新增的函数就像那个原始类本来就有的函数一样，可以用普通的方法调用。 这种机制称为 扩展函数 。此外，也有 扩展属性 ， 允许你为一个已经存在的类添加新的属性。</p>
+</blockquote>
+<h2 id="在java中没有扩展方法这个概念kotlin的扩展方法类似于java中的工具类中的方法">在<code>Java</code>中没有扩展方法这个概念，<code>Kotlin</code>的扩展方法类似于<code>Java</code>中的工具类中的方法。</h2>
+<h1 id="二-扩展函数">二、扩展函数</h1>
+<p>扩展函数可以在已有类中添加新的方法，不会对原类做修改。</p>
+<ul>
+<li>
+<p><strong>扩展函数定义形式</strong></p>
+<pre><code class="language-kotlin">fun receiverType.functionName(params) {
+    // body    
+}
+</code></pre>
+<ul>
+<li><code>receiverType</code>：表示函数的接收者</li>
+<li><code>functionName</code>：扩展函数的名称</li>
+<li><code>params</code>：扩展函数的参数，可以为<code>NULL</code></li>
+</ul>
+</li>
+<li>
+<p><strong>扩展函数示例</strong></p>
+<pre><code class="language-kotlin">class User(var name: String)
+
+// 扩展函数
+fun User.printName(){
+    println(&quot;用户名 $name&quot;)
+}
+
+fun main(args: Array&lt;String&gt;) {
+    var user = User(&quot;Robin&quot;)
+    user.printName();
+}
+</code></pre>
+</li>
+</ul>
+<hr>
+<h1 id="三-扩展函数是静态解析的">三、扩展函数是静态解析的</h1>
+<p>扩展函数是静态解析的，并不是接收者类型的虚拟成员，在调用扩展函数时，具体被调用的的是哪一个函数，由调用函数的的对象表达式来决定的，而不是动态的类型决定的，具体示例如下：</p>
+<pre><code class="language-kotlin">open class SimpleClass
+class SubClass: SimpleClass
+
+fun SimpleClass.foo() = &quot;ABC&quot;// 扩展函数 foo
+fun SubCLass.f00() = &quot;DEF&quot;
+
+func printFoo(c: SimpleClass) {
+    println(c.foo())
+}
+
+fun main(args: Array&lt;String&gt;) {
+    printlnFoo(SubClass())
+}
+</code></pre>
+<p>输出结果为：<br>
+<code>ABC</code></p>
+<p><strong>若扩展函数和成员函数一致，则使用该函数时，会优先使用成员函数。</strong></p>
+<pre><code class="language-kotlin">class SimpleClass {
+    fun foo() {
+        println(&quot;成员函数&quot;)
+    }
+}
+
+fun SimpleClass.foo() {
+    println(&quot;扩展函数&quot;)
+}
+
+fun main(args: Array&lt;String&gt;) {
+    var c = SimpleClass()
+    c.foo()
+}
+</code></pre>
+<p>实际输出结果为：<br>
+<code>成员函数</code></p>
+<hr>
+<h1 id="四-扩展一个空对象">四、扩展一个空对象</h1>
+<p>在扩展函数内，可以通过<code>this</code>来判断接收者是否为<code>NULL</code>，即使接收者为<code>NULL</code>，也可以调用扩展函数，如：</p>
+<pre><code class="language-kotlin">fun Any?.toString(): String {
+    if (this == null) return &quot;null&quot;
+    // 空检测之后，&quot;this&quot;会自动转换为非空类型，所以下面的toString()解析为Any类的成员函数
+    return toString()
+}
+
+fun main(args: Array&lt;String&gt;) {
+    var t = null
+    println(t.toString())
+}
+</code></pre>
+<p>实际输出结果为：<br>
+<code>null</code></p>
+<hr>
+<h1 id="五-扩展属性">五、扩展属性</h1>
+<p>除了函数，<code>Kotlin</code>也支持对属性进行扩展：</p>
+<pre><code class="language-kotlin">val &lt;T&gt; List&lt;T&gt;.lastIndex: Int
+    get() = size - 1
+</code></pre>
+<p>扩展属性允许定义在类或者<code>Kotlin</code>文件中，不允许定义在函数中。初始化属性因为属性没有后端字段（back field），所以不允许被初始化，只能由显式的<code>getter/setter</code>定义。</p>
+<pre><code class="language-kotlin">val Foo.bar = 1 // 错误：扩展属性不能有初始化器
+</code></pre>
+<p>扩展属性只能被声明为<code>val</code>。</p>
+<hr>
+<h1 id="六-伴生对象的扩展">六、伴生对象的扩展</h1>
+<p>如果一个类定义有一个<a href="https://www.runoob.com/kotlin/kotlin-object-declarations.html">伴生对象</a>，你也可以为伴生对象定义扩展函数和属性。<br>
+伴生对象通过“类名.”形式调用伴生对象，伴生对象声明的扩展函数，通过用类名限定符来调用：</p>
+<pre><code class="language-kotlin">class MyClass {
+    companion object { } //将被称为companion
+}
+
+fun MyClass.Companion.foo() {
+    println(&quot;伴生对象的扩展函数&quot;)
+}
+
+val MyClass.Companion.no: Int
+    get() = 10
+
+fun main(args: Array&lt;String&gt;) {
+    println(&quot;no:${MyClass.no}&quot;)
+    MyClass.foo()
+}
+</code></pre>
+<p>实力执行后输出结果为：</p>
+<pre><code class="language-kotlin">no:10
+伴生对象的扩展函数
+</code></pre>
+<hr>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://iflytek-duan.github.io/tag/fvbltJpq3/" class="tag">
+                    kotlin
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://iflytek-duan.github.io/post/kotlin-lei-he-jie-kou/">
+                  <h3 class="post-title">
+                    【Kotlin】（六）类和接口
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: 'cae2b8f6a4ade000f9d7',
+        clientSecret: '2d3862d6cd21351bfb3e50fd5a51880756c4b684',
+        repo: 'iflytek-duan.github.io',
+        owner: 'iflytek-duan',
+        admin: ['iflytek-duan'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

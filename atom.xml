@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://iflytek-duan.github.io/</id>
     <title>紫豪的Blog</title>
-    <updated>2020-09-02T08:38:02.891Z</updated>
+    <updated>2020-09-03T09:10:48.613Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://iflytek-duan.github.io/"/>
     <link rel="self" href="https://iflytek-duan.github.io/atom.xml"/>
@@ -10,6 +10,140 @@
     <logo>https://iflytek-duan.github.io/images/avatar.png</logo>
     <icon>https://iflytek-duan.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 紫豪的Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[【Kotlin】（七）扩展方法]]></title>
+        <id>https://iflytek-duan.github.io/post/kotlin-qi-kuo-zhan-fang-fa/</id>
+        <link href="https://iflytek-duan.github.io/post/kotlin-qi-kuo-zhan-fang-fa/">
+        </link>
+        <updated>2020-09-03T03:30:26.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="一-扩展方法的概述">一、<a href="https://www.runoob.com/kotlin/kotlin-extensions.html">扩展方法</a>的概述</h1>
+<p><code>Kotlin</code> 可以对一个类的属性和方法进行扩展，且不需要继承或使用<code>Decorator</code>（装饰者）模式。<br>
+<strong>扩展是一种静态行为，对被扩展的类代码本身不会造成任何影响。</strong></p>
+<blockquote>
+<p>例如，你可以为一个你不能修改的、来自第三方库中的类编写一个新的函数。 这个新增的函数就像那个原始类本来就有的函数一样，可以用普通的方法调用。 这种机制称为 扩展函数 。此外，也有 扩展属性 ， 允许你为一个已经存在的类添加新的属性。</p>
+</blockquote>
+<h2 id="在java中没有扩展方法这个概念kotlin的扩展方法类似于java中的工具类中的方法">在<code>Java</code>中没有扩展方法这个概念，<code>Kotlin</code>的扩展方法类似于<code>Java</code>中的工具类中的方法。</h2>
+<h1 id="二-扩展函数">二、扩展函数</h1>
+<p>扩展函数可以在已有类中添加新的方法，不会对原类做修改。</p>
+<ul>
+<li>
+<p><strong>扩展函数定义形式</strong></p>
+<pre><code class="language-kotlin">fun receiverType.functionName(params) {
+    // body    
+}
+</code></pre>
+<ul>
+<li><code>receiverType</code>：表示函数的接收者</li>
+<li><code>functionName</code>：扩展函数的名称</li>
+<li><code>params</code>：扩展函数的参数，可以为<code>NULL</code></li>
+</ul>
+</li>
+<li>
+<p><strong>扩展函数示例</strong></p>
+<pre><code class="language-kotlin">class User(var name: String)
+
+// 扩展函数
+fun User.printName(){
+    println(&quot;用户名 $name&quot;)
+}
+
+fun main(args: Array&lt;String&gt;) {
+    var user = User(&quot;Robin&quot;)
+    user.printName();
+}
+</code></pre>
+</li>
+</ul>
+<hr>
+<h1 id="三-扩展函数是静态解析的">三、扩展函数是静态解析的</h1>
+<p>扩展函数是静态解析的，并不是接收者类型的虚拟成员，在调用扩展函数时，具体被调用的的是哪一个函数，由调用函数的的对象表达式来决定的，而不是动态的类型决定的，具体示例如下：</p>
+<pre><code class="language-kotlin">open class SimpleClass
+class SubClass: SimpleClass
+
+fun SimpleClass.foo() = &quot;ABC&quot;// 扩展函数 foo
+fun SubCLass.f00() = &quot;DEF&quot;
+
+func printFoo(c: SimpleClass) {
+    println(c.foo())
+}
+
+fun main(args: Array&lt;String&gt;) {
+    printlnFoo(SubClass())
+}
+</code></pre>
+<p>输出结果为：<br>
+<code>ABC</code></p>
+<p><strong>若扩展函数和成员函数一致，则使用该函数时，会优先使用成员函数。</strong></p>
+<pre><code class="language-kotlin">class SimpleClass {
+    fun foo() {
+        println(&quot;成员函数&quot;)
+    }
+}
+
+fun SimpleClass.foo() {
+    println(&quot;扩展函数&quot;)
+}
+
+fun main(args: Array&lt;String&gt;) {
+    var c = SimpleClass()
+    c.foo()
+}
+</code></pre>
+<p>实际输出结果为：<br>
+<code>成员函数</code></p>
+<hr>
+<h1 id="四-扩展一个空对象">四、扩展一个空对象</h1>
+<p>在扩展函数内，可以通过<code>this</code>来判断接收者是否为<code>NULL</code>，即使接收者为<code>NULL</code>，也可以调用扩展函数，如：</p>
+<pre><code class="language-kotlin">fun Any?.toString(): String {
+    if (this == null) return &quot;null&quot;
+    // 空检测之后，&quot;this&quot;会自动转换为非空类型，所以下面的toString()解析为Any类的成员函数
+    return toString()
+}
+
+fun main(args: Array&lt;String&gt;) {
+    var t = null
+    println(t.toString())
+}
+</code></pre>
+<p>实际输出结果为：<br>
+<code>null</code></p>
+<hr>
+<h1 id="五-扩展属性">五、扩展属性</h1>
+<p>除了函数，<code>Kotlin</code>也支持对属性进行扩展：</p>
+<pre><code class="language-kotlin">val &lt;T&gt; List&lt;T&gt;.lastIndex: Int
+    get() = size - 1
+</code></pre>
+<p>扩展属性允许定义在类或者<code>Kotlin</code>文件中，不允许定义在函数中。初始化属性因为属性没有后端字段（back field），所以不允许被初始化，只能由显式的<code>getter/setter</code>定义。</p>
+<pre><code class="language-kotlin">val Foo.bar = 1 // 错误：扩展属性不能有初始化器
+</code></pre>
+<p>扩展属性只能被声明为<code>val</code>。</p>
+<hr>
+<h1 id="六-伴生对象的扩展">六、伴生对象的扩展</h1>
+<p>如果一个类定义有一个<a href="https://www.runoob.com/kotlin/kotlin-object-declarations.html">伴生对象</a>，你也可以为伴生对象定义扩展函数和属性。<br>
+伴生对象通过“类名.”形式调用伴生对象，伴生对象声明的扩展函数，通过用类名限定符来调用：</p>
+<pre><code class="language-kotlin">class MyClass {
+    companion object { } //将被称为companion
+}
+
+fun MyClass.Companion.foo() {
+    println(&quot;伴生对象的扩展函数&quot;)
+}
+
+val MyClass.Companion.no: Int
+    get() = 10
+
+fun main(args: Array&lt;String&gt;) {
+    println(&quot;no:${MyClass.no}&quot;)
+    MyClass.foo()
+}
+</code></pre>
+<p>实力执行后输出结果为：</p>
+<pre><code class="language-kotlin">no:10
+伴生对象的扩展函数
+</code></pre>
+<hr>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[【Kotlin】（六）类和接口]]></title>
         <id>https://iflytek-duan.github.io/post/kotlin-lei-he-jie-kou/</id>
@@ -1321,122 +1455,6 @@ final String b = &quot;Hello Java&quot;;
 <figure data-type="image" tabindex="2"><img src="https://iflytek-duan.github.io//post-images/1583286117122.png" alt="3.6版本的预览界面" loading="lazy"></figure>
 <h2 id="如何进入代码编辑界面点击右上角的图标切换进入即可详情如下图">如何进入代码编辑界面（点击右上角的图标切换进入即可），详情如下图</h2>
 <figure data-type="image" tabindex="3"><img src="https://iflytek-duan.github.io//post-images/1583286340534.png" alt="解决方式" loading="lazy"></figure>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[【Android】4G网络状态下访问ipv6反应慢的解决方案]]></title>
-        <id>https://iflytek-duan.github.io/post/android-4g-wang-luo-zhuang-tai-xia-fang-wen-ipv6-fan-ying-man-de-jie-jue-fang-an/</id>
-        <link href="https://iflytek-duan.github.io/post/android-4g-wang-luo-zhuang-tai-xia-fang-wen-ipv6-fan-ying-man-de-jie-jue-fang-an/">
-        </link>
-        <updated>2020-02-27T07:21:21.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="前言">前言</h1>
-<p>本文转自<strong>feshfans</strong>的博客 <a href="https://www.cnblogs.com/feshfans/p/10269629.html">Android 在 4G 下访问 IPV6 慢的解决方案</a>，仅用于记录解决方式，如有侵权，烦请告知。</p>
-<hr>
-<h1 id="起因">起因</h1>
-<p>因公司iOS上架应用必须要使用ipv6协议，服务端这边新增了ipv6协议支持。<br>
-Android刚开始在wifi网络环境下访问一切正常，后来在切换到4G网络状态下时，发下每次请求的时间相对之前都延长了好多，经过搜索参阅上文后，发现是每次解析都会收到两个ip地址（ipv6、ipv4），ipv6总是排在前面，会被优先使用ipv6地址访问解析，所以决定采用文中方案，使用自定义DNS方式将ipv4优先级放在第一位，杜绝此类问题的发生。</p>
-<figure data-type="image" tabindex="1"><img src="https://iflytek-duan.github.io//post-images/1582788616554.png" alt="这里盗用一下排查图" loading="lazy"></figure>
-<hr>
-<h1 id="验证方式">验证方式</h1>
-<p>使用下面的代码，验证DNS解析到的IP地址：</p>
-<pre><code class="language-java">try {
-    InetAddress[] inetAddresses = InetAddress.getAllByName(&quot;server.xxxx.cn&quot;);
-    for (InetAddress inetAddress : inetAddresses) {
-        Log.d(TAG, inetAddress.getHostAddress());
-    }
-} catch (UnknownHostException e) {
-    e.printStackTrace();
-}
-</code></pre>
-<hr>
-<h1 id="解决方案">解决方案</h1>
-<p>通过上面的验证，基本断定为 4G 网络下，Android 端通过 ipv6 连接的服务地址。客户端的Retrofit是基于okHttp3为核心实现的网络请求 ，在查看 javadoc 后，发现其提供了 DNS 接口，代码如下：</p>
-<pre><code class="language-java">/**
- * A domain name service that resolves IP addresses for host names. Most applications will use the
- * {@linkplain #SYSTEM system DNS service}, which is the default. Some applications may provide
- * their own implementation to use a different DNS server, to prefer IPv6 addresses, to prefer IPv4
- * addresses, or to force a specific known IP address.
- *
- * &lt;p&gt;Implementations of this interface must be safe for concurrent use.
- */
-public interface Dns {
-  /**
-   * A DNS that uses {@link InetAddress#getAllByName} to ask the underlying operating system to
-   * lookup IP addresses. Most custom {@link Dns} implementations should delegate to this instance.
-   */
-  Dns SYSTEM = hostname -&gt; {
-    if (hostname == null) throw new UnknownHostException(&quot;hostname == null&quot;);
-    try {
-      return Arrays.asList(InetAddress.getAllByName(hostname));
-    } catch (NullPointerException e) {
-      UnknownHostException unknownHostException =
-          new UnknownHostException(&quot;Broken system behaviour for dns lookup of &quot; + hostname);
-      unknownHostException.initCause(e);
-      throw unknownHostException;
-    }
-  };
-
-  /**
-   * Returns the IP addresses of {@code hostname}, in the order they will be attempted by OkHttp. If
-   * a connection to an address fails, OkHttp will retry the connection with the next address until
-   * either a connection is made, the set of IP addresses is exhausted, or a limit is exceeded.
-   */
-  List&lt;InetAddress&gt; lookup(String hostname) throws UnknownHostException;
-}
-</code></pre>
-<p>下面我们通过实现此接口，将解析到的 ip 顺序调整一下，如果是 ipv4 则将其放到数据的第一个，其它保持不变，如下图：</p>
-<pre><code class="language-java">package com.dohenes.common.data.remote;
-
-import java.net.Inet4Address;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-import java.util.ArrayList;
-import java.util.List;
-
-import okhttp3.Dns;
-import retrofit2.internal.EverythingIsNonNull;
-
-/**
- * ClassName Ipv4Dns
- * Describe TODO&lt;ipv4访问优先的DNS--解决ipv6环境下，4G网络访问太慢的问题&gt;
- * Author zihao
- * Date 2020/2/27 14:59
- * Version v1.0
- */
-@EverythingIsNonNull
-public class Ipv4PriorityDns implements Dns {
-
-    @Override
-    public List&lt;InetAddress&gt; lookup(String hostname) throws UnknownHostException {
-        try {
-            // 获取指定主机-hostname的IP地址数组（Android解析指定域名获取到的IP）
-            List&lt;InetAddress&gt; inetAddressList = new ArrayList&lt;&gt;();
-            InetAddress[] inetAddresses = InetAddress.getAllByName(hostname);
-
-            // 遍历获取到的地址，并将得到的ip顺序调整一下，使ipv4放在第一位（即优先使用ipv4协议访问）
-            for (InetAddress inetAddress : inetAddresses) {
-                if (inetAddress instanceof Inet4Address) {
-                    inetAddressList.add(0, inetAddress);
-                } else {
-                    inetAddressList.add(inetAddress);
-                }
-            }
-
-            return inetAddressList;
-        } catch (NullPointerException exception) {
-            UnknownHostException unknownHostException = new
-                    UnknownHostException(&quot;Broken system behavior&quot;);
-            unknownHostException.initCause(exception);
-            throw unknownHostException;
-        }
-    }
-}
-</code></pre>
-<p>然后设置Retrofit的OkHttpClient，修改其DNS解析类：</p>
-<pre><code class="language-java">OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder()
-okHttpClientBuilder.dns(new MyDns());
-OkHttpClient okHttpClient = okHttpClientBuilder.build();
-</code></pre>
 ]]></content>
     </entry>
 </feed>
