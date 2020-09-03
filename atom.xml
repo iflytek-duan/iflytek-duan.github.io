@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://iflytek-duan.github.io/</id>
     <title>紫豪的Blog</title>
-    <updated>2020-09-03T09:10:48.613Z</updated>
+    <updated>2020-09-03T09:12:07.418Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://iflytek-duan.github.io/"/>
     <link rel="self" href="https://iflytek-duan.github.io/atom.xml"/>
@@ -116,7 +116,6 @@ fun main(args: Array&lt;String&gt;) {
 <p>扩展属性允许定义在类或者<code>Kotlin</code>文件中，不允许定义在函数中。初始化属性因为属性没有后端字段（back field），所以不允许被初始化，只能由显式的<code>getter/setter</code>定义。</p>
 <pre><code class="language-kotlin">val Foo.bar = 1 // 错误：扩展属性不能有初始化器
 </code></pre>
-<p>扩展属性只能被声明为<code>val</code>。</p>
 <hr>
 <h1 id="六-伴生对象的扩展">六、伴生对象的扩展</h1>
 <p>如果一个类定义有一个<a href="https://www.runoob.com/kotlin/kotlin-object-declarations.html">伴生对象</a>，你也可以为伴生对象定义扩展函数和属性。<br>
