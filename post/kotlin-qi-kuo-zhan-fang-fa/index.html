@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://iflytek-duan.github.io//favicon.ico?v=1599124324101">
+<link rel="shortcut icon" href="https://iflytek-duan.github.io//favicon.ico?v=1599204002462">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://iflytek-duan.github.io//styles/main.css">
 
@@ -36,7 +36,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://iflytek-duan.github.io/">
-        <img src="https://iflytek-duan.github.io//images/avatar.png?v=1599124324101" class="site-logo">
+        <img src="https://iflytek-duan.github.io//images/avatar.png?v=1599204002462" class="site-logo">
         <h1 class="site-title">紫豪的Blog</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -228,6 +228,184 @@ fun main(args: Array&lt;String&gt;) {
 <p>实力执行后输出结果为：</p>
 <pre><code class="language-kotlin">no:10
 伴生对象的扩展函数
+</code></pre>
+<hr>
+<blockquote>
+<p>伴生对象内的成员相当于 Java 中的静态成员，其生命周期伴随类始终，在伴生对象内部可以定义变量和函数，这些变量和函数可以直接用类名引用。</p>
+</blockquote>
+<p>对于伴生对象扩展函数，有两种形式，一种是在类内扩展，一种是在类外扩展，这两种形式扩展后的函数互不影响（甚至名称都可以相同），即使名称相同，它们也完全是两个不同的函数，并且有以下特点：</p>
+<ol>
+<li>类内扩展的伴随对象函数和类外扩展的伴随对象可以同名，它们是两个独立的函数，互不影响；</li>
+<li>当类内扩展的伴随对象函数和类外扩展的伴随对象同名时，类内的其它函数优先引用类内扩展的伴随对象函数，即对于类内其它成员函数来说，类内扩展屏蔽类外扩展；</li>
+<li>类内扩展的伴随对象函数只能被类内的函数引用，不能被类外的函数和伴随对象内的函数引用；</li>
+<li>类外扩展的伴随对象函数可以被伴随对象内的函数引用<br>
+例如以下代码：</li>
+</ol>
+<pre><code class="language-kotlin">class MyClass {
+    companion object {
+        val myClassField1: Int = 1
+        var myClassField2 = &quot;this is myClassField2&quot;
+        fun companionFun1() {
+            println(&quot;this is 1st companion function.&quot;)
+            foo()
+        }
+        fun companionFun2() {
+            println(&quot;this is 2st companion function.&quot;)
+            companionFun1()
+        }
+    }
+    fun MyClass.Companion.foo() {
+        println(&quot;伴随对象的扩展函数（内部）&quot;)
+    }
+    fun test2() {
+        MyClass.foo()
+    }
+    init {
+        test2()
+    }
+}
+val MyClass.Companion.no: Int
+    get() = 10
+fun MyClass.Companion.foo() {
+    println(&quot;foo 伴随对象外部扩展函数&quot;)
+}
+fun main(args: Array&lt;String&gt;) {
+    println(&quot;no:${MyClass.no}&quot;)
+    println(&quot;field1:${MyClass.myClassField1}&quot;)
+    println(&quot;field2:${MyClass.myClassField2}&quot;)
+    MyClass.foo()
+    MyClass.companionFun2()
+}
+</code></pre>
+<p>运行结果：</p>
+<pre><code class="language-kotlin">no:10
+field1:1
+field2:this is myClassField2
+foo 伴随对象外部扩展函数
+this is 2st companion function.
+this is 1st companion function.
+foo 伴随对象外部扩展函数
+</code></pre>
+<hr>
+<h1 id="七-扩展的作用域">七、扩展的作用域</h1>
+<p>通常扩展函数或属性定义在顶级包下：</p>
+<pre><code class="language-kotlin">package foo.bar
+
+fun Baz.goo() {...}
+</code></pre>
+<p>要使用所定义包之外的一个扩展，通过import到入扩展函数名进行使用：</p>
+<pre><code class="language-kotlin">package com.example.usage
+
+import foo.bar.goo // 导入所有名为goo的扩展
+// 或者从foo.bar导入一切
+import foo.bar.*
+
+fun usage(baz: Baz) {
+    baz.goo()
+}
+</code></pre>
+<hr>
+<h1 id="八-扩展声明为成员">八、扩展声明为成员</h1>
+<p>在一个类内部你可以为另一个类声明扩展。<br>
+在这个扩展中，有多个隐含的接收者，其中扩展方法定义所在类的实例成为分发接收者，而扩展方法的目标类型的实例成为扩展接收者。</p>
+<pre><code class="language-kotlin">class D {
+    fun bar () { println(&quot;D bar&quot;) }
+}
+
+class C {
+    fun baz() { println(&quot;C baz&quot;) }
+
+    fun D.foo() {
+        bar () // 调用D.bar
+        baz () // 调用C.baz
+    }
+
+    fun caller(d: D) {
+        d.foo() // 调用扩展函数
+    }
+}
+
+fun main(args: Array&lt;String&gt;) {
+    val c: C = C()
+    val d: D = D()
+    c.caller(d)
+}
+</code></pre>
+<p>实力输出结果为:</p>
+<pre><code class="language-kotlin">D bar
+C baz
+</code></pre>
+<p>在C类中，创建了D类的扩展。此时，C被称为分发接收者，而D为扩展接收者。<br>
+从上例中，可以清楚的看到，在扩展函数中，可以调用派发接收者的成员函数。<br>
+假如在调用某一个函数，而该函数在分发接收者和扩展接收者均存在，则以扩展接收者优先，要引用分发接收者的成员你可以使用限定的<code>this</code>语法。</p>
+<pre><code class="language-kotlin">class D {
+    fun bar () { println(&quot;D bar&quot;) }
+}
+
+class C {
+    fun bar() { println(&quot;C bar&quot;) } // 与D类的bar同名
+
+    fun D.foo() {
+        bar () // 调用D.bar，扩展接收者优先
+        this@C.bar () // 调用C.bar
+    }
+
+    fun caller(d: D) {
+        d.foo() // 调用扩展函数
+    }
+}
+
+fun main(args: Array&lt;String&gt;) {
+    val c: C = C()
+    val d: D = D()
+    c.caller(d)
+}
+</code></pre>
+<p>实力输出结果为:</p>
+<pre><code class="language-kotlin">D bar
+C bar
+</code></pre>
+<p>以成员的形式定义的扩展函数，可以声明为<code>open</code>，而且可以在子类中覆盖，也就是说，在这类扩展函数的派发过程中，针对分发接收者是虚拟的（Virtual），但针对扩展接收者仍然是静态的。</p>
+<pre><code class="language-kotlin">open class D {
+}
+
+open class D1: D {
+}
+
+open class C {
+    open fun D.foo() {
+        println(&quot;D.foo in C&quot;)
+    }
+
+    open fun D1.foo() {
+        println(&quot;D1.foo in C&quot;)
+    }
+
+    fun caller(d: D) {
+        d.foo()
+    }
+}
+
+class C1: C() {
+    override fun D.foo() {
+        println(&quot;D.foo in C1&quot;)
+    }
+
+    override fun D1.foo() {
+        println(&quot;D1.foo in C1&quot;)
+    }
+}
+
+fun main(args: Array&lt;String&gt;) {
+    C().caller(D()) // 输出“D.foo in C”
+    C1().caller(D()) // 输出“D.foo in C1”--分发接收者虚拟解析
+    C().caller(D1()) // 输出“D.foo in C”--扩展接收者静态解析
+}
+</code></pre>
+<p>实力执行输出结果为：</p>
+<pre><code class="language-kotlin">D.foo in C
+D.foo in C1
+D.foo in C
 </code></pre>
 <hr>
 
