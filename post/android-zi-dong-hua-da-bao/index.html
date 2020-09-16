@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>【Kotlin】（二）数组Array | 紫豪的Blog</title>
+<title>【Android】自动化打包 | 紫豪的Blog</title>
 <meta name="description" content="You cannot improve your past, but you can improve your future. Once time is wasted, life is wasted.">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -98,173 +98,118 @@
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">【Kotlin】（二）数组Array</h2>
-            <div class="post-date">2020-04-20</div>
+            <h2 class="post-title">【Android】自动化打包</h2>
+            <div class="post-date">2020-09-16</div>
             
-              <div class="feature-container" style="background-image: url('https://iflytek-duan.github.io//post-images/kotlin-er-shu-zu-array.jpg')">
+              <div class="feature-container" style="background-image: url('https://iflytek-duan.github.io//post-images/android-zi-dong-hua-da-bao.jpg')">
               </div>
             
             <div class="post-content">
-              <h2 id="一-kotlin-java中的数组对比">一、Kotlin、Java中的数组对比</h2>
-<table>
-    <tr>
-        <th>数组分类</th>
-        <th>Kotlin</th>
-        <th>Java</th>
-    </tr>
-    <tr>
-        <th>整型</th>
-        <th>IntArray</th>
-        <th>int[]</th>
-    </tr>
-    <tr>
-        <th>整型装箱</th>
-        <th>Array&lt;Int&gt;</th>
-        <th>Integer[]</th>
-    </tr>
-    <tr>
-        <th>字符</th>
-        <th>CharArray</th>
-        <th>char[]</th>
-    </tr>
-    <tr>
-        <th>字符装箱</th>
-        <th>Array&lt;Char&gt;</th>
-        <th>Character[]</th>
-    </tr>
-    <tr>
-        <th>字符串</th>
-        <th>Array<String></th>
-        <th>String[]</th>
-    </tr>
-    <tr>
-        <th>浮点型</th>
-        <th>FloatArray</th>
-        <th>float[]</th>
-    </tr>
-    <tr>
-        <th>浮点型装箱</th>
-        <th>Array&lt;Float&gt;</th>
-        <th>Float[]</th>
-    </tr>
-    <tr>
-        <th>双精度</th>
-        <th>DoubleArray</th>
-        <th>double[]</th>
-    </tr>
-    <tr>
-        <th>双精度装箱</th>
-        <th>Array&lt;Double&gt;</th>
-        <th>Double[]</th>
-    </tr>
-</table>
-<hr>
-<h2 id="二-数组的创建">二、数组的创建</h2>
-<ul>
-<li>
-<p><strong>Java</strong></p>
-<pre><code class="language-java">int[] c = new int[]{1,2,3,4,5};
-</code></pre>
-</li>
-<li>
-<p><strong>Kotlin</strong></p>
-<pre><code class="language-kotlin">val k0 = intArrayOf(1,2,3,4,5) // 变长参数
-val k1 = IntArray(5){ it + 1 }// kotlin中新建一个对象不需要new关键字，参数一：数 组长度；参数二：lamda表达式，it的值为数组下标。
+              <h1 id="一-签名配置signingconfigs">一、签名配置signingConfigs</h1>
+<pre><code class="language-java">// 自动化打包配置-签名信息
+signingConfigs {
+    release {// 线上环境
+        keyAlias 'xxx'// key别名，如taibang
+        keyPassword 'xxxxxxxx'// key密码
+        storeFile file('/xxx.jks')// 密钥文件路径，如/taibang.jsk
+        storePassword 'xxxxxxxx'// 密钥文件密码
+        v1SigningEnabled true
+        v2SigningEnabled true
+    }
 
-println(k0.contentToString())
-println(k1.contentToString())
-</code></pre>
-</li>
-</ul>
-<hr>
-<h2 id="三-数组的长度">三、数组的长度</h2>
-<ul>
-<li>
-<p><strong>Java</strong></p>
-<pre><code class="language-java">int[] array = new int[5];
-System.out.println(array.length);
-</code></pre>
-</li>
-<li>
-<p><strong>Kotlin</strong></p>
-<pre><code class="language-kotlin">val array = IntArray(5)
-println(array.size)
-</code></pre>
-</li>
-</ul>
-<hr>
-<h2 id="四-数组的读写">四、数组的读写</h2>
-<ul>
-<li>
-<p><strong>Java</strong></p>
-<pre><code class="language-java">String[] str = new String[]{&quot;Hello&quot;,&quot;World&quot;};
-str[1] = &quot;Java&quot;;
-System.out.println(str[0] + &quot;, &quot; + str[1]);
-</code></pre>
-</li>
-<li>
-<p><strong>Kotlin</strong></p>
-<pre><code class="language-kotlin">val str = arrayOf(&quot;Hello&quot;,&quot;World&quot;)
-str[1] = &quot;Kotlin&quot;
-println(&quot;${str[0]}, ${str[1]}&quot;)// 使用字符串模板打印
-</code></pre>
-</li>
-</ul>
-<hr>
-<h2 id="五-数组的遍历">五、数组的遍历</h2>
-<ul>
-<li><strong>Java</strong><pre><code class="language-java">float[] floats = new float[]{1,3,5,7};
-for(float element : floats){
-    System.out.println(element);
-}
-
-for(int i=0;i&lt;floats.length;i++){
-    System.out.println(floats[i]);
-}
-</code></pre>
-</li>
-<li><strong>Kotlin</strong><pre><code class="language-kotlin">val floatArray = floatArrayOf(1f,3f,5f,7f)
-for(element in floatArray){
-    println(element)
-}
-
-// 或者使用以下方式遍历
-floatArray.foreach{ element -&gt;
-  println(element)
-}
-
-// 或者下面的方式（对标java中的 for(int i=0;i&lt;floats.length;i++)遍历方式）
-for(i in floats.indices){
-    println(floats[i])
-}
-</code></pre>
-</li>
-</ul>
-<hr>
-<h2 id="六-判断数组中是否包含某个元素数组的包含关系">六、判断数组中是否包含某个元素（数组的包含关系）</h2>
-<ul>
-<li><strong>Java</strong><pre><code class="language-java">int[] intArray = new int[]{1,2,3,4,5};
-for(int i : intArray){
-    if(i == 4){
-        System.out.println(&quot;4 exists in variable 'intArray'&quot;);
+    debug {// 开发环境
+        keyAlias 'xxx'
+        keyPassword 'xxxxxxxx'
+        storeFile file('/xxx.jks')
+        storePassword 'xxxxxxxx'
+        v1SigningEnabled true
+        v2SigningEnabled true
     }
 }
 </code></pre>
-</li>
-<li><strong>Kotlin</strong><pre><code class="language-kotlin">val intArray = IntArray(5){ it +1 }
-if(4 in intArray){
-    println(&quot;4 exists in variable 'intArray'&quot;)
+<hr>
+<h1 id="二-产品风味特点的defaultconfig配置">二、产品风味（特点）的DefaultConfig配置</h1>
+<pre><code class="language-java">flavorDimensions &quot;channel&quot; // 特点维度，为了让多渠道包间的纬度统一，方便productFlavors维度统一
+</code></pre>
+<p>关于<code>flavorDimensions</code>的具体解释可参考下文：<br>
+<a href="https://www.freesion.com/article/7504275783/">FLAVORDIMENSIONS多维度理解(版本差异化打包)</a></p>
+<hr>
+<h1 id="三-产品风味特点-多渠道配置productflavors">三、产品风味（特点）/ 多渠道配置productFlavors</h1>
+<pre><code class="language-java">// 多渠道信息配置
+productFlavors {
+    taibang {// 默认就是泰邦健康管家渠道
+        dimension &quot;channel&quot;
+    }
+
+    qfjp {
+        dimension &quot;channel&quot;
+    }
 }
 </code></pre>
-</li>
-</ul>
+<hr>
+<p>#四、 统一配置多渠道信息</p>
+<pre><code class="language-java">// 统一配置多渠道信息
+productFlavors.all { flavor -&gt;
+    flavor.manifestPlaceholders = [XXX_CHANNEL: name] // 如BUGLY_APP_CHANNEL
+}
+</code></pre>
+<hr>
+<h1 id="五-配置自动构建后的apk文件名称">五、配置自动构建后的apk文件名称</h1>
+<pre><code class="language-java">    // 配置构建后apk的文件名称
+    applicationVariants.all { variant -&gt;
+        variant.outputs.all { output -&gt;
+            def buildName = &quot;TaiBang&quot;
+            def type = variant.buildType.name
+            def releaseApkName
+            releaseApkName = buildName + '_' + &quot;${defaultConfig.versionName}&quot; + '_' + type + &quot;_&quot; + &quot;${releaseTime()}&quot; + '.apk'
+            outputFileName = releaseApkName
+        }
+    }
+</code></pre>
+<p>在<code>app/build.gradle</code>内的<code>android</code>标签外新增<code>releaseTime</code>方法：</p>
+<pre><code class="language-java">android {
+    ...
+}
+
+/**
+ * 定义的打包时间
+ * @return
+ */
+static def releaseTime() {
+    return new Date().format(&quot;yyyyMMddHHmm&quot;, TimeZone.getTimeZone(&quot;GMT+08:00&quot;))
+}
+</code></pre>
+<hr>
+<h1 id="六-构建类型buildtypes配置">六、构建类型buildTypes配置</h1>
+<p><code>buildTypes</code>默认有<code>debug</code>、<code>release</code>两个构建类型，可以根据需要新增</p>
+<pre><code class="language-java">buildTypes {
+    release {
+        minifyEnabled false
+        proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        signingConfig signingConfigs.release
+    }
+
+    debug {
+        minifyEnabled false
+        signingConfig signingConfigs.debug
+    }
+}
+
+</code></pre>
+<hr>
+<h1 id="七-自动构建对应渠道类型的apk包">七、自动构建对应渠道/类型的apk包</h1>
+<p>点开<code>Android Studio</code>右侧的<code>Gradle</code>工具栏，找到<code>ProjectName-&gt;Tasks-&gt;Build-&gt;assembleDebug/assembleRelease/assembleBuildTypes/assembleProductFlavors</code>即可构建对应渠道/类型下的apk包，输出路径为默认的<code>app/build/outputs/apk/对应路径</code>。</p>
 
             </div>
             
               <div class="tag-container">
                 
-                  <a href="https://iflytek-duan.github.io/tag/fvbltJpq3/" class="tag">
-                    kotlin
+                  <a href="https://iflytek-duan.github.io/tag/RBqYMVU6r/" class="tag">
+                    自动构建
+                  </a>
+                
+                  <a href="https://iflytek-duan.github.io/tag/MnJlUZFkz/" class="tag">
+                    Gradle
                   </a>
                 
               </div>
@@ -272,9 +217,9 @@ if(4 in intArray){
             
               <div class="next-post">
                 <div class="next">下一篇</div>
-                <a href="https://iflytek-duan.github.io/post/kotlin-ji-ben-shu-ju-lei-xing/">
+                <a href="https://iflytek-duan.github.io/post/kotlin-qi-kuo-zhan-fang-fa/">
                   <h3 class="post-title">
-                    【Kotlin】（一）基本类型
+                    【Kotlin】（七）扩展方法
                   </h3>
                 </a>
               </div>
