@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://iflytek-duan.github.io/</id>
     <title>紫豪的Blog</title>
-    <updated>2020-09-18T03:17:59.736Z</updated>
+    <updated>2020-09-23T02:14:51.551Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://iflytek-duan.github.io/"/>
     <link rel="self" href="https://iflytek-duan.github.io/atom.xml"/>
@@ -10,6 +10,217 @@
     <logo>https://iflytek-duan.github.io/images/avatar.png</logo>
     <icon>https://iflytek-duan.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 紫豪的Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[【Android】BLE状态码（status code）参照表]]></title>
+        <id>https://iflytek-duan.github.io/post/android-ble-zhuang-tai-ma-status-codecan-zhao-biao/</id>
+        <link href="https://iflytek-duan.github.io/post/android-ble-zhuang-tai-ma-status-codecan-zhao-biao/">
+        </link>
+        <updated>2020-09-23T01:23:57.000Z</updated>
+        <content type="html"><![CDATA[<p>成功 / 错误 / 异常对应的状态码：</p>
+<table>
+    <tr>
+        <th>常量名</th>
+        <th>16进制Code</th>
+        <th>10进制Code</th>
+    </tr>
+    <tr>
+        <th>GATT_SUCCESS</th>
+        <th>0x00</th>
+        <th>0</th>
+    </tr>
+    <tr>
+        <th>GATT_INVALID_HANDLE</th>
+        <th>0x01</th>
+        <th>1</th>
+    </tr>
+    <tr>
+        <th>GATT_READ_NOT_PERMIT</th>
+        <th>0x02</th>
+        <th>2</th>
+    </tr>
+    <tr>
+        <th>GATT_WRITE_NOT_PERMIT</th>
+        <th>0x03</th>
+        <th>3</th>
+    </tr>
+    <tr>
+        <th>GATT_INVALID_PDU</th>
+        <th>0x04</th>
+        <th>4</th>
+    </tr>
+    <tr>
+        <th>GATT_INSUF_AUTHENTICATION</th>
+        <th>0x05</th>
+        <th>5</th>
+    </tr>
+    <tr>
+        <th>GATT_REQ_NOT_SUPPORTED</th>
+        <th>0x06</th>
+        <th>6</th>
+    </tr>
+    <tr>
+        <th>GATT_INVALID_OFFSET</th>
+        <th>0x07</th>
+        <th>7</th>
+    </tr>
+    <tr>
+        <th>GATT_INSUF_AUTHORIZATION</th>
+        <th>0x08</th>
+        <th>8</th>
+    </tr>
+    <tr>
+        <th>GATT_PREPARE_Q_FULL</th>
+        <th>0x09</th>
+        <th>9</th>
+    </tr>
+    <tr>
+        <th>GATT_NOT_FOUND</th>
+        <th>0x0a</th>
+        <th>10</th>
+    </tr>
+    <tr>
+        <th>GATT_NOT_LONG</th>
+        <th>0x0b</th>
+        <th>11</th>
+    </tr>
+    <tr>
+        <th>GATT_INSUF_KEY_SIZE</th>
+        <th>0x0c</th>
+        <th>12</th>
+    </tr>
+    <tr>
+        <th>GATT_INVALID_ATTR_LEN</th>
+        <th>0x0d</th>
+        <th>13</th>
+    </tr>
+    <tr>
+        <th>GATT_ERR_UNLIKELY</th>
+        <th>0x0e</th>
+        <th>14</th>
+    </tr>
+    <tr>
+        <th>GATT_INSUF_ENCRYPTION</th>
+        <th>0x0f</th>
+        <th>15</th>
+    </tr>
+    <tr>
+        <th>GATT_UNSUPPORT_GRP_TYPE</th>
+        <th>0x10</th>
+        <th>16</th>
+    </tr>
+    <tr>
+        <th>GATT_INSUF_RESOURCE</th>
+        <th>0x11</th>
+        <th>17</th>
+    </tr>
+    <tr>
+        <th>GATT_NO_RESOURCES</th>
+        <th>0x80</th>
+        <th>128</th>
+    </tr>
+    <tr>
+        <th>GATT_INTERNAL_ERROR</th>
+        <th>0x81</th>
+        <th>129</th>
+    </tr>
+    <tr>
+        <th>GATT_WRONG_STATE</th>
+        <th>0x82</th>
+        <th>130</th>
+    </tr>
+    <tr>
+        <th>GATT_DB_FULL</th>
+        <th>0x83</th>
+        <th>131</th>
+    </tr>
+    <tr>
+        <th>GATT_BUSY</th>
+        <th>0x84</th>
+        <th>132</th>
+    </tr>
+    <tr>
+        <th>GATT_ERROR</th>
+        <th>0x85</th>
+        <th>133</th>
+    </tr>
+    <tr>
+        <th>GATT_CMD_STARTED</th>
+        <th>0x86</th>
+        <th>134</th>
+    </tr>
+    <tr>
+        <th>GATT_ILLEGAL_PARAMETER</th>
+        <th>0x87</th>
+        <th>135</th>
+    </tr>
+    <tr>
+        <th>GATT_PENDING</th>
+        <th>0x88</th>
+        <th>136</th>
+    </tr>
+    <tr>
+        <th>GATT_AUTH_FAIL</th>
+        <th>0x89</th>
+        <th>137</th>
+    </tr>
+    <tr>
+        <th>GATT_MORE</th>
+        <th>0x8a</th>
+        <th>138</th>
+    </tr>
+    <tr>
+        <th>GATT_INVALID_CFG</th>
+        <th>0x8b</th>
+        <th>139</th>
+    </tr>
+    <tr>
+        <th>GATT_SERVICE_STARTED</th>
+        <th>0x8c</th>
+        <th>140</th>
+    </tr>
+    <tr>
+        <th>GATT_ENCRYPED_MITM</th>
+        <th>GATT_SUCCESS</th>
+        <th>0</th>
+    </tr>
+    <tr>
+        <th>GATT_ENCRYPED_NO_MITM</th>
+        <th>0x8d</th>
+        <th>141</th>
+    </tr>
+    <tr>
+        <th>GATT_NOT_ENCRYPTED</th>
+        <th>0x8e</th>
+        <th>142</th>
+    </tr>
+    <tr>
+        <th>GATT_CONGESTED</th>
+        <th>0x8f</th>
+        <th>143</th>
+    </tr>
+    <tr>
+    </tr>
+    	 <th colspan="3">/* 0xE0 ~ 0xFC reserved for future use */</th>
+    <tr>
+        <th>GATT_CCC_CFG_ERR /* Client Characteristic Configuration Descriptor Improperly Configured */</th>
+        <th>0xFD</th>
+        <th>253</th>
+    </tr>
+    <tr>
+        <th>GATT_PRC_IN_PROGRESS /* Procedure Already in progress */</th>
+        <th>0xFE</th>
+        <th>254</th>
+    </tr>
+    <tr>
+        <th>GATT_OUT_OF_RANGE /* Attribute value out of range */</th>
+        <th>0xFF</th>
+        <th>255</th>
+    </tr>
+</table>
+<p>其它状态码参照：<a href="https://blog.csdn.net/zhoubintiantian/article/details/77193705?utm_source=blogxgwz3">Android BLE Gatt返回错误对应宏</a><br>
+<a href="https://blog.csdn.net/xuwenwen_2013/article/details/79413559">BLE操作成功或失败status code对应解释</a></p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[【Android】自动化打包]]></title>
         <id>https://iflytek-duan.github.io/post/android-zi-dong-hua-da-bao/</id>
@@ -1558,169 +1769,6 @@ if(4 in intArray){
     println(&quot;4 exists in variable 'intArray'&quot;)
 }
 </code></pre>
-</li>
-</ul>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[【Kotlin】（一）基本类型]]></title>
-        <id>https://iflytek-duan.github.io/post/kotlin-ji-ben-shu-ju-lei-xing/</id>
-        <link href="https://iflytek-duan.github.io/post/kotlin-ji-ben-shu-ju-lei-xing/">
-        </link>
-        <updated>2020-04-15T07:38:43.000Z</updated>
-        <content type="html"><![CDATA[<p>一、<code>Kotlin</code>、<code>Java</code>基本类型参照表</p>
-<table>
-    <tr>
-        <th></th>
-        <th>Kotlin</th>
-        <th>Java</th>
-    </tr>
-    <tr>
-        <th>字节</th>
-        <th>Byte</th>
-        <th>byte/Byte</th>
-    </tr>
-    <tr>
-        <th>整型</th>
-        <th>Int & Long</th>
-        <th>int/integer & long/Long</th>
-    </tr>
-    <tr>
-        <th>浮点型</th>
-        <th>Float & Double</th>
-        <th>float/Float & double/Double</th>
-    </tr>
-    <tr>
-        <th>字符</th>
-        <th>Char</th>
-        <th>char/Char</th>
-    </tr>
-    <tr>
-        <th>字符串</th>
-        <th>String</th>
-        <th>String</th>
-    </tr>
-</table>
-<hr>
-<p>二、声明变量</p>
-<ul>
-<li>
-<p>只读变量（不可重新赋值）<br>
-通过<code>val</code>修饰符声明，我们可以认为它是<strong>java中带了<code>final</code>修饰符的变量</strong>。</p>
-<p>声明变量格式：修饰符 变量名: 类型 = 初始赋值<br>
-示例：<br>
-<code>val b: String = &quot;Hello Kotlin&quot;</code></p>
-</li>
-<li>
-<p>可读写变量（可重新赋值）<br>
-通过<code>var</code>修饰符声明。</p>
-</li>
-<li>
-<p><code>Kotlin</code>支持自动类型推导<br>
-<code>kotlin</code>支持自动类型的推导，可以到达简化代码的作用。<br>
-如：<code>val b: String = &quot;Hello Kotlin&quot;</code>可以直接写成<code>val b = &quot;Hello Kotlin&quot;</code>。</p>
-</li>
-<li>
-<p><code>Kotlin</code>与<code>Java</code>声明变量对比<br>
-<code>Kotlin</code>声明变量：</p>
-<pre><code class="language-kotlin">var a: Int = 2
-val b: String = &quot;Hello Kotlin&quot;
-</code></pre>
-<p><code>Java</code>声明变量：</p>
-<pre><code class="language-java">int a = 2;
-final String b = &quot;Hello Java&quot;;
-</code></pre>
-</li>
-</ul>
-<hr>
-<p>三、易混淆的Long类型标记<br>
-在<code>Java</code>里，开发者在代码中通过以下方式进行<code>Long</code>类型的声明：</p>
-<pre><code class="language-java">   long a = 12345678910l;// 小写易混淆
-   long b = 12345678910L;// 大写方便识别
-</code></pre>
-<p>在<code>Kotlin</code>中，声明<code>Long</code>类型变量时，<strong>不支持小写L进行类型声明</strong>，否则编译器会报错</p>
-<pre><code class="language-kotlin">   val c = 12345678910L
-</code></pre>
-<hr>
-<p>四、<code>Kotlin</code>的数值类型转换<br>
-在<code>Java</code>中，我们可以通过<strong>隐式转换</strong>的方式进行数值类型的转换，示例如下：</p>
-<pre><code class="language-java">    int e = 10;
-    long f = e;// implicit conversion
-</code></pre>
-<p>在<code>Kotlin</code>中，这种行为是不被允许的，这也是争议比较大的一点（支持者认为隐式转换安全性存在问题，反对者认为去除隐式转换给开发者带来一些开发过程中的麻烦），示例代码如下：</p>
-<pre><code class="language-kotlin">    val e: Int = 10
-    val f: Long = e.toLong()
-</code></pre>
-<hr>
-<p>五、无符号类型（v1.3）<br>
-<code>Kotlin</code>在兼容<code>C</code>时，创造了与之对应的无符号类型，具体如下：</p>
-<table>
-    <tr>
-        <th></th>
-        <th>有符号类型</th>
-        <th>无符号类型</th>
-    </tr>
-    <tr>
-        <th>字节</th>
-        <th>Byte</th>
-        <th>UByte</th>
-    </tr>
-    <tr>
-        <th>短整型</th>
-        <th>Short</th>
-        <th>UShort</th>
-    </tr>
-    <tr>
-        <th>整型</th>
-        <th>Int</th>
-        <th>UInt</th>
-    </tr>
-    <tr>
-        <th>长整型</th>
-        <th>Long</th>
-        <th>ULong</th>
-    </tr>
-    <tr>
-        <th>字符串</th>
-        <th>String</th>
-        <th>String</th>
-    </tr>
-</table>
-<p>无符号类型声明变量示例:</p>
-<pre><code class="language-kotlin">    val ua: UInt = 10u
-    val ub: ULong = 12345678910u
-    val uc: UByte = 1u
-</code></pre>
-<hr>
-<p>六、<code>Kotlin</code>中的变量值比较<br>
-<code>kotlin</code>中的值比较通过<code>==</code>操作符来进行，这个有异于<code>Java</code>（<code>Java</code>中是通过<code>equals</code>方法进行值比较，<code>==</code>比较的是变量引用）。</p>
-<p>示例：</p>
-<pre><code class="language-kotlin">    val k = &quot;Hello Kotlin&quot;
-    val m = String(&quot;Hello Kotlin&quot;.toCharArray())
-
-    println(k === m) // compare references-比较引用
-    println(k==m) // compare values-比较值
-</code></pre>
-<p>而<code>Java</code>中则是以下形式：</p>
-<pre><code class="language-java">    String k = &quot;Hello Kotlin&quot;;
-    String m = new String(&quot;Hello Kotlin&quot;);
-
-    System.out.println(k==m);// compare references-比较引用
-    System.out.println(k.equals(m));// compare values-比较值
-</code></pre>
-<hr>
-<p>七、<code>Kotlin</code>中的字符串</p>
-<ul>
-<li>字符串比较
-<ul>
-<li>a == b ：比较内容，等价于<code>Java</code>的<code>equals</code>。</li>
-<li>a === b ：比较对象是否是<strong>同一个对象</strong>。</li>
-</ul>
-</li>
-<li>字符串模板
-<ul>
-<li>“Hello，$name”=&gt;&quot;Hello，小明&quot;</li>
-</ul>
 </li>
 </ul>
 ]]></content>
