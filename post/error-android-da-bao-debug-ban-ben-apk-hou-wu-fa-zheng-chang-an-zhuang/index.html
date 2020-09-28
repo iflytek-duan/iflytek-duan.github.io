@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>【Android】RxJava+Retrofit相关入门文章 | 紫豪的Blog</title>
+<title>【Error】Android打包debug版本apk后无法正常安装 | 紫豪的Blog</title>
 <meta name="description" content="You cannot improve your past, but you can improve your future. Once time is wasted, life is wasted.">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -98,49 +98,37 @@
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">【Android】RxJava+Retrofit相关入门文章</h2>
-            <div class="post-date">2019-12-21</div>
-            
-              <div class="feature-container" style="background-image: url('https://iflytek-duan.github.io//post-images/bu-fa-bu-rxjavaretrofit-xiang-guan-ru-men-wen-zhang.png')">
-              </div>
+            <h2 class="post-title">【Error】Android打包debug版本apk后无法正常安装</h2>
+            <div class="post-date">2020-09-28</div>
             
             <div class="post-content">
-              <h1 id="retrofit2">Retrofit2</h1>
-<ul>
-<li><a href="https://www.jianshu.com/p/0c055ad46b6c">Android：手把手带你 深入读懂 Retrofit 2.0 源码</a></li>
-<li><a href="https://www.jianshu.com/p/a3e162261ab6">Android Retrofit 2.0 的详细 使用攻略（含实例讲解）</a></li>
-</ul>
+              <h1 id="打包后的debug版本apk无法正常安装提示安装失败">打包后的debug版本apk无法正常安装，提示安装失败</h1>
+<p>IDE：<code>AndroidStudio</code> 4.0.1版本<br>
+通过<code>Build-&gt;Generate Singed Bundle or APK</code>生成<code>debug</code>版本的<code>apk</code>，不能够在其它手机上正常安装（亲测在华为、VIVO上出现），具体如图：<br>
+<img src="https://iflytek-duan.github.io//post-images/1601275189115.jpg" alt="huawei2" loading="lazy"></p>
 <hr>
-<h1 id="rxjava2">RxJava2</h1>
-<ul>
-<li><a href="https://blog.csdn.net/xiangshiweiyu_hd/article/details/83924707">初识RxJava（二）延时类 操作符</a></li>
-<li><a href="https://www.jianshu.com/p/c935d0860186">RxJava2 实战知识梳理(1) - 后台执行耗时操作，实时通知 UI 更新</a></li>
-</ul>
+<h1 id="错误分析">错误分析</h1>
+<p>经查证是因为<code>Android Studio</code> 3.0.0以后的版本默认会在<code>debug apk</code>的<code>Manifest</code>文件的<code>Application</code>的标签里自动添加<code>andorid:testOnly=&quot;true&quot;</code>属性，导致IDE中跑出来的、打包的APK只能用<code>adb install -t &lt;apk&gt;</code>来安装了。</p>
+<blockquote>
+<p>什么是<code>android:testOnly</code>？<br>
+它是用于判断应用是否是用于测试用途的一个标识。当值为true时，代表它时测试用途，一般情况下时不能够安装到其它设备上的，需要通过特殊的方式去安装（只能通过USB调试安装或adb安装——安装时需要加上<code>-t</code>这个标记）。</p>
+</blockquote>
+<hr>
+<h1 id="解决办法">解决办法</h1>
+<p>在项目根目录的<code>gradle.properties</code>中添加<code>andorid:testOnly=&quot;false&quot;</code>即可。</p>
+<hr>
+<h1 id="相关文章">相关文章</h1>
+<p><a href="https://commonsware.com/blog/2017/10/31/android-studio-3p0-flag-test-only.html">Android Studio 3.0 and FLAG_TEST_ONLY</a><br>
+<a href="https://stackoverflow.com/questions/25274296/adb-install-fails-with-install-failed-test-only">https://stackoverflow.com/questions/25274296/adb-install-fails-with-install-failed-test-only</a></p>
 
             </div>
-            
-              <div class="tag-container">
-                
-                  <a href="https://iflytek-duan.github.io/tag/LodA5mW-B/" class="tag">
-                    Retrofit
-                  </a>
-                
-                  <a href="https://iflytek-duan.github.io/tag/0vRPOTWyAc/" class="tag">
-                    RxJava
-                  </a>
-                
-                  <a href="https://iflytek-duan.github.io/tag/SrlbRb6sn/" class="tag">
-                    Android
-                  </a>
-                
-              </div>
             
             
               <div class="next-post">
                 <div class="next">下一篇</div>
-                <a href="https://iflytek-duan.github.io/post/android-duo-zhuang-tai-bu-ju-guan-li-qi/">
+                <a href="https://iflytek-duan.github.io/post/android-ble-zhuang-tai-ma-status-codecan-zhao-biao/">
                   <h3 class="post-title">
-                    【Android】多状态布局管理器
+                    【Android】BLE状态码（status code）参照表
                   </h3>
                 </a>
               </div>
