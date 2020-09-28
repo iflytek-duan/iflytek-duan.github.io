@@ -7,103 +7,92 @@
 <meta name="description" content="You cannot improve your past, but you can improve your future. Once time is wasted, life is wasted.">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="shortcut icon" href="https://iflytek-duan.github.io//favicon.ico?v=1601280524333">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://iflytek-duan.github.io//favicon.ico?v=1601280180365">
+<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://iflytek-duan.github.io//styles/main.css">
 
 
-
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
 
 <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
 
-
   </head>
   <body>
-    <div id="app" class="main">
-
-      <div class="sidebar" :class="{ 'full-height': menuVisible }">
-  <div class="top-container" data-aos="fade-right">
-    <div class="top-header-container">
-      <a class="site-title-container" href="https://iflytek-duan.github.io/">
-        <img src="https://iflytek-duan.github.io//images/avatar.png?v=1601280180365" class="site-logo">
-        <h1 class="site-title">紫豪的Blog</h1>
-      </a>
-      <div class="menu-btn" @click="menuVisible = !menuVisible">
-        <div class="line"></div>
-      </div>
-    </div>
-    <div>
-      
+    <nav class="navbar border fixed split-nav">
+  <div class="nav-brand">
+    <h3><a href="https://iflytek-duan.github.io/">紫豪的Blog</a></h3>
+  </div>
+  <div class="collapsible">
+    <input id="collapsible1" type="checkbox" name="collapsible1">
+    <button>
+      <label for="collapsible1">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </label>
+    </button>
+    <div class="collapsible-body">
+      <ul class="inline">
         
-          <a href="https://iflytek-duan.github.io/" class="site-nav">
-            首页
-          </a>
+          <li>
+            
+              <a href="https://iflytek-duan.github.io/" class="menu">
+                首页
+              </a>
+            
+          </li>
         
-      
+          <li>
+            
+              <a href="/archives" class="menu">
+                归档
+              </a>
+            
+          </li>
         
-          <a href="/archives" class="site-nav">
-            归档
-          </a>
+          <li>
+            
+              <a href="/tags" class="menu">
+                标签
+              </a>
+            
+          </li>
         
-      
+          <li>
+            
+              <a href="/post/about" class="menu">
+                关于
+              </a>
+            
+          </li>
         
-          <a href="/tags" class="site-nav">
-            标签
-          </a>
-        
-      
-        
-          <a href="/post/about" class="site-nav">
-            关于
-          </a>
-        
-      
+      </ul>
     </div>
   </div>
-  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
-    <div class="social-container">
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    </div>
-    <div class="site-description">
-      You cannot improve your past, but you can improve your future. Once time is wasted, life is wasted.
-    </div>
-    <div class="site-footer">
-      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://iflytek-duan.github.io//atom.xml" target="_blank">RSS</a>
-    </div>
-  </div>
-</div>
+</nav>
 
-
-      <div class="main-container">
-        <div class="content-container" data-aos="fade-up">
+    
+    <div id="top" class="row site">
+      <div class="sm-12 md-8 col">
+        <div class="paper">
           
 
           <h2 class="archives-title">文章归档</h2>
           <div class="archives-container">
             
-              <h2 class="year" data-aos="fade-in" data-aos-delay="500">2020</h2>
+              <h3 class="year" data-aos-delay="500">2020</h3>
               
                 
                   <article class="post">
                     <a href="https://iflytek-duan.github.io/post/error-android-da-bao-debug-ban-ben-apk-hou-wu-fa-zheng-chang-an-zhuang/">
-                      <h2 class="post-title">
+                      <h4 class="post-title">
                         【Error】Android打包debug版本apk后无法正常安装
-                      </h2>
+                      </h4>
                     </a>
                   </article>
                 
@@ -111,9 +100,9 @@
                 
                   <article class="post">
                     <a href="https://iflytek-duan.github.io/post/android-ble-zhuang-tai-ma-status-codecan-zhao-biao/">
-                      <h2 class="post-title">
+                      <h4 class="post-title">
                         【Android】BLE状态码（status code）参照表
-                      </h2>
+                      </h4>
                     </a>
                   </article>
                 
@@ -121,9 +110,9 @@
                 
                   <article class="post">
                     <a href="https://iflytek-duan.github.io/post/android-zi-dong-hua-da-bao/">
-                      <h2 class="post-title">
+                      <h4 class="post-title">
                         【Android】自动化打包
-                      </h2>
+                      </h4>
                     </a>
                   </article>
                 
@@ -131,9 +120,9 @@
                 
                   <article class="post">
                     <a href="https://iflytek-duan.github.io/post/kotlin-qi-kuo-zhan-fang-fa/">
-                      <h2 class="post-title">
+                      <h4 class="post-title">
                         【Kotlin】（七）扩展方法
-                      </h2>
+                      </h4>
                     </a>
                   </article>
                 
@@ -141,9 +130,9 @@
                 
                   <article class="post">
                     <a href="https://iflytek-duan.github.io/post/kotlin-lei-he-jie-kou/">
-                      <h2 class="post-title">
+                      <h4 class="post-title">
                         【Kotlin】（六）类和接口
-                      </h2>
+                      </h4>
                     </a>
                   </article>
                 
@@ -151,9 +140,9 @@
                 
                   <article class="post">
                     <a href="https://iflytek-duan.github.io/post/kotlin-wu-han-shu/">
-                      <h2 class="post-title">
+                      <h4 class="post-title">
                         【Kotlin】（五）函数
-                      </h2>
+                      </h4>
                     </a>
                   </article>
                 
@@ -161,9 +150,9 @@
                 
                   <article class="post">
                     <a href="https://iflytek-duan.github.io/post/android-dai-ma-hun-yao/">
-                      <h2 class="post-title">
+                      <h4 class="post-title">
                         【Android】代码混淆
-                      </h2>
+                      </h4>
                     </a>
                   </article>
                 
@@ -171,9 +160,9 @@
                 
                   <article class="post">
                     <a href="https://iflytek-duan.github.io/post/kotlin-si-ji-he-kuang-jia/">
-                      <h2 class="post-title">
+                      <h4 class="post-title">
                         【Kotlin】（四）集合框架
-                      </h2>
+                      </h4>
                     </a>
                   </article>
                 
@@ -181,9 +170,9 @@
                 
                   <article class="post">
                     <a href="https://iflytek-duan.github.io/post/android-gradle-zhi-duo-lei-xing-pei-zhi/">
-                      <h2 class="post-title">
+                      <h4 class="post-title">
                         【Android】Gradle之多类型、类型包名后缀、源集（对应文件资源）配置
-                      </h2>
+                      </h4>
                     </a>
                   </article>
                 
@@ -191,9 +180,9 @@
                 
                   <article class="post">
                     <a href="https://iflytek-duan.github.io/post/kotlinsan-qu-jian-range/">
-                      <h2 class="post-title">
+                      <h4 class="post-title">
                         【Kotlin】（三）区间 Range
-                      </h2>
+                      </h4>
                     </a>
                   </article>
                 
@@ -201,9 +190,9 @@
                 
                   <article class="post">
                     <a href="https://iflytek-duan.github.io/post/kotlin-er-shu-zu-array/">
-                      <h2 class="post-title">
+                      <h4 class="post-title">
                         【Kotlin】（二）数组Array
-                      </h2>
+                      </h4>
                     </a>
                   </article>
                 
@@ -211,9 +200,9 @@
                 
                   <article class="post">
                     <a href="https://iflytek-duan.github.io/post/kotlin-ji-ben-shu-ju-lei-xing/">
-                      <h2 class="post-title">
+                      <h4 class="post-title">
                         【Kotlin】（一）基本类型
-                      </h2>
+                      </h4>
                     </a>
                   </article>
                 
@@ -221,9 +210,9 @@
                 
                   <article class="post">
                     <a href="https://iflytek-duan.github.io/post/android-androidstudio-sheng-ji-36-hou-ru-he-jin-ru-xml-bu-ju-wen-jian-dai-ma-bian-ji-ye-mian/">
-                      <h2 class="post-title">
+                      <h4 class="post-title">
                         【Android】AndroidStudio升级3.6后如何进入xml布局文件代码编辑页面
-                      </h2>
+                      </h4>
                     </a>
                   </article>
                 
@@ -231,9 +220,9 @@
                 
                   <article class="post">
                     <a href="https://iflytek-duan.github.io/post/android-4g-wang-luo-zhuang-tai-xia-fang-wen-ipv6-fan-ying-man-de-jie-jue-fang-an/">
-                      <h2 class="post-title">
+                      <h4 class="post-title">
                         【Android】4G网络状态下访问ipv6反应慢的解决方案
-                      </h2>
+                      </h4>
                     </a>
                   </article>
                 
@@ -241,9 +230,9 @@
                 
                   <article class="post">
                     <a href="https://iflytek-duan.github.io/post/android/">
-                      <h2 class="post-title">
+                      <h4 class="post-title">
                         【Android】项目结构的演变之路——单Project、模块化、组件化、插件化
-                      </h2>
+                      </h4>
                     </a>
                   </article>
                 
@@ -283,7 +272,7 @@
                 
               
             
-              <h2 class="year" data-aos="fade-in" data-aos-delay="500">2019</h2>
+              <h3 class="year" data-aos-delay="500">2019</h3>
               
                 
               
@@ -318,9 +307,9 @@
                 
                   <article class="post">
                     <a href="https://iflytek-duan.github.io/post/zhu-yun-de-ji-zhu-guan-li-31/">
-                      <h2 class="post-title">
+                      <h4 class="post-title">
                         【朱赟的技术管理】32-硅谷人如何做Code Review
-                      </h2>
+                      </h4>
                     </a>
                   </article>
                 
@@ -328,9 +317,9 @@
                 
                   <article class="post">
                     <a href="https://iflytek-duan.github.io/post/bu-fa-bu-rxjavaretrofit-xiang-guan-ru-men-wen-zhang/">
-                      <h2 class="post-title">
+                      <h4 class="post-title">
                         【Android】RxJava+Retrofit相关入门文章
-                      </h2>
+                      </h4>
                     </a>
                   </article>
                 
@@ -338,9 +327,9 @@
                 
                   <article class="post">
                     <a href="https://iflytek-duan.github.io/post/android-duo-zhuang-tai-bu-ju-guan-li-qi/">
-                      <h2 class="post-title">
+                      <h4 class="post-title">
                         【Android】多状态布局管理器
-                      </h2>
+                      </h4>
                     </a>
                   </article>
                 
@@ -348,9 +337,9 @@
                 
                   <article class="post">
                     <a href="https://iflytek-duan.github.io/post/jjq-android-ming-ming-gui-fan/">
-                      <h2 class="post-title">
+                      <h4 class="post-title">
                         【JJQ】Android开发规范（注释、命名、打包）
-                      </h2>
+                      </h4>
                     </a>
                   </article>
                 
@@ -358,9 +347,9 @@
                 
                   <article class="post">
                     <a href="https://iflytek-duan.github.io/post/zhu-yun-de-ji-zhu-guan-li-29-huo-gu-hu-lian-wang-gong-si-de-kai-fa-liu-cheng/">
-                      <h2 class="post-title">
+                      <h4 class="post-title">
                         【朱赟的技术管理】29-硅谷互联网公司的开发流程
-                      </h2>
+                      </h4>
                     </a>
                   </article>
                 
@@ -368,9 +357,9 @@
                 
                   <article class="post">
                     <a href="https://iflytek-duan.github.io/post/zhu-yun-de-ji-zhu-guan-li-28-ru-he-ji-fa-tuan-dui-ren-yuan-de-ze-ren-xin/">
-                      <h2 class="post-title">
+                      <h4 class="post-title">
                         【朱赟的技术管理】28-如何激发团队人员的责任心
-                      </h2>
+                      </h4>
                     </a>
                   </article>
                 
@@ -378,9 +367,9 @@
                 
                   <article class="post">
                     <a href="https://iflytek-duan.github.io/post/zhu-yun-de-ji-zhu-guan-li-26-ru-guo-zuo-zi-ji-de-zhi-chang-gui-hua/">
-                      <h2 class="post-title">
+                      <h4 class="post-title">
                         【朱赟的技术管理】26-如何做自己的职场规划
-                      </h2>
+                      </h4>
                     </a>
                   </article>
                 
@@ -388,9 +377,9 @@
                 
                   <article class="post">
                     <a href="https://iflytek-duan.github.io/post/zhu-yun-de-ji-zhu-guan-li-25-jian-rong-bing-bao-de-ling-dao-fang-shi/">
-                      <h2 class="post-title">
+                      <h4 class="post-title">
                         【朱赟的技术管理】25-兼容并包的领导方式
-                      </h2>
+                      </h4>
                     </a>
                   </article>
                 
@@ -398,9 +387,9 @@
                 
                   <article class="post">
                     <a href="https://iflytek-duan.github.io/post/zhu-yun-de-ji-zhu-guan-li-24-bian-cheng-yu-yan-man-tan/">
-                      <h2 class="post-title">
+                      <h4 class="post-title">
                         【朱赟的技术管理】24-编程语言漫谈
-                      </h2>
+                      </h4>
                     </a>
                   </article>
                 
@@ -408,9 +397,9 @@
                 
                   <article class="post">
                     <a href="https://iflytek-duan.github.io/post/zhu-yun-de-ji-zhu-guan-li-23-ru-he-chu-li-gong-zuo-zhong-de-ren-ji-guan-xi/">
-                      <h2 class="post-title">
+                      <h4 class="post-title">
                         【朱赟的技术管理】23-如何处理工作中的人际关系？
-                      </h2>
+                      </h4>
                     </a>
                   </article>
                 
@@ -418,9 +407,9 @@
                 
                   <article class="post">
                     <a href="https://iflytek-duan.github.io/post/zhu-yun-de-ji-zhu-guan-li-22-bu-yao-zuo-wei-guan-de-guan-li-zhe/">
-                      <h2 class="post-title">
+                      <h4 class="post-title">
                         【朱赟的技术管理】22-不要做微观的管理者
-                      </h2>
+                      </h4>
                     </a>
                   </article>
                 
@@ -428,9 +417,9 @@
                 
                   <article class="post">
                     <a href="https://iflytek-duan.github.io/post/zhu-yun-de-ji-zhu-guan-li-21-zhong-mei-zai-zhi-fu-ji-zhu-he-da-huan-jing-xia-de-chai-yi/">
-                      <h2 class="post-title">
+                      <h4 class="post-title">
                         【朱赟的技术管理】21-中美在支付技术和大环境下的差异
-                      </h2>
+                      </h4>
                     </a>
                   </article>
                 
@@ -438,9 +427,9 @@
                 
                   <article class="post">
                     <a href="https://iflytek-duan.github.io/post/zhu-yun-de-ji-zhu-guan-li-20-xiang-mu-guan-li-zhong-de-san-ge-ji-qiao/">
-                      <h2 class="post-title">
+                      <h4 class="post-title">
                         【朱赟的技术管理】20-项目管理中的三个技巧
-                      </h2>
+                      </h4>
                     </a>
                   </article>
                 
@@ -448,9 +437,9 @@
                 
                   <article class="post">
                     <a href="https://iflytek-duan.github.io/post/zhu-yun-de-ji-zhu-guan-li-17-guan-li-zhe-bu-yong-qin-li-qin-wei-guan-jian-shi-shi-me/">
-                      <h2 class="post-title">
+                      <h4 class="post-title">
                         【朱赟的技术管理】17-管理者不用亲力亲为：关键是什么？
-                      </h2>
+                      </h4>
                     </a>
                   </article>
                 
@@ -458,9 +447,9 @@
                 
                   <article class="post">
                     <a href="https://iflytek-duan.github.io/post/zhu-yun-de-ji-zhu-guan-li-16-ji-zhu-ren-ru-he-jian-li-ge-ren-ying-xiang-li/">
-                      <h2 class="post-title">
+                      <h4 class="post-title">
                         【朱赟的技术管理】16-技术人如何建立个人影响力
-                      </h2>
+                      </h4>
                     </a>
                   </article>
                 
@@ -468,9 +457,9 @@
                 
                   <article class="post">
                     <a href="https://iflytek-duan.github.io/post/zhu-yun-de-ji-zhu-guan-li-13-guan-li-zhe-zai-jin-xing-gong-zuo-fen-pei-shi-hui-kao-lu-na-xie-wen-ti/">
-                      <h2 class="post-title">
+                      <h4 class="post-title">
                         【朱赟的技术管理】13-管理者在进行工作分配时，会考虑哪些问题？
-                      </h2>
+                      </h4>
                     </a>
                   </article>
                 
@@ -478,24 +467,245 @@
                 
                   <article class="post">
                     <a href="https://iflytek-duan.github.io/post/zhu-yun-de-ji-zhu-guan-li-12-shu-ju-ku-zhi-shi/">
-                      <h2 class="post-title">
+                      <h4 class="post-title">
                         【朱赟的技术管理】12-数据库知识
-                      </h2>
+                      </h4>
                     </a>
                   </article>
                 
               
             
           </div>
-
-          <div class="pagination-container">
+        </div>
+        <div class="row flex-edges">
   
   
 </div>
 
-        </div>
       </div>
+      <div class="sm-12 md-4 col sidebar">
+  <div class="paper info-container">
+    <img src="https://iflytek-duan.github.io//images/avatar.png?v=1601280524333" class="no-responsive avatar">
+    <div class="text-muted">You cannot improve your past, but you can improve your future. Once time is wasted, life is wasted.</div>
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
     </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      最新文章
+    </div>
+    <div class="row">
+      <ul>
+        
+          
+            <li>
+              <a href="https://iflytek-duan.github.io/post/error-android-da-bao-debug-ban-ben-apk-hou-wu-fa-zheng-chang-an-zhuang/">【Error】Android打包debug版本apk后无法正常安装</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://iflytek-duan.github.io/post/android-ble-zhuang-tai-ma-status-codecan-zhao-biao/">【Android】BLE状态码（status code）参照表</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://iflytek-duan.github.io/post/android-zi-dong-hua-da-bao/">【Android】自动化打包</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://iflytek-duan.github.io/post/kotlin-qi-kuo-zhan-fang-fa/">【Kotlin】（七）扩展方法</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://iflytek-duan.github.io/post/kotlin-lei-he-jie-kou/">【Kotlin】（六）类和接口</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://iflytek-duan.github.io/post/kotlin-wu-han-shu/">【Kotlin】（五）函数</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://iflytek-duan.github.io/post/android-dai-ma-hun-yao/">【Android】代码混淆</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://iflytek-duan.github.io/post/kotlin-si-ji-he-kuang-jia/">【Kotlin】（四）集合框架</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://iflytek-duan.github.io/post/android-gradle-zhi-duo-lei-xing-pei-zhi/">【Android】Gradle之多类型、类型包名后缀、源集（对应文件资源）配置</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://iflytek-duan.github.io/post/kotlinsan-qu-jian-range/">【Kotlin】（三）区间 Range</a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      标签列表
+    </div>
+    <div class="row">
+      
+        <a href="https://iflytek-duan.github.io/tag/xBD1vC1ZR/" class="badge warning">
+          BLE
+        </a>
+      
+        <a href="https://iflytek-duan.github.io/tag/RBqYMVU6r/" class="badge secondary">
+          自动构建
+        </a>
+      
+        <a href="https://iflytek-duan.github.io/tag/MnJlUZFkz/" class="badge ">
+          Gradle
+        </a>
+      
+        <a href="https://iflytek-duan.github.io/tag/fvbltJpq3/" class="badge secondary">
+          kotlin
+        </a>
+      
+        <a href="https://iflytek-duan.github.io/tag/rbK2TBn2R/" class="badge success">
+          混淆
+        </a>
+      
+        <a href="https://iflytek-duan.github.io/tag/SrlbRb6sn/" class="badge warning">
+          Android
+        </a>
+      
+        <a href="https://iflytek-duan.github.io/tag/IkHQqVGps/" class="badge secondary">
+          AndroidStudio
+        </a>
+      
+        <a href="https://iflytek-duan.github.io/tag/VHTsaHEisi/" class="badge ">
+          xml
+        </a>
+      
+        <a href="https://iflytek-duan.github.io/tag/eKjFPL3wT/" class="badge ">
+          开发规范
+        </a>
+      
+        <a href="https://iflytek-duan.github.io/tag/G39dHKlfB/" class="badge secondary">
+          团队合作
+        </a>
+      
+        <a href="https://iflytek-duan.github.io/tag/myRGoPdmt1/" class="badge secondary">
+          朱赟
+        </a>
+      
+        <a href="https://iflytek-duan.github.io/tag/LodA5mW-B/" class="badge ">
+          Retrofit
+        </a>
+      
+        <a href="https://iflytek-duan.github.io/tag/0vRPOTWyAc/" class="badge success">
+          RxJava
+        </a>
+      
+        <a href="https://iflytek-duan.github.io/tag/Nsy7D59UuD/" class="badge secondary">
+          多状态布局
+        </a>
+      
+        <a href="https://iflytek-duan.github.io/tag/9raW-gICI/" class="badge ">
+          学习笔记
+        </a>
+      
+        <a href="https://iflytek-duan.github.io/tag/OWd7tNkDZ/" class="badge success">
+          职场规划
+        </a>
+      
+        <a href="https://iflytek-duan.github.io/tag/bLB_9Gt76/" class="badge ">
+          管理
+        </a>
+      
+        <a href="https://iflytek-duan.github.io/tag/tAva3e61N/" class="badge secondary">
+          移动支付
+        </a>
+      
+        <a href="https://iflytek-duan.github.io/tag/efZ6XuM_Fy/" class="badge secondary">
+          数据库
+        </a>
+      
+    </div>
+  </div>
+  <div class="paper">
+    Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://iflytek-duan.github.io//atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+
 
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 
@@ -504,13 +714,6 @@
 AOS.init();
 
 hljs.initHighlightingOnLoad()
-
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
 
 </script>
 

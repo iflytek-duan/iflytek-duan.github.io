@@ -7,9 +7,10 @@
 <meta name="description" content="You cannot improve your past, but you can improve your future. Once time is wasted, life is wasted.">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="shortcut icon" href="https://iflytek-duan.github.io//favicon.ico?v=1601280524333">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://iflytek-duan.github.io//favicon.ico?v=1601280180365">
+<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://iflytek-duan.github.io//styles/main.css">
 
@@ -20,89 +21,83 @@
 
   
 
-
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
 
 <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
 
-
   </head>
   <body>
-    <div id="app" class="main">
-
-      <div class="sidebar" :class="{ 'full-height': menuVisible }">
-  <div class="top-container" data-aos="fade-right">
-    <div class="top-header-container">
-      <a class="site-title-container" href="https://iflytek-duan.github.io/">
-        <img src="https://iflytek-duan.github.io//images/avatar.png?v=1601280180365" class="site-logo">
-        <h1 class="site-title">紫豪的Blog</h1>
-      </a>
-      <div class="menu-btn" @click="menuVisible = !menuVisible">
-        <div class="line"></div>
-      </div>
-    </div>
-    <div>
-      
-        
-          <a href="https://iflytek-duan.github.io/" class="site-nav">
-            首页
-          </a>
-        
-      
-        
-          <a href="/archives" class="site-nav">
-            归档
-          </a>
-        
-      
-        
-          <a href="/tags" class="site-nav">
-            标签
-          </a>
-        
-      
-        
-          <a href="/post/about" class="site-nav">
-            关于
-          </a>
-        
-      
-    </div>
+  
+    <nav class="navbar border fixed split-nav">
+  <div class="nav-brand">
+    <h3><a href="https://iflytek-duan.github.io/">紫豪的Blog</a></h3>
   </div>
-  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
-    <div class="social-container">
-      
+  <div class="collapsible">
+    <input id="collapsible1" type="checkbox" name="collapsible1">
+    <button>
+      <label for="collapsible1">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </label>
+    </button>
+    <div class="collapsible-body">
+      <ul class="inline">
         
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    </div>
-    <div class="site-description">
-      You cannot improve your past, but you can improve your future. Once time is wasted, life is wasted.
-    </div>
-    <div class="site-footer">
-      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://iflytek-duan.github.io//atom.xml" target="_blank">RSS</a>
-    </div>
-  </div>
-</div>
-
-
-      <div class="main-container">
-        <div class="content-container" data-aos="fade-up">
-          <div class="post-detail">
-            <h2 class="post-title">【Kotlin】（七）扩展方法</h2>
-            <div class="post-date">2020-09-03</div>
+          <li>
             
-              <div class="feature-container" style="background-image: url('https://iflytek-duan.github.io//post-images/kotlin-qi-kuo-zhan-fang-fa.jpeg')">
-              </div>
+              <a href="https://iflytek-duan.github.io/" class="menu">
+                首页
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/archives" class="menu">
+                归档
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/tags" class="menu">
+                标签
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/post/about" class="menu">
+                关于
+              </a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div id="top" class="row site">
+      <div class="sm-12 md-8 col">
+        <div class="paper">
+          <article class="article">
+            <h1>【Kotlin】（七）扩展方法</h1>
+            <p class="article-meta">
+              2020-09-03
+              
+                <a href="https://iflytek-duan.github.io/tag/fvbltJpq3/" class="badge success">
+                  kotlin
+                </a>
+              
+            </p>
+            
+              <img src="https://iflytek-duan.github.io//post-images/kotlin-qi-kuo-zhan-fang-fa.jpeg" alt="【Kotlin】（七）扩展方法">
             
             <div class="post-content">
               <h1 id="一-扩展方法的概述">一、<a href="https://www.runoob.com/kotlin/kotlin-extensions.html">扩展方法</a>的概述</h1>
@@ -410,38 +405,257 @@ D.foo in C
 <hr>
 
             </div>
-            
-              <div class="tag-container">
-                
-                  <a href="https://iflytek-duan.github.io/tag/fvbltJpq3/" class="tag">
-                    kotlin
-                  </a>
-                
-              </div>
-            
-            
-              <div class="next-post">
-                <div class="next">下一篇</div>
-                <a href="https://iflytek-duan.github.io/post/kotlin-lei-he-jie-kou/">
-                  <h3 class="post-title">
-                    【Kotlin】（六）类和接口
-                  </h3>
-                </a>
-              </div>
-            
-
-            
-              
-                <div id="gitalk-container" data-aos="fade-in"></div>
-              
-
-              
-            
-
-          </div>
-
+          </article>
         </div>
+        <div class="paper" data-aos="fade-in">
+          
+            <div class="next-post">
+              <div class="next">
+                下一篇
+              </div>
+              <a href="https://iflytek-duan.github.io/post/kotlin-lei-he-jie-kou/">
+                <h3 class="post-title">
+                  【Kotlin】（六）类和接口
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+        
+          
+            <div class="paper" data-aos="fade-in">
+              <div id="gitalk-container"></div>
+            </div>
+          
+
+          
+        
       </div>
+
+      <div class="sm-12 md-4 col sidebar">
+  <div class="paper info-container">
+    <img src="https://iflytek-duan.github.io//images/avatar.png?v=1601280524333" class="no-responsive avatar">
+    <div class="text-muted">You cannot improve your past, but you can improve your future. Once time is wasted, life is wasted.</div>
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      最新文章
+    </div>
+    <div class="row">
+      <ul>
+        
+          
+            <li>
+              <a href="https://iflytek-duan.github.io/post/error-android-da-bao-debug-ban-ben-apk-hou-wu-fa-zheng-chang-an-zhuang/">【Error】Android打包debug版本apk后无法正常安装</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://iflytek-duan.github.io/post/android-ble-zhuang-tai-ma-status-codecan-zhao-biao/">【Android】BLE状态码（status code）参照表</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://iflytek-duan.github.io/post/android-zi-dong-hua-da-bao/">【Android】自动化打包</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://iflytek-duan.github.io/post/kotlin-qi-kuo-zhan-fang-fa/">【Kotlin】（七）扩展方法</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://iflytek-duan.github.io/post/kotlin-lei-he-jie-kou/">【Kotlin】（六）类和接口</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://iflytek-duan.github.io/post/kotlin-wu-han-shu/">【Kotlin】（五）函数</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://iflytek-duan.github.io/post/android-dai-ma-hun-yao/">【Android】代码混淆</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://iflytek-duan.github.io/post/kotlin-si-ji-he-kuang-jia/">【Kotlin】（四）集合框架</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://iflytek-duan.github.io/post/android-gradle-zhi-duo-lei-xing-pei-zhi/">【Android】Gradle之多类型、类型包名后缀、源集（对应文件资源）配置</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://iflytek-duan.github.io/post/kotlinsan-qu-jian-range/">【Kotlin】（三）区间 Range</a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      标签列表
+    </div>
+    <div class="row">
+      
+        <a href="https://iflytek-duan.github.io/tag/xBD1vC1ZR/" class="badge secondary">
+          BLE
+        </a>
+      
+        <a href="https://iflytek-duan.github.io/tag/RBqYMVU6r/" class="badge ">
+          自动构建
+        </a>
+      
+        <a href="https://iflytek-duan.github.io/tag/MnJlUZFkz/" class="badge secondary">
+          Gradle
+        </a>
+      
+        <a href="https://iflytek-duan.github.io/tag/fvbltJpq3/" class="badge ">
+          kotlin
+        </a>
+      
+        <a href="https://iflytek-duan.github.io/tag/rbK2TBn2R/" class="badge ">
+          混淆
+        </a>
+      
+        <a href="https://iflytek-duan.github.io/tag/SrlbRb6sn/" class="badge warning">
+          Android
+        </a>
+      
+        <a href="https://iflytek-duan.github.io/tag/IkHQqVGps/" class="badge secondary">
+          AndroidStudio
+        </a>
+      
+        <a href="https://iflytek-duan.github.io/tag/VHTsaHEisi/" class="badge secondary">
+          xml
+        </a>
+      
+        <a href="https://iflytek-duan.github.io/tag/eKjFPL3wT/" class="badge warning">
+          开发规范
+        </a>
+      
+        <a href="https://iflytek-duan.github.io/tag/G39dHKlfB/" class="badge secondary">
+          团队合作
+        </a>
+      
+        <a href="https://iflytek-duan.github.io/tag/myRGoPdmt1/" class="badge success">
+          朱赟
+        </a>
+      
+        <a href="https://iflytek-duan.github.io/tag/LodA5mW-B/" class="badge secondary">
+          Retrofit
+        </a>
+      
+        <a href="https://iflytek-duan.github.io/tag/0vRPOTWyAc/" class="badge warning">
+          RxJava
+        </a>
+      
+        <a href="https://iflytek-duan.github.io/tag/Nsy7D59UuD/" class="badge secondary">
+          多状态布局
+        </a>
+      
+        <a href="https://iflytek-duan.github.io/tag/9raW-gICI/" class="badge success">
+          学习笔记
+        </a>
+      
+        <a href="https://iflytek-duan.github.io/tag/OWd7tNkDZ/" class="badge secondary">
+          职场规划
+        </a>
+      
+        <a href="https://iflytek-duan.github.io/tag/bLB_9Gt76/" class="badge secondary">
+          管理
+        </a>
+      
+        <a href="https://iflytek-duan.github.io/tag/tAva3e61N/" class="badge ">
+          移动支付
+        </a>
+      
+        <a href="https://iflytek-duan.github.io/tag/efZ6XuM_Fy/" class="badge success">
+          数据库
+        </a>
+      
+    </div>
+  </div>
+  <div class="paper">
+    Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://iflytek-duan.github.io//atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+
+
     </div>
 
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
@@ -451,13 +665,6 @@ D.foo in C
 AOS.init();
 
 hljs.initHighlightingOnLoad()
-
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
 
 </script>
 
