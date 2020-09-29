@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://iflytek-duan.github.io/</id>
     <title>紫豪的Blog</title>
-    <updated>2020-09-29T03:20:20.863Z</updated>
+    <updated>2020-09-29T07:14:02.289Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://iflytek-duan.github.io/"/>
     <link rel="self" href="https://iflytek-duan.github.io/atom.xml"/>
@@ -37,7 +37,7 @@
 业务功能库，<strong>提供完整的业务功能实现及对应的UI效果展示。</strong><br>
 如：我的（<code>module-mine</code>）、推拿（<code>module-mass</code>）等。</li>
 </ul>
-<hr>
+<h2 id=""><img src="https://iflytek-duan.github.io//post-images/1601363624471.png" alt="Android Project组件化架构图" loading="lazy"></h2>
 <h1 id="三-屏幕分辨率适配">三、屏幕（分辨率适配）</h1>
 <p>依据实际的<code>UI</code>设计图，我们以<code>sw-375dp</code>为基准进行屏幕的适配工作，相应适配文件存放于<code>base-&gt;res/values、values-swxxxdp/measure.xml</code>内。<br>
 在实际开发中根据UI设计图尺寸直接设置对应控件的尺寸即可（<code>@dimen/common_measure_xxxdp</code>），具体使用示例如下：</p>
