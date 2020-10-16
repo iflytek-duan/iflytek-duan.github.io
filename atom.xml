@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://iflytek-duan.github.io/</id>
     <title>紫豪的Blog</title>
-    <updated>2020-10-16T01:59:32.168Z</updated>
+    <updated>2020-10-16T02:03:46.912Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://iflytek-duan.github.io/"/>
     <link rel="self" href="https://iflytek-duan.github.io/atom.xml"/>
@@ -10,6 +10,78 @@
     <logo>https://iflytek-duan.github.io/images/avatar.png</logo>
     <icon>https://iflytek-duan.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 紫豪的Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[【BLE】低功耗蓝牙之连接数据包、数据包大小（MTU）概述]]></title>
+        <id>https://iflytek-duan.github.io/post/ble-di-gong-hao-lan-ya-zhi-lian-jie-shu-ju-bao-shu-ju-bao-da-xiao-mtugai-shu/</id>
+        <link href="https://iflytek-duan.github.io/post/ble-di-gong-hao-lan-ya-zhi-lian-jie-shu-ju-bao-shu-ju-bao-da-xiao-mtugai-shu/">
+        </link>
+        <updated>2020-10-15T07:22:15.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="一-蓝牙连接数据包">一、蓝牙连接数据包</h1>
+<p><strong>BLE 连接过程中有三个重要的数据包：SCAN_REQ, SCAN_RSP 和 CONNECT_REQ。</strong></p>
+<ul>
+<li><strong>SCAN_REQ：</strong><br>
+扫描请求，由主设备（MASTER DEVICE）向从设备（SLAVE DEVICE）发出，目的是为了获得从设备的响应以得到更多的从设备广播数据信息（包括设备名字，或者服务UUID，及其它如厂家特定格式的信息（如硬件版本，软件版本号，设备系列号等等）。</li>
+<li>**SCAN_RSP: **<br>
+从设备对就主设备发起的SCAN_REQ的响应，作为广播包的补充，从设备可以给主设备更多的广播数据，比如说，有些设备在广播包里面没有设备名字，这个时候就可以把设备名字放在这个包里面发给主设备。</li>
+<li><strong>CONNECT_REQ：</strong><br>
+主设备向从设备发出连接请求。至此连接建立完成（从设备不会响应这个请求），如果从设备没有连接上面的问题的话，以后主从双方会开始相互交换有效数据（基于GAP,GATT及SMP协议）或者交换空包。</li>
+</ul>
+<blockquote>
+<p>更多内容参见<a href="http://www.viewtool.com/bbs/forum.php?mod=viewthread&amp;tid=63206">一分钟读懂低功耗蓝牙（BLE)连接数据包</a></p>
+</blockquote>
+<hr>
+<h1 id="二-什么是mtu">二、什么是MTU</h1>
+<p><strong>MTU</strong>（MAXIMUM TRANSMISSION UNIT）最大传输单元，指在一个<strong>PDU</strong>（Protocol Data Unit：协议数据单元，在一个单元中的有效传输数据）<strong>能够传输的最大数据量</strong>（多少字节可以一次传输给对方）。</p>
+<hr>
+<h1 id="三-mtu交换的意义设置reqeustmtu的意义">三、MTU交换的意义（设置reqeustMtu的意义）</h1>
+<p>MTU 交换是<strong>为了在主从双方设置一个PDU中最大能够交换的数据量</strong>，通过MTU的交换和双方确认（注意这个MTU是不可以协商的，只是通知对方，<strong>双方在知道对方的极限后会选择一个较小的值作为以后的MTU</strong>。</p>
+<p>比如说，主设备发出一个150个字节的MTU请求，但是从设备回应MTU是23字节，那么今后双方要以较小的值23字节作为以后的MTU），主从双方约定每次在做数据传输时不超过这个最大数据单元，MTU交换通常发生在主从双方建立连接关系后。</p>
+<p>更多内容移步<a href="https://blog.csdn.net/viewtoolsz/article/details/76177465">一分钟读懂低功耗蓝牙(BLE)MTU交换数据包</a></p>
+<h1 id="四-如何妥善处理数据包大小mtu限制">四、如何妥善处理数据包大小（MTU）限制</h1>
+<p>Android系统从4.3(API 18)开始支持BLE，且从5.1(API 21)才开始支持MTU修改(<strong>默认MTU仅为23字节，而且传输本身用掉3字节</strong>)。</p>
+<h2 id="1为什么ble默认限制数据传输长度为20个字节">1.为什么BLE默认限制数据传输长度为20个字节？</h2>
+<p><code>core spec</code>里面定义了ATT的<strong>默认MTU为23个bytes</strong>，除去ATT的opcode一个字节以及ATT的handle2个字节之后，<strong>剩下的20个字节便是留给GATT的了</strong>。</p>
+<p>考虑到有些Bluetooth smart设备功能弱小，不敢太奢侈的使用内存空间，因此core spec规定每一个设备都必须支持MTU为23。</p>
+<p>在两个设备连接初期，大家都像新交的朋友一样，不知对方底细，因此严格的按照套路来走，即最多一次发20个字节，是最保险的。</p>
+<p>由于ATT的最大长度为512byte，</p>
+<p>因此一般认为MTU的最大长度为512个byte就够了，再大也没什么意义，你不可能发一个超过512的ATT的数据，就像是孙猴子跑不过五行山一样。</p>
+<p>所以ATT的MTU的最大长度可视为512个bytes。</p>
+<h2 id="2如何突破mtu-20字节的限制">2.如何突破MTU 20字节的限制？</h2>
+<p>当我们需要传输 / 接收超过20字节长度的数据时，就需要在连接设备成功后通过<code>BluetoothGatt#requestMtu(int mtu)</code>方法进行对应的请求设置，示例代码如下：</p>
+<pre><code class="language-java">private final BluetoothGattCallback mGattCallback = new BluetoothGattCallback() {
+        @Override
+        public void onMtuChanged(BluetoothGatt gatt, int mtu, int status) {
+            super.onMtuChanged(gatt, mtu, status);
+            if (status == BluetoothGatt.GATT_SUCCESS) {
+                LogUtil.e(TAG, &quot;request mtu success.约定后的MTU值为：&quot; + mtu);
+            } else {
+                LogUtil.e(TAG, &quot;request mtu failed.&quot;);
+            }
+        }
+
+        @Override
+        public void onConnectionStateChange(BluetoothGatt gatt, int status, int newState) {
+            if (status == BluetoothGatt.GATT_SUCCESS &amp;&amp; newState == BluetoothProfile.STATE_CONNECTED) {//蓝牙连接成功
+                gatt.requestMtu(39);
+            }
+        }
+}
+</code></pre>
+<p>注意：上述代码的 onMtuChanged 可以发挥关键作用。MTU默认取的是23，当收到 onMtuChanged 后，会根据传递的值修改MTU，注意由于传输用掉3字节，因此传递的值需要减3。</p>
+<h2 id="3为什么专门记录mtu">3.为什么专门记录MTU</h2>
+<p>记录MTU主要是用于传输过程中判断数据是否需要分包发送。按照MTU的大小严格约束每次发送的数据包大小，如果不这么做，很可能远端接收就会出错。除非你的数据包大小本身就很小。</p>
+<h2 id="4设置完mtu后无法立即发现设备服务列表onservicesdiscovered不能回调">4.设置完MTU后无法立即发现设备服务列表——onServicesDiscovered不能回调</h2>
+<p>这个时候我们需要延迟调用<code>BluetoothGatt.discoverServices()</code>方法，经测大概需要延迟1000ms后才能够正常的获取到服务列表及发现相关特征。</p>
+<hr>
+<p><strong>本内内容参考自：</strong><br>
+<a href="https://docs.microsoft.com/zh-cn/dotnet/api/android.bluetooth.bluetoothgatt.requestmtu?view=xamarin-android-sdk-9">BluetoothGatt.RequestMtu(Int32) Method</a></p>
+<p><a href="https://blog.csdn.net/qiandaxiong/article/details/78903969?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.channel_param&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.channel_param">低功耗蓝牙（BLE）开发——如何妥善处理包大小（MTU）限制</a></p>
+<p><a href="https://blog.csdn.net/sinat_19628093/article/details/51890827">Android BLE中传输数据的最大长度怎么破</a></p>
+<p><a href="https://blog.csdn.net/beautifulyuan/article/details/93902693">BLE设备发送超过20个字节</a></p>
+<p><a href="https://www.it1352.com/1808552.html">BLE：使用Android / iOS读取长特征值(BLE: Read Long Characteristics Value using Android / iOS)</a></p>
+<p><a href="https://blog.csdn.net/e_inch_photo/article/details/77278378">ble连接之后onServicesDiscovered 不被调用</a></p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[【DOHENES】TB改版v2.0整体架构规范]]></title>
         <id>https://iflytek-duan.github.io/post/dohenes-tb-gai-ban-v20-zheng-ti-jia-gou-gui-fan/</id>
@@ -1567,102 +1639,6 @@ val (a, b, c) = multiReturnValues()
     val (x, y, z) = triple
 </code></pre>
 <p>--</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[【Android】Gradle之多类型、类型包名后缀、源集（对应文件资源）配置]]></title>
-        <id>https://iflytek-duan.github.io/post/android-gradle-zhi-duo-lei-xing-pei-zhi/</id>
-        <link href="https://iflytek-duan.github.io/post/android-gradle-zhi-duo-lei-xing-pei-zhi/">
-        </link>
-        <updated>2020-06-10T01:20:25.000Z</updated>
-        <content type="html"><![CDATA[<h2 id="前言">前言</h2>
-<p>一般情况下，我们的开发环境分为<code>debug</code>与<code>release</code>两个环境，这个一般在新建Android项目时，Gradle文件中已完成了默认的配置，代码如下（<code>debug</code>默认存在）：</p>
-<pre><code class="language-java">buildTypes {
-    release {
-        minifyEnabled false
-        proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-    }
-}
-</code></pre>
-<p>那么，如果我们在有的项目中需要配置其它环境（如alpha、beta等），这个时候就需要额外的配置了。</p>
-<hr>
-<h2 id="buildtypes配置构建类型">buildTypes（配置构建类型）</h2>
-<p><code>buildTypes</code>位于<code>app-build.gradle</code>文件的<code>android{}</code>代码块中，它是用来创建和配置app的构建类型的，新建一个项目在模块的<code>build.gradle</code>文件中会默认生成<code>debug</code>与<code>release</code>两个环境版本。</p>
-<hr>
-<h2 id="多类型配置与其作用">多类型配置与其作用</h2>
-<p>当我们app需要在不同的环境下生成对应的版本时，这个时候就需要在<code>buildTypes</code>内进行对应版本类型的配置工作（如：网络baseUrl的配置），示例代码如下：</p>
-<pre><code class="language-java">buildTypes {
-    release {
-        minifyEnabled false
-        buildConfigField 'String', 'BASE_URL', '&quot;http://xxxx-release.**/&quot;'
-        proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-    }
-
-    alpha {
-        minifyEnabled false
-        buildConfigField 'String', 'BASE_URL', '&quot;http://xxxx-alpha.**/&quot;'
-    }
-
-    beta {
-        minifyEnabled false
-        buildConfigField 'String', 'BASE_URL', '&quot;http://xxxx-beta.**/&quot;'
-    }
-}
-</code></pre>
-<p>通过如上配置，我们可以实现针对不同的环境创建对应的版本类型。</p>
-<blockquote>
-<p>通过Gradle-&gt;app-&gt;build-&gt;assemble可以一键进行所有类型版本的构建，生成对应的apk文件。</p>
-</blockquote>
-<hr>
-<h2 id="applicationidsuffix">applicationIdSuffix</h2>
-<p>该字段表示，在不改变当前程序默认ID（包名）的情况下，为其添加后缀。如：当前包名是<code>com.zihao.app</code>，如果你想区分测试包与线上包的情况，这个时候在<code>buildTypes-&gt;debug</code>中将<code>applicationIdSuffix</code>设置为<code>applicationIdSuffix &quot;.debug&quot;</code>，那么对应的包名就变成了<code>com.zihao.app.debug</code>，示例代码如下：</p>
-<pre><code class="language-java">buildTypes {
-    ...
-    debug {
-        applicationIdSuffix &quot;.debug&quot;
-    }
-}
-</code></pre>
-<hr>
-<h2 id="源集source-sets构建">源集（Source Sets）构建</h2>
-<p>Android Studio会为每个模块将源代码和资源文件组成一个逻辑上的源集。每个模块的<code>main/</code>源集包括所有构建变种都是用的源码和资源。其它源集的目录是可选的，Android Studio不会自动为你创建他们，当你构建新的变种的时候。但是，构建具体的app版本的时候，创建于<code>main/</code>类似的源集，可以帮助组织Gradle应该使用的文件和资源（有助于让Gradle只应在构建特定应用版本时使用的文件和资源井然有序）。</p>
-<blockquote>
-<p>通常源代码是放在'src/main'文件目录下的，但是你可以根据不同的构建类型（比如debug、release、alpha等）区分不同的源文件，这样对应建立的文件夹就是一个不同的构建源。打个比方，<code>debug</code>的构建源为<code>src/debug</code>，<code>release</code>的构建源为<code>src/release</code>，而在<code>src/main</code>定义的为公共资源，最后在构建时进行合并操作。</p>
-</blockquote>
-<p><strong>构建源的命名规则如下</strong></p>
-<ul>
-<li><code>src/main/</code><br>
-此源集包括所有构建变体共用的代码和资源。</li>
-<li><code>src/&lt;buildTypes&gt;/</code><br>
-创建这个源集来包括仅仅为一个具体的<code>buildType</code>使用的代码和资源。示例：<code>src/alpha</code>。</li>
-<li><code>src/&lt;productFlavor&gt;/</code><br>
-创建这个源集来包括仅仅为一个具体的<code>productFlavor</code>使用的代码和资源。示例：<code>src/baidu</code>。</li>
-<li><code>src/&lt;productFlavorBuildType&gt;/</code><br>
-创建此源集可加入特定构建变体专用的代码和资源。</li>
-</ul>
-<p>例如，要生成应用的“baiduDebug”版本，构建系统需要合并来自以下源集的代码、设置和资源：</p>
-<ul>
-<li><code>src/baiduDebug/</code>（构建变种源集）</li>
-<li><code>src/debug/</code>（构建类型buildType源集）</li>
-<li><code>src/baidu/</code>（productFlavor源集）</li>
-<li><code>src/main/</code>（main源集）</li>
-</ul>
-<blockquote>
-<p>注意：当你在Android Studio中创建一个新的文件或者目录时，使用File-&gt;New菜单项，你可以为一个具体的源集创建它。你可以选择的这些源集是基于你的构建配置的，并且Android Studio自动创建需要的目录，如果它们不存在的话。</p>
-</blockquote>
-<p><strong>源集的优先级</strong><br>
-如果不同的源集包含同一个文件的不同版本，当决定哪个文件使用的时候Gradle使用下面的优先级顺序。（在左边的源集会重写右边的源集文件和设置）：</p>
-<pre><code class="language-java">buildVariant &gt; buildType &gt; productFlavor &gt; main source set &gt; library dependencies
-</code></pre>
-<p>这可以让Gradle在构建的时候使用与具体构建变种相关的文件，当重用activity，应用逻辑，以及和其他版本通用的资源的时候。当<a href="https://developer.android.com/studio/build/manifest-merge.html">merging multiple manifests</a>的时候，Gradle使用同样的优先级顺序，因此每个构建变种可以定义不同的组件或者权限在最终的manifest文件中。<br>
-学习更多关于创建自定义源集，点击<a href="https://developer.android.com/studio/build/build-variants.html">Create source sets for build variants</a>。</p>
-<hr>
-<blockquote>
-<p>参考：<a href="https://www.jianshu.com/p/89e5b0f3521e">【译】Android构建配置</a><br>
-<a href="https://www.jianshu.com/p/e1efbade5d93">Android 多渠道打包配置</a><br>
-<strong><a href="https://www.jianshu.com/p/a8870dccda1f">Android Studio Set of source 代码源集</a>  源集创建等操作</strong><br>
-<strong><a href="https://developer.android.google.cn/studio/build/build-variants">官方文档</a></strong></p>
-</blockquote>
 ]]></content>
     </entry>
 </feed>
