@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://iflytek-duan.github.io//favicon.ico?v=1602813824658">
+<link rel="shortcut icon" href="https://iflytek-duan.github.io//favicon.ico?v=1602817298615">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://iflytek-duan.github.io//styles/main.css">
 
@@ -36,7 +36,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://iflytek-duan.github.io/">
-        <img src="https://iflytek-duan.github.io//images/avatar.png?v=1602813824658" class="site-logo">
+        <img src="https://iflytek-duan.github.io//images/avatar.png?v=1602817298615" class="site-logo">
         <h1 class="site-title">紫豪的Blog</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -109,32 +109,33 @@
 <p><strong>BLE 连接过程中有三个重要的数据包：SCAN_REQ, SCAN_RSP 和 CONNECT_REQ。</strong></p>
 <ul>
 <li><strong>SCAN_REQ：</strong><br>
-扫描请求，由主设备（MASTER DEVICE）向从设备（SLAVE DEVICE）发出，目的是为了获得从设备的响应以得到更多的从设备广播数据信息（包括设备名字，或者服务UUID，及其它如厂家特定格式的信息（如硬件版本，软件版本号，设备系列号等等）。</li>
-<li>**SCAN_RSP: **<br>
+扫描请求，由主设备（<code>MASTER DEVICE</code>）向从设备（<code>SLAVE DEVICE</code>）发出，目的是为了获得从设备的响应以得到更多的从设备广播数据信息（包括设备名字，或者服务<code>UUID</code>，及其它如厂家特定格式的信息（如硬件版本，软件版本号，设备系列号等等）。</li>
+<li><strong>SCAN_RSP:</strong><br>
 从设备对就主设备发起的SCAN_REQ的响应，作为广播包的补充，从设备可以给主设备更多的广播数据，比如说，有些设备在广播包里面没有设备名字，这个时候就可以把设备名字放在这个包里面发给主设备。</li>
 <li><strong>CONNECT_REQ：</strong><br>
-主设备向从设备发出连接请求。至此连接建立完成（从设备不会响应这个请求），如果从设备没有连接上面的问题的话，以后主从双方会开始相互交换有效数据（基于GAP,GATT及SMP协议）或者交换空包。</li>
+主设备向从设备发出连接请求。至此连接建立完成（从设备不会响应这个请求），如果从设备没有连接上面的问题的话，以后主从双方会开始相互交换有效数据（基于<code>GAP,GATT</code>及<code>SMP</code>协议）或者交换空包。</li>
 </ul>
 <blockquote>
 <p>更多内容参见<a href="http://www.viewtool.com/bbs/forum.php?mod=viewthread&amp;tid=63206">一分钟读懂低功耗蓝牙（BLE)连接数据包</a></p>
 </blockquote>
 <hr>
 <h1 id="二-什么是mtu">二、什么是MTU</h1>
-<p><strong>MTU</strong>（MAXIMUM TRANSMISSION UNIT）最大传输单元，指在一个<strong>PDU</strong>（Protocol Data Unit：协议数据单元，在一个单元中的有效传输数据）<strong>能够传输的最大数据量</strong>（多少字节可以一次传输给对方）。</p>
+<p><strong>MTU</strong>（<code>MAXIMUM TRANSMISSION UNIT</code>）最大传输单元，指在一个<strong>PDU</strong>（<code>Protocol Data Unit</code>：协议数据单元，在一个单元中的有效传输数据）<strong>能够传输的最大数据量</strong>（多少字节可以一次传输给对方）。</p>
 <hr>
 <h1 id="三-mtu交换的意义设置reqeustmtu的意义">三、MTU交换的意义（设置reqeustMtu的意义）</h1>
-<p>MTU 交换是<strong>为了在主从双方设置一个PDU中最大能够交换的数据量</strong>，通过MTU的交换和双方确认（注意这个MTU是不可以协商的，只是通知对方，<strong>双方在知道对方的极限后会选择一个较小的值作为以后的MTU</strong>。</p>
-<p>比如说，主设备发出一个150个字节的MTU请求，但是从设备回应MTU是23字节，那么今后双方要以较小的值23字节作为以后的MTU），主从双方约定每次在做数据传输时不超过这个最大数据单元，MTU交换通常发生在主从双方建立连接关系后。</p>
+<p><code>MTU</code>交换是<strong>为了在主从双方设置一个PDU中最大能够交换的数据量</strong>，通过<code>MTU</code>的交换和双方确认（注意这个<code>MTU</code>是不可以协商的，只是通知对方，<strong>双方在知道对方的极限后会选择一个较小的值作为以后的MTU</strong>。</p>
+<p>比如说，主设备发出一个<code>150个字节</code>的<code>MTU</code>请求，但是从设备回应<code>MTU</code>是<code>23字节</code>，那么今后双方要以较小的值<code>23字节</code>作为以后的<code>MTU</code>），主从双方约定每次在做数据传输时不超过这个最大数据单元，<code>MTU</code>交换通常发生在主从双方建立连接关系后。</p>
+<blockquote>
 <p>更多内容移步<a href="https://blog.csdn.net/viewtoolsz/article/details/76177465">一分钟读懂低功耗蓝牙(BLE)MTU交换数据包</a></p>
+</blockquote>
 <h1 id="四-如何妥善处理数据包大小mtu限制">四、如何妥善处理数据包大小（MTU）限制</h1>
-<p>Android系统从4.3(API 18)开始支持BLE，且从5.1(API 21)才开始支持MTU修改(<strong>默认MTU仅为23字节，而且传输本身用掉3字节</strong>)。</p>
+<p><code>Android</code>系统从<code>4.3(API 18)</code>开始支持<code>BLE</code>，且从<code>5.1(API 21)</code>才开始支持<code>MTU</code>修改(<strong>默认<code>MTU</code>仅为<code>23字节</code>，而且传输本身用掉<code>3字节</code></strong>)。</p>
 <h2 id="1为什么ble默认限制数据传输长度为20个字节">1.为什么BLE默认限制数据传输长度为20个字节？</h2>
-<p><code>core spec</code>里面定义了ATT的<strong>默认MTU为23个bytes</strong>，除去ATT的opcode一个字节以及ATT的handle2个字节之后，<strong>剩下的20个字节便是留给GATT的了</strong>。</p>
-<p>考虑到有些Bluetooth smart设备功能弱小，不敢太奢侈的使用内存空间，因此core spec规定每一个设备都必须支持MTU为23。</p>
-<p>在两个设备连接初期，大家都像新交的朋友一样，不知对方底细，因此严格的按照套路来走，即最多一次发20个字节，是最保险的。</p>
-<p>由于ATT的最大长度为512byte，</p>
-<p>因此一般认为MTU的最大长度为512个byte就够了，再大也没什么意义，你不可能发一个超过512的ATT的数据，就像是孙猴子跑不过五行山一样。</p>
-<p>所以ATT的MTU的最大长度可视为512个bytes。</p>
+<p><code>core spec</code>里面定义了ATT的<strong>默认<code>MTU</code>为<code>23个bytes</code></strong>，除去<code>ATT</code>的<code>opcode</code>一个字节以及<code>ATT</code>的<code>handle 2个字节</code>之后，<strong>剩下的<code>20个字节</code>便是留给<code>GATT</code>的了</strong>。</p>
+<p>考虑到有些<code>Bluetooth smart</code>设备功能弱小，不敢太奢侈的使用内存空间，因此<code>core spec</code>规定每一个设备都必须支持<code>MTU</code>为<code>23</code>。</p>
+<p>在两个设备连接初期，大家都像新交的朋友一样，不知对方底细，因此严格的按照套路来走，即最多一次发<code>20个字节</code>，是最保险的。</p>
+<p>由于<code>ATT</code>的最大长度为<code>512byte</code>，因此一般认为<code>MTU</code>的最大长度为<code>512个byte</code>就够了，再大也没什么意义，你不可能发一个超过<code>512</code>的<code>ATT</code>的数据，就像是孙猴子跑不过五行山一样。</p>
+<p>所以<code>ATT</code>的<code>MTU</code>的最大长度可视为<code>512个bytes</code>。</p>
 <h2 id="2如何突破mtu-20字节的限制">2.如何突破MTU 20字节的限制？</h2>
 <p>当我们需要传输 / 接收超过20字节长度的数据时，就需要在连接设备成功后通过<code>BluetoothGatt#requestMtu(int mtu)</code>方法进行对应的请求设置，示例代码如下：</p>
 <pre><code class="language-java">private final BluetoothGattCallback mGattCallback = new BluetoothGattCallback() {
@@ -156,19 +157,39 @@
         }
 }
 </code></pre>
-<p>注意：上述代码的 onMtuChanged 可以发挥关键作用。MTU默认取的是23，当收到 onMtuChanged 后，会根据传递的值修改MTU，注意由于传输用掉3字节，因此传递的值需要减3。</p>
+<p>注意：上述代码的<code>onMtuChanged</code>可以发挥关键作用。<code>MTU</code>默认取的是<code>23</code>，当收到<code>onMtuChanged</code>后，会根据传递的值修改<code>MTU</code>，注意由于传输用掉<code>3</code>个字节，因此传递的值需要减3。</p>
 <h2 id="3为什么专门记录mtu">3.为什么专门记录MTU</h2>
-<p>记录MTU主要是用于传输过程中判断数据是否需要分包发送。按照MTU的大小严格约束每次发送的数据包大小，如果不这么做，很可能远端接收就会出错。除非你的数据包大小本身就很小。</p>
+<p>记录<code>MTU</code>主要是用于传输过程中判断数据是否需要分包发送。按照<code>MTU</code>的大小严格约束每次发送的数据包大小，如果不这么做，很可能远端接收就会出错。除非你的数据包大小本身就很小。</p>
 <h2 id="4设置完mtu后无法立即发现设备服务列表onservicesdiscovered不能回调">4.设置完MTU后无法立即发现设备服务列表——onServicesDiscovered不能回调</h2>
-<p>这个时候我们需要延迟调用<code>BluetoothGatt.discoverServices()</code>方法，经测大概需要延迟1000ms后才能够正常的获取到服务列表及发现相关特征。</p>
+<p>这个时候我们需要延迟调用<code>BluetoothGatt.discoverServices()</code>方法，经测大概需要延迟<code>1000ms</code>后才能够正常的获取到服务列表及发现相关特征。</p>
 <hr>
-<p><strong>本内内容参考自：</strong><br>
-<a href="https://docs.microsoft.com/zh-cn/dotnet/api/android.bluetooth.bluetoothgatt.requestmtu?view=xamarin-android-sdk-9">BluetoothGatt.RequestMtu(Int32) Method</a></p>
-<p><a href="https://blog.csdn.net/qiandaxiong/article/details/78903969?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.channel_param&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.channel_param">低功耗蓝牙（BLE）开发——如何妥善处理包大小（MTU）限制</a></p>
-<p><a href="https://blog.csdn.net/sinat_19628093/article/details/51890827">Android BLE中传输数据的最大长度怎么破</a></p>
-<p><a href="https://blog.csdn.net/beautifulyuan/article/details/93902693">BLE设备发送超过20个字节</a></p>
-<p><a href="https://www.it1352.com/1808552.html">BLE：使用Android / iOS读取长特征值(BLE: Read Long Characteristics Value using Android / iOS)</a></p>
-<p><a href="https://blog.csdn.net/e_inch_photo/article/details/77278378">ble连接之后onServicesDiscovered 不被调用</a></p>
+<p>#【本内内容参考自以下文章，侵删】</p>
+<ul>
+<li>
+<p><a href="https://docs.microsoft.com/zh-cn/dotnet/api/android.bluetooth.bluetoothgatt.requestmtu?view=xamarin-android-sdk-9"><strong>BluetoothGatt.RequestMtu(Int32) Method</strong></a></p>
+</li>
+<li>
+<p><a href="https://blog.csdn.net/qiandaxiong/article/details/78903969?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.channel_param&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.channel_param"><strong>低功耗蓝牙（BLE）开发——如何妥善处理包大小（MTU）限制</strong></a></p>
+</li>
+<li>
+<p><a href="https://blog.csdn.net/sinat_19628093/article/details/51890827"><strong>Android BLE中传输数据的最大长度怎么破</strong></a></p>
+</li>
+<li>
+<p><a href="https://blog.csdn.net/beautifulyuan/article/details/93902693"><strong>BLE设备发送超过20个字节</strong></a></p>
+</li>
+<li>
+<p><a href="https://www.it1352.com/1808552.html"><strong>BLE：使用Android / iOS读取长特征值(BLE: Read Long Characteristics Value using Android / iOS</strong>)</a></p>
+</li>
+<li>
+<p><a href="https://blog.csdn.net/e_inch_photo/article/details/77278378"><strong>ble连接之后onServicesDiscovered 不被调用</strong></a></p>
+</li>
+</ul>
+<hr>
+<p>#【写在最后】</p>
+<blockquote>
+<p>经测，<code>iOS</code>在<code>9.0</code>以后能够正常的处理数据包过长的问题，<code>CoreBluetooth</code>针对长数据已经内部做出了处理，不需要额外的多次调用<code>getValue</code>方法，详见<a href="https://www.it1352.com/1808552.html"><strong>BLE：使用Android / iOS读取长特征值(BLE: Read Long Characteristics Value using Android / iOS</strong>)</a>。</p>
+</blockquote>
+<hr>
 
             </div>
             
