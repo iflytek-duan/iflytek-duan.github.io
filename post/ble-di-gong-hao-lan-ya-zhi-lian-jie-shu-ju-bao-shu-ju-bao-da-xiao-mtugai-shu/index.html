@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://iflytek-duan.github.io//favicon.ico?v=1603158722340">
+<link rel="shortcut icon" href="https://iflytek-duan.github.io//favicon.ico?v=1603160331875">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://iflytek-duan.github.io//styles/main.css">
 
@@ -36,7 +36,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://iflytek-duan.github.io/">
-        <img src="https://iflytek-duan.github.io//images/avatar.png?v=1603158722340" class="site-logo">
+        <img src="https://iflytek-duan.github.io//images/avatar.png?v=1603160331875" class="site-logo">
         <h1 class="site-title">紫豪的Blog</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -160,8 +160,9 @@
 <p>注意：上述代码的<code>onMtuChanged</code>可以发挥关键作用。<code>MTU</code>默认取的是<code>23</code>，当收到<code>onMtuChanged</code>后，会根据传递的值修改<code>MTU</code>，注意由于传输用掉<code>3</code>个字节，因此传递的值需要减3。</p>
 <h2 id="3为什么专门记录mtu">3.为什么专门记录MTU</h2>
 <p>记录<code>MTU</code>主要是用于传输过程中判断数据是否需要分包发送。按照<code>MTU</code>的大小严格约束每次发送的数据包大小，如果不这么做，很可能远端接收就会出错。除非你的数据包大小本身就很小。</p>
-<h2 id="4设置完mtu后无法立即发现设备服务列表onservicesdiscovered不能回调">4.设置完MTU后无法立即发现设备服务列表——onServicesDiscovered不能回调</h2>
-<p>这个时候我们需要延迟调用<code>BluetoothGatt.discoverServices()</code>方法，经测大概需要延迟<code>1000ms</code>后才能够正常的获取到服务列表及发现相关特征。</p>
+<h2 id="4设置完mtu后无法在bluetoothgattcallbackonconnectionstatechange方法中立即发现设备服务列表">4.设置完MTU后无法在<code>BluetoothGattCallback#onConnectionStateChange</code>方法中立即发现设备服务列表</h2>
+<p>当我们设置完MTU后，发现在<code>BluetoothGattCallback#onConnectionStateChange</code>方法中调用<code>BluetoothGatt.discoverServices()</code>无法立即触发<code>BluetoothGattCallback#onServicesDiscovered</code>回调。<br>
+我之前尝试过通过延迟调用<code>BluetoothGatt#discoverServices()</code>方法（经测大概需要延迟<code>1000ms-1200ms</code>）后才能够正常的获取到服务列表及发现相关特征，后来发现<strong>正确的解决方法应该是在<code>BluetoothGattCallback#onMtuChanged</code>回调中调用<code>BluetoothGatt#discoverServices()</code>方法即可解决问题。</strong></p>
 <hr>
 <p>#【本内内容参考自以下文章，侵删】</p>
 <ul>
